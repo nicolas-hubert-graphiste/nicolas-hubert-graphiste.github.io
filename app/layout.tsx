@@ -11,8 +11,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="p-2 font-sans antialiased lg:p-6">{children}</body>
+    <html lang="fr">
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }
