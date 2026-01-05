@@ -9,8 +9,8 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "deploy": "next build && touch out/.nojekyll && gh-pages -d out",
-    "deploy:custom": "next build && echo 'nicolas-hubert-graphiste.com' > out/CNAME && touch out/.nojekyll && gh-pages -d out"
+    "deploy": "BASE_PATH=/website next build && touch out/.nojekyll && gh-pages -d out",
+    "deploy:custom": "BASE_PATH= next build && echo 'nicolas-hubert-graphiste.com' > out/CNAME && touch out/.nojekyll && gh-pages -d out"
   },
   "dependencies": {
     "clsx": "^2.1.1",
