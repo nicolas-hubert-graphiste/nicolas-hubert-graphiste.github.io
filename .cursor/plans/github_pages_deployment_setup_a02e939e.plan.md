@@ -1,6 +1,6 @@
 ---
 name: GitHub Pages Deployment Setup
-overview: Configure Next.js for static export and GitHub Pages deployment with easy transition from subdirectory (nicolas-hubert-graphiste.github.io/website) to custom domain (nicolas-hubert-graphiste.com).
+overview: Configure Next.js for static export and GitHub Pages deployment at root level (nicolas-hubert-graphiste.github.io) with seamless transition to custom domain (nicolas-hubert-graphiste.com).
 todos:
   - id: install-gh-pages
     content: Install gh-pages as dev dependency using Bun
@@ -29,7 +29,7 @@ todos:
 
 ## Overview
 
-Set up GitHub Pages deployment with a configuration that allows easy switching between subdirectory deployment and custom domain deployment.
+Set up GitHub Pages deployment at root level (nicolas-hubert-graphiste.github.io) with seamless transition to custom domain (nicolas-hubert-graphiste.com). Repository renamed to match organization name for root-level deployment.
 
 ## Changes Required
 
@@ -43,43 +43,42 @@ bun add -d gh-pages
 
 ### 2. Update Next.js Configuration
 
-Modify [`next.config.ts`](next.config.ts) to enable static export with conditional basePath:
+Modify [`next.config.ts`](next.config.ts) to enable static export:
 
 - Set `output: 'export'` for static HTML generation
-- Set `basePath: process.env.BASE_PATH || ''` to allow build-time control
+- Set `trailingSlash: true` for GitHub Pages compatibility
 - Set `images: { unoptimized: true }` as required for static export
-
-**Important:** `basePath` must be known at build time (not runtime), so we use `BASE_PATH` instead of `NEXT_PUBLIC_BASE_PATH`. The value is passed directly in the deploy command.
+- **No basePath needed** - repository is named `nicolas-hubert-graphiste.github.io` for root-level deployment
 
 ### 3. Add Deploy Scripts
 
 Update [`package.json`](package.json) scripts section:
 
-**Current deployment (subdirectory):**
+**Current deployment (root level):**
 
 ```json
-"deploy": "BASE_PATH=/website next build && touch out/.nojekyll && gh-pages -d out"
+"deploy": "next build && echo '' > out/.nojekyll && gh-pages -d out -t"
 ```
 
 **Future deployment (custom domain):**
 
 ```json
-"deploy:custom": "BASE_PATH= next build && echo 'nicolas-hubert-graphiste.com' > out/CNAME && touch out/.nojekyll && gh-pages -d out"
+"deploy:custom": "next build && echo 'nicolas-hubert-graphiste.com' > out/CNAME && echo '' > out/.nojekyll && gh-pages -d out -t"
 ```
 
-The `BASE_PATH` environment variable is set inline before the build command, ensuring Next.js picks it up at build time. The `.nojekyll` file prevents Jekyll processing, and CNAME tells GitHub Pages to use your custom domain.
+The `-t` flag ensures dotfiles like `.nojekyll` are included. The `.nojekyll` file prevents Jekyll processing, and CNAME tells GitHub Pages to use your custom domain.
 
 ## Deployment Workflow
 
-### Current (Subdirectory)
+### Current (Root Level)
 
 ```bash
 bun run deploy
 ```
 
-Site deploys to: `nicolas-hubert-graphiste.github.io/website`
+Site deploys to: `nicolas-hubert-graphiste.github.io`
 
-The deploy script sets `BASE_PATH=/website` before building, ensuring all assets are generated with the correct path prefix.
+Repository is named `nicolas-hubert-graphiste.github.io` which enables root-level deployment without any basePath configuration.
 
 ### Future (Custom Domain)
 
@@ -89,13 +88,15 @@ The deploy script sets `BASE_PATH=/website` before building, ensuring all assets
 
 Site will then be at: `nicolas-hubert-graphiste.com`
 
-The `deploy:custom` script sets `BASE_PATH=` (empty) before building, generating assets for root-level deployment.
+**No code changes needed** when switching to custom domain - same build configuration works for both!
 
 ## Notes
 
-- Internal links and assets automatically adjust based on basePath
-- Switching between deployments is done via different deploy scripts (no env file needed)
+- Repository renamed to `nicolas-hubert-graphiste.github.io` for root-level deployment
+- No basePath needed - works at root level on GitHub Pages and with custom domain
+- All assets and fonts reference absolute paths from root (e.g., `/fonts/...`)
 - `.gitignore` already properly configured - `/out/` is excluded
 - Both deploy scripts included for convenience
 - The `gh-pages` library automatically creates and manages a separate `gh-pages` branch for deployment
-- `BASE_PATH` must be set at build time (not runtime) for Next.js to generate correct asset paths
+- The `-t` flag on gh-pages ensures dotfiles like `.nojekyll` are included in deployment
+- Switching to custom domain requires zero code changes - just update DNS and deploy with `deploy:custom`
