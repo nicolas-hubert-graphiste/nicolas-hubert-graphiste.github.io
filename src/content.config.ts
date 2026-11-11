@@ -31,6 +31,9 @@ const projets = defineCollection({
     cover: url,
     media: z.array(mediaItem).default([]),
     related: z.array(reference("projets")).default([]),
+    /** Lines shown under Client / Année, e.g. "Format : 21 x 30 cm, relié". */
+    credits: optionalText,
+    credits_en: optionalText,
     body_en: optionalText,
     order: z.number().int().default(0),
     draft: z.boolean().default(false),

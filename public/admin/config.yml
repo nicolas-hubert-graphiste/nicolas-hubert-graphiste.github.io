@@ -158,10 +158,15 @@ collections:
       - name: body
         label: Texte
         widget: markdown
-        hint: "Intro, dates, puis les lignes « Format : … », « Impression : … ». « Client » et « Année » sont ajoutés automatiquement."
+        hint: "Description, puis la ligne des dates. « Client » et « Année » sont ajoutés automatiquement."
         buttons: [bold, italic, link]
         editor_components: []
         modes: [rich_text, raw]
+      - name: credits
+        label: Crédits (sous Client / Année)
+        widget: text
+        required: false
+        hint: "Une ligne par information, ex. « Format : 21 x 30 cm, relié, 336 pages », « Impression : … »."
       - name: media
         label: Images et vidéos
         widget: list
@@ -185,6 +190,10 @@ collections:
           widget: string,
           required: false,
         }
+      - name: credits_en
+        label: Crédits (anglais, facultatif)
+        widget: text
+        required: false
       - name: body_en
         label: Texte (anglais, facultatif)
         widget: markdown

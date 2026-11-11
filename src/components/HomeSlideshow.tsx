@@ -66,6 +66,13 @@ export default function HomeSlideshow({
     return () => window.removeEventListener("keydown", onKey);
   }, [hydrated, go]);
 
+  // Fetch the next slide's image ahead of time so it is ready when we advance.
+  useEffect(() => {
+    if (!hydrated || count < 2) return;
+    const next = slides[(index + 1) % count];
+    if (next) new Image().src = next.image;
+  }, [hydrated, index, count, slides]);
+
   // Chrome colour follows the current slide (body[data-theme] drives the nav).
   useEffect(() => {
     if (!hydrated) return;
