@@ -1,10 +1,28 @@
 slides:
-  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/stravinsky_bleu1.xlarge.jpg
-    projet: fontaine-stravinsky
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/bebel_home.original.jpg
+    projet: belmondo-le-magnifique
     navColor: white
-  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/ElectricOp1.xlarge.jpg
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/verdier4.original.jpg
+    projet: fabienne-verdier
+    navColor: white
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/cat_peinture_MCBAL_home.original.jpg
+    projet: peintures-et-pastels-francais-du-mcbal
+    navColor: white
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/extreme_hotel_home.original.jpg
+    projet: extreme-hotel-raymond-depardon
+    navColor: black
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/NSPJTPH_cat_home2.original.jpg
+    projet: catalogue-saint-phalle-tinguely-hulten
+    navColor: black
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/NSPJTPH_journal_home.original.jpg
+    projet: journal-saint-phalle-tinguely-hulten
+    navColor: black
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/stravinsky_bleu1.original.jpg
+    projet: fontaine-stravinsky
+    navColor: black
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/ElectricOp4.original.jpg
     projet: electric-op
     navColor: white
-  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Bernin1.xlarge.jpg
-    projet: louis-xiv-par-le-bernin
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/ravel9.original.jpg
+    projet: ravel-bolero
     navColor: white
