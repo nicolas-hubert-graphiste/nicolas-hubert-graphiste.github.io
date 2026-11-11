@@ -7,7 +7,6 @@ year: 2019
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/eisenstein3.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/eisenstein3.xlarge.jpg
     width: 2253

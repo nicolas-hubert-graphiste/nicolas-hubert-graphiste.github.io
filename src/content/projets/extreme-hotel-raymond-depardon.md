@@ -8,7 +8,6 @@ year: 2025
 nouveau: true
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/extreme_hotel1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/extreme_hotel1.xlarge.jpg
     width: 2560

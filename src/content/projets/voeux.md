@@ -7,7 +7,6 @@ year: 2014
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/snel14_1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/snel14_1.xlarge.jpg
     width: 2560

@@ -8,7 +8,6 @@ year: 2018
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/guides_2018_1b.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/guides_2018_1b.xlarge.jpg
     width: 2560

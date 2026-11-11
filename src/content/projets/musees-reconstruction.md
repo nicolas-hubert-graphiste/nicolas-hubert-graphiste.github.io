@@ -7,7 +7,6 @@ year: 2026
 nouveau: true
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/musees_reconstruction_BS1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/musees_reconstruction_BS1.xlarge.jpg
     width: 2560

@@ -7,7 +7,6 @@ year: 2014
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/siskind_gris_ok1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/siskind_gris_ok1.xlarge.jpg
     width: 2560

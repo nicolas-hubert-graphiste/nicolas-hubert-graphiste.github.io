@@ -7,7 +7,6 @@ year: 2008
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/escales_new1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/escales_new1.xlarge.jpg
     width: 2560

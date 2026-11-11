@@ -7,7 +7,6 @@ year: 2023
 nouveau: false
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/expo_seduction2.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/expo_seduction2.xlarge.jpg
     width: 2560

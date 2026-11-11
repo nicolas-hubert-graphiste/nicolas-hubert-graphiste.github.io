@@ -7,7 +7,6 @@ year: 2023
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/cogitore-zidane8.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/cogitore-zidane8.xlarge.jpg
     width: 2560

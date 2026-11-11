@@ -7,7 +7,6 @@ year: 2026
 nouveau: true
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/verdier3.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/verdier3.xlarge.jpg
     width: 2560

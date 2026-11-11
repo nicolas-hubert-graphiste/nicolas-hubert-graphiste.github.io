@@ -7,7 +7,6 @@ year: 2021
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/steinberg_gris1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/steinberg_gris1.xlarge.jpg
     width: 2560

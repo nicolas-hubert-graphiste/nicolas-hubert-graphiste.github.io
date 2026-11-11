@@ -9,7 +9,6 @@ nouveau: false
 designers:
   - nh
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_printemps22-1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_printemps22-1.xlarge.jpg
     width: 2560

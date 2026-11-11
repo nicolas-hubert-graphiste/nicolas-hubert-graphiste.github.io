@@ -7,7 +7,6 @@ year: 2013
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/firststeps1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/firststeps1.xlarge.jpg
     width: 2560

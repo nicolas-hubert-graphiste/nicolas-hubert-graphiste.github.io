@@ -8,7 +8,6 @@ nouveau: false
 designers:
   - nh
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/cat-spectacles1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/cat-spectacles1.xlarge.jpg
     width: 2560

@@ -7,7 +7,6 @@ year: 2020
 nouveau: false
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/archipel1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/archipel1.xlarge.jpg
     width: 2560

@@ -345,15 +345,9 @@ if (only.has("projets")) {
         layout,
       };
     });
-    // Grid covers use Paperclip's 1280px "large" variant; the 2560px xlarge is
-    // only needed for the project page itself.
-    const coverAsset = assetRows.find((a) =>
-      a.asset_content_type.startsWith("image/")
-    );
-    const cover = coverAsset
-      ? s3Url("projet_assets", coverAsset.asset_file_name, "large")
-      : undefined;
-    if (!cover) warn(`projet ${projet.slug} has no image asset for a cover`);
+    // The grid cover is the first image of the gallery (as on the old site).
+    if (!assetRows.some((a) => a.asset_content_type.startsWith("image/")))
+      warn(`projet ${projet.slug} has no image asset for a cover`);
 
     const related = (relatedByProjet.get(projet.id) ?? [])
       .map((r) => projetById.get(r.related_id)?.slug)
@@ -372,7 +366,6 @@ if (only.has("projets")) {
             : undefined,
           nouveau: Boolean(projet.nouveau),
           designers: designers.length ? designers : undefined,
-          cover: cover ?? `${S3_BASE}/MISSING-COVER`,
           media,
           related: related.length ? related : undefined,
           credits: sharedFr ? toCredits(sharedFr) : undefined,

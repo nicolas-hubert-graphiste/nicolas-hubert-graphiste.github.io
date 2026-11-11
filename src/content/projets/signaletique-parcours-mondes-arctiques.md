@@ -8,7 +8,6 @@ nouveau: true
 designers:
   - nh
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/signal_arctique1b.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/signal_arctique1b.xlarge.jpg
     width: 2560

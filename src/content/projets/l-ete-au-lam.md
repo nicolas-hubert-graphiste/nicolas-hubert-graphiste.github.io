@@ -7,7 +7,6 @@ year: 2018
 nouveau: false
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/ete_lam_new8.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/ete_lam_new8.xlarge.jpg
     width: 2560

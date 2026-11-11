@@ -8,7 +8,6 @@ nouveau: true
 designers:
   - nh
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers1.xlarge.jpg
     width: 2560

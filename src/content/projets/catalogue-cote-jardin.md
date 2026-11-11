@@ -7,7 +7,6 @@ year: 2021
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/cat_expo-jardin1_vert.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/cat_expo-jardin1_vert.xlarge.jpg
     width: 2560

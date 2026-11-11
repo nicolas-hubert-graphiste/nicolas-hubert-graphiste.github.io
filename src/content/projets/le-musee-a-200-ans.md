@@ -7,7 +7,6 @@ year: 2025
 nouveau: true
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/200ans_1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/200ans_1.xlarge.jpg
     width: 2560

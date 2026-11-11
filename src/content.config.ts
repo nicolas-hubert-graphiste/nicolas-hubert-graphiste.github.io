@@ -29,6 +29,8 @@ const mediaItem = z.object({
   caption: optionalText,
   caption_en: optionalText,
   layout: z.enum(["full", "half"]).default("full"),
+  /** Shown in the projects grid; see coverOf() in lib/projects.ts. */
+  cover: z.preprocess(unset, z.boolean().default(false)),
 });
 
 const projets = defineCollection({
@@ -42,7 +44,6 @@ const projets = defineCollection({
     year: optionalInt,
     nouveau: z.boolean().default(false),
     designers: z.array(z.enum(["nh", "ab"])).default(["nh", "ab"]),
-    cover: url,
     media: z.array(mediaItem).default([]),
     related: z.array(reference("projets")).default([]),
     /** Lines shown under Client / Année, e.g. "Format : 21 x 30 cm, relié". */
