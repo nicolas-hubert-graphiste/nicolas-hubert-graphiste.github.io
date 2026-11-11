@@ -26,18 +26,35 @@ export function variantKey(key, style) {
   return `${variantBase(key)}.${style}.jpg`;
 }
 
-/** Resize to each width (never enlarging), auto-rotate, sRGB, strip metadata. */
+/**
+ * Resize to each width (never enlarging), auto-rotate, sRGB, strip metadata.
+ * Returns { style: { body, width, height } } with each variant's exact size.
+ */
 export async function makeVariants(buffer) {
   const out = {};
   for (const [style, width] of Object.entries(STYLES)) {
-    out[style] = await sharp(buffer, { failOn: "none" })
+    const { data, info } = await sharp(buffer, { failOn: "none" })
       .rotate()
       .resize({ width, withoutEnlargement: true })
       .toColorspace("srgb")
       .jpeg({ quality: 82, progressive: true, mozjpeg: true })
-      .toBuffer();
+      .toBuffer({ resolveWithObject: true });
+    out[style] = { body: data, width: info.width, height: info.height };
   }
   return out;
+}
+
+/**
+ * S3 PUT parameters for a variant. Its pixel size is stored as object metadata
+ * (x-amz-meta-width / x-amz-meta-height) so the site build can read it with
+ * the same HEAD request it already makes, and give <img> real dimensions.
+ */
+export function putParams(variant) {
+  return {
+    ...PUT_OPTIONS,
+    Body: variant.body,
+    Metadata: { width: String(variant.width), height: String(variant.height) },
+  };
 }
 
 export const PUT_OPTIONS = {

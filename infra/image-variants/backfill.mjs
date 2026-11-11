@@ -13,7 +13,7 @@ import {
   HeadObjectCommand,
   PutObjectCommand,
 } from "@aws-sdk/client-s3";
-import { makeVariants, variantKey, PUT_OPTIONS } from "./variants.mjs";
+import { makeVariants, variantKey, putParams } from "./variants.mjs";
 
 const BUCKET = process.env.BUCKET ?? "nicolashubert-graphiste-production";
 const s3 = new S3Client({ region: process.env.AWS_REGION ?? "us-east-1" });
@@ -55,12 +55,11 @@ for (const key of keys) {
       new PutObjectCommand({
         Bucket: BUCKET,
         Key: variantKey(key, style),
-        Body: variants[style],
-        ...PUT_OPTIONS,
+        ...putParams(variants[style]),
       })
     );
   }
   console.log(
-    `created  ${key}: ${missing.map((s) => `${s} ${Math.round(variants[s].length / 1024)}KB`).join(", ")}`
+    `created  ${key}: ${missing.map((s) => `${s} ${variants[s].width}x${variants[s].height} ${Math.round(variants[s].body.length / 1024)}KB`).join(", ")}`
   );
 }
