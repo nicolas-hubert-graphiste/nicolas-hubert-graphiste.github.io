@@ -1,28 +1,46 @@
 slides:
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/bebel_home.original.jpg
+    width: 2560
+    height: 1707
     projet: belmondo-le-magnifique
     navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/verdier4.original.jpg
+    width: 2560
+    height: 1707
     projet: fabienne-verdier
     navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/cat_peinture_MCBAL_home.original.jpg
+    width: 2560
+    height: 1707
     projet: peintures-et-pastels-francais-du-mcbal
     navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/extreme_hotel_home.original.jpg
+    width: 2560
+    height: 1707
     projet: extreme-hotel-raymond-depardon
     navColor: black
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/NSPJTPH_cat_home2.original.jpg
+    width: 2560
+    height: 1707
     projet: catalogue-saint-phalle-tinguely-hulten
     navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/NSPJTPH_journal_home.original.jpg
+    width: 2560
+    height: 1707
     projet: journal-saint-phalle-tinguely-hulten
     navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/stravinsky_bleu1.original.jpg
+    width: 2560
+    height: 1707
     projet: fontaine-stravinsky
     navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/ElectricOp4.original.jpg
+    width: 2560
+    height: 1707
     projet: electric-op
     navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/ravel9.original.jpg
+    width: 2560
+    height: 1707
     projet: ravel-bolero
     navColor: white

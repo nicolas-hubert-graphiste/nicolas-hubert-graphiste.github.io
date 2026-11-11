@@ -84,6 +84,7 @@ type AssetRow = {
   poster_file_name: string | null;
 };
 type HomeRow = {
+  dimensions: string | null;
   id: number;
   position: number | null;
   projet_id: number;
@@ -407,6 +408,7 @@ if (only.has("home")) {
       report.slides++;
       return {
         image: s3Url("home_images", home.image_file_name, "original"),
+        ...dimensions(home.dimensions),
         projet: projet.slug,
         navColor: home.white_arrow ? "white" : "black",
       };

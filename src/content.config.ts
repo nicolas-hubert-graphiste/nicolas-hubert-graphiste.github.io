@@ -58,6 +58,8 @@ const home = defineCollection({
       .array(
         z.object({
           image: url,
+          width: z.number().int().positive().optional(),
+          height: z.number().int().positive().optional(),
           projet: reference("projets"),
           navColor: z.enum(["black", "white"]).default("white"),
         })

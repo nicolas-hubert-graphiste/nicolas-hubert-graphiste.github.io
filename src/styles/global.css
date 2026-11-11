@@ -60,6 +60,8 @@
   --color-black: oklch(0 0 0);
   --color-white: oklch(1 0 0);
   --color-gray: oklch(0.65 0 0);
+  /* Tint behind images while they load (dark pages override it below). */
+  --color-placeholder: oklch(0.94 0 0);
 
   --spacing: 5px;
 
@@ -148,6 +150,7 @@
   body[data-theme="dark"] {
     background-color: var(--color-black);
     color: var(--color-white);
+    --color-placeholder: oklch(0.2 0 0);
   }
 
   img,

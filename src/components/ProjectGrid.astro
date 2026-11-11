@@ -31,7 +31,7 @@ const cards = await Promise.all(
         <img
           src={card.cover}
           alt=""
-          class="aspect-[4/3] w-full bg-gray/20 object-cover"
+          class="aspect-[4/3] w-full bg-placeholder object-cover"
           loading={index < 3 ? "eager" : "lazy"}
           fetchpriority={index === 0 ? "high" : undefined}
           decoding="async"

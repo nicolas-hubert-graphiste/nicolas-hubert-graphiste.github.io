@@ -18,6 +18,8 @@ for (const slide of home?.data.slides ?? []) {
   if (!projet || (projet.data.draft && import.meta.env.PROD)) continue;
   slides.push({
     image: slide.image,
+    width: slide.width,
+    height: slide.height,
     href: projectPath(locale, projet.id),
     title: loc(projet.data, "title", locale),
     navColor: slide.navColor,

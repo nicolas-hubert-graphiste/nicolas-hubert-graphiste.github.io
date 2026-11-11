@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 
 export type Slide = {
   image: string;
+  width?: number;
+  height?: number;
   href: string;
   title: string;
   navColor: "black" | "white";
@@ -97,8 +99,10 @@ export default function HomeSlideshow({
               alt={slide.title}
               loading={i === 0 ? "eager" : "lazy"}
               fetchPriority={i === 0 ? "high" : undefined}
+              width={slide.width}
+              height={slide.height}
               decoding="async"
-              className="w-full"
+              className="w-full bg-placeholder"
             />
           </a>
         ))}
@@ -123,7 +127,7 @@ export default function HomeSlideshow({
               loading={i === 0 ? "eager" : "lazy"}
               fetchPriority={i === 0 ? "high" : undefined}
               decoding="async"
-              className="size-full object-cover"
+              className="size-full bg-placeholder object-cover"
             />
           </a>
         ))}

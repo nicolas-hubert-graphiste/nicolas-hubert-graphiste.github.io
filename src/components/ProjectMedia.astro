@@ -36,7 +36,7 @@ let seen = 0;
             poster={item.poster}
             width={item.width}
             height={item.height}
-            class="w-full bg-black"
+            class="w-full bg-placeholder"
           >
             <source src={item.src} type="video/mp4" />
           </video>
@@ -49,7 +49,7 @@ let seen = 0;
             loading={eager ? "eager" : "lazy"}
             fetchpriority={eager ? "high" : undefined}
             decoding="async"
-            class="w-full"
+            class="w-full bg-placeholder"
           />
         );
       })}
