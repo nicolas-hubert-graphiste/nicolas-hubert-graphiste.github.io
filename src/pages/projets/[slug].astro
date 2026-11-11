@@ -1,0 +1,14 @@
+---
+import ProjectsView from "@/views/ProjectsView.astro";
+import ProjectView from "@/views/ProjectView.astro";
+import { projetsStaticPaths, type ProjetsRouteProps } from "@/lib/routes";
+
+export const getStaticPaths = projetsStaticPaths;
+const props = Astro.props as ProjetsRouteProps;
+---
+
+{props.kind === "category" ? (
+  <ProjectsView locale="fr" category={props.category} />
+) : (
+  <ProjectView locale="fr" projet={props.projet} />
+)}

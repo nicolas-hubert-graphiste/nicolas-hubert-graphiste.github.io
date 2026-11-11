@@ -1,0 +1,98 @@
+---
+import { getEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import ProjectMedia from "@/components/ProjectMedia.astro";
+import ProjectNav from "@/components/ProjectNav.astro";
+import RichText from "@/components/RichText.astro";
+import { loc, t, type Locale } from "@/i18n/ui";
+import {
+  getPrevNext,
+  getProjects,
+  projectPath,
+  type Projet,
+} from "@/lib/projects";
+
+interface Props {
+  locale: Locale;
+  projet: Projet;
+}
+const { locale, projet } = Astro.props;
+const tr = t(locale);
+
+const client = await getEntry(projet.data.client);
+const all = await getProjects();
+const { prev, next } = getPrevNext(all, projet.id);
+const related = (
+  await Promise.all(projet.data.related.map((ref) => getEntry(ref)))
+).filter(
+  (entry): entry is Projet =>
+    Boolean(entry) && !(entry!.data.draft && import.meta.env.PROD)
+);
+
+const title = loc(projet.data, "title", locale);
+const body =
+  locale === "en" && projet.data.body_en?.trim()
+    ? projet.data.body_en
+    : projet.body;
+const [first, ...rest] = projet.data.media;
+const toLink = (entry?: Projet) =>
+  entry
+    ? {
+        href: projectPath(locale, entry.id),
+        title: loc(entry.data, "title", locale),
+      }
+    : undefined;
+---
+
+<Base locale={locale} title={title}>
+  <article class="lg:grid lg:grid-cols-4 lg:gap-x-5">
+    {first && (
+      <div class="lg:col-span-3 lg:col-start-2 lg:row-start-1">
+        <ProjectMedia media={[first]} locale={locale} priority />
+      </div>
+    )}
+
+    <div class="mt-5 text-lg lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:pr-5 lg:text-base">
+      <h1 class="sr-only">{title}</h1>
+      <RichText text={body} />
+      <dl class="mt-[1lh]">
+        {client && (
+          <div class="flex gap-1">
+            <dt>{tr("project.client")} :</dt>
+            <dd>{loc(client.data, "full", locale)}</dd>
+          </div>
+        )}
+        {projet.data.year && (
+          <div class="flex gap-1">
+            <dt>{tr("project.year")} :</dt>
+            <dd>{projet.data.year}</dd>
+          </div>
+        )}
+      </dl>
+      {related.length > 0 && (
+        <div class="mt-[1lh]">
+          <h2>{tr("project.related")}</h2>
+          <ul>
+            {related.map((entry) => (
+              <li>
+                <a
+                  href={projectPath(locale, entry.id)}
+                  class="underline underline-offset-2"
+                >
+                  {loc(entry.data, "title", locale)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+
+    {rest.length > 0 && (
+      <div class="mt-5 lg:col-span-3 lg:col-start-2 lg:row-start-2 lg:mt-1">
+        <ProjectMedia media={rest} locale={locale} />
+      </div>
+    )}
+  </article>
+  <ProjectNav locale={locale} prev={toLink(prev)} next={toLink(next)} />
+</Base>

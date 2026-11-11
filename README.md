@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NH & AB graphistes — site web
 
-## Getting Started
+Static site for the graphic design studio of Nicolas Hubert and Amélina Bouchez,
+replacing the Rails/Heroku site. Content is edited by the studio through a web
+CMS; every save is a commit that redeploys the site.
 
-First, run the development server:
+| Piece     | Choice                                                                                                            |
+| --------- | ----------------------------------------------------------------------------------------------------------------- |
+| Framework | [Astro](https://astro.build) (static output) + React islands, Tailwind CSS v4                                     |
+| CMS       | [Sveltia CMS](https://sveltiacms.app) at `/admin/`, GitHub backend                                                |
+| Media     | Existing S3 bucket `nicolashubert-graphiste-production` (uploads from the CMS, WebP ≤ 2400 px)                    |
+| Hosting   | GitHub Pages via `.github/workflows/deploy.yml`, custom domain `nicolashubert-graphiste.com`                      |
+| Languages | French at `/`, English at `/en/` (UI strings in `src/i18n/ui.ts`; CMS content French with optional `*_en` fields) |
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun run dev        # http://localhost:4321
+bun run build      # static output in dist/
+bun run check      # astro check (types)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:4321/admin/> and choose “Work with Local Repository” to
+edit content without the GitHub login (Chrome/Edge).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things live
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/content/projets/*.md` — one file per project (frontmatter + French text). `src/content/clients/*.yml`, `home.yml`, `infos.yml`, `contact.yml`.
+- `src/content.config.ts` — schemas. `public/admin/config.yml` — the CMS form definitions. **Keep the two in sync.**
+- `src/views/*.astro` — page templates shared by the FR and EN routes in `src/pages/`.
+- `src/lib/categories.ts` — the four project categories (nav, routes, schema).
+- `scripts/migrate/` — one-off import from the old Rails database (see its README).
 
-## Learn More
+## One-time setup still required
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **CMS login:** deploy [sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth) to Cloudflare Workers, create a GitHub OAuth App owned by the `nicolas-hubert-graphiste` org (callback `https://<worker>/callback`), set `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `ALLOWED_DOMAINS` on the worker, then put the worker URL in `backend.base_url` of `public/admin/config.yml`.
+2. **S3:** create a bucket-scoped IAM user (Get/Put/List/DeleteObject), add a public-read bucket policy and a CORS rule for `https://nicolashubert-graphiste.com` and `http://localhost:4321` (`GET, PUT, DELETE, HEAD`, all headers). Fill `region` and `access_key_id` in `config.yml`. The secret key is entered once in the CMS UI, never committed.
+3. **GitHub Pages:** Settings → Pages → Source “GitHub Actions”; add the custom domain and `public/CNAME` at cutover.

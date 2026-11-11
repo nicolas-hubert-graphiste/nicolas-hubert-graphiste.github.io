@@ -1,0 +1,18 @@
+---
+import Base from "@/layouts/Base.astro";
+import { localePath, t } from "@/i18n/ui";
+
+const tr = t("fr");
+---
+
+<Base locale="fr" title={tr("notFound.title")}>
+  <div class="flex max-w-[60ch] flex-col gap-[1lh] text-lg">
+    <h1 class="text-4xl">{tr("notFound.title")}</h1>
+    <p>{tr("notFound.body")}</p>
+    <p>
+      <a href={localePath("fr", "/")} class="underline underline-offset-2">
+        {tr("notFound.link")}
+      </a>
+    </p>
+  </div>
+</Base>

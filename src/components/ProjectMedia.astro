@@ -1,0 +1,58 @@
+---
+import { loc, type Locale } from "@/i18n/ui";
+import { groupMedia, isVideo } from "@/lib/projects";
+import type { CollectionEntry } from "astro:content";
+
+type Media = CollectionEntry<"projets">["data"]["media"][number];
+
+interface Props {
+  media: Media[];
+  locale: Locale;
+  /** Set on the first visible media row so it is prioritised. */
+  priority?: boolean;
+}
+const { media, locale, priority = false } = Astro.props;
+const rows = groupMedia(media);
+let seen = 0;
+---
+
+<div class="flex flex-col gap-1">
+  {rows.map((row) => (
+    <div
+      class:list={[
+        "grid gap-1",
+        row.length === 2 ? "grid-cols-2" : "grid-cols-1",
+      ]}
+    >
+      {row.map((item) => {
+        const index = seen++;
+        const alt = loc(item, "caption", locale);
+        const eager = priority && index === 0;
+        return isVideo(item.src) ? (
+          <video
+            controls
+            playsinline
+            preload={eager ? "metadata" : "none"}
+            poster={item.poster}
+            width={item.width}
+            height={item.height}
+            class="w-full bg-black"
+          >
+            <source src={item.src} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={item.src}
+            alt={alt}
+            width={item.width}
+            height={item.height}
+            loading={eager ? "eager" : "lazy"}
+            fetchpriority={eager ? "high" : undefined}
+            decoding="async"
+            class="w-full"
+          />
+        );
+      })}
+    </div>
+  ))}
+</div>

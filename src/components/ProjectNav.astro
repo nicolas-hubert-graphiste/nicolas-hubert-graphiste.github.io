@@ -1,0 +1,39 @@
+---
+import { localePath, t, type Locale } from "@/i18n/ui";
+
+interface Props {
+  locale: Locale;
+  prev?: { href: string; title: string };
+  next?: { href: string; title: string };
+}
+const { locale, prev, next } = Astro.props;
+const tr = t(locale);
+---
+
+<nav
+  class="mt-8 grid grid-cols-[1fr_auto_1fr] items-center gap-x-3 border-t border-current pt-3 text-lg"
+  aria-label={
+    locale === "fr" ? "Navigation entre projets" : "Project navigation"
+  }
+>
+  <div class="justify-self-start">
+    {prev && (
+      <a href={prev.href} class="inline-block py-2" title={prev.title}>
+        <span aria-hidden="true">← </span>
+        {tr("project.prev")}
+      </a>
+    )}
+  </div>
+  <a href={localePath(locale, "/")} class="inline-block py-2">
+    {tr("project.home")}
+    <span aria-hidden="true"> ↑</span>
+  </a>
+  <div class="justify-self-end text-right">
+    {next && (
+      <a href={next.href} class="inline-block py-2" title={next.title}>
+        {tr("project.next")}
+        <span aria-hidden="true"> →</span>
+      </a>
+    )}
+  </div>
+</nav>

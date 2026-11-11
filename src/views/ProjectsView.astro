@@ -1,0 +1,20 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProjectGrid from "@/components/ProjectGrid.astro";
+import { t, type Locale } from "@/i18n/ui";
+import { getProjects, type Category } from "@/lib/projects";
+
+interface Props {
+  locale: Locale;
+  category?: Category;
+}
+const { locale, category } = Astro.props;
+const tr = t(locale);
+const projects = await getProjects(category);
+const title = category ? tr(`category.${category}`) : tr("nav.projets");
+---
+
+<Base locale={locale} title={title}>
+  <h1 class="sr-only">{title}</h1>
+  <ProjectGrid projects={projects} locale={locale} />
+</Base>

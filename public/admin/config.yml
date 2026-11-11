@@ -1,0 +1,368 @@
+# Sveltia CMS configuration. Field names mirror src/content.config.ts – keep both in sync.
+# Docs: https://sveltiacms.app/en/docs
+
+backend:
+  name: github
+  repo: nicolas-hubert-graphiste/nicolas-hubert-graphiste.github.io
+  branch: main
+  # OAuth helper (sveltia-cms-auth on Cloudflare Workers). Set after step 4 of the plan.
+  base_url: https://REPLACE-ME.workers.dev
+  commit_messages:
+    create: "Contenu : ajout {{collection}} « {{slug}} »"
+    update: "Contenu : modification {{collection}} « {{slug}} »"
+    delete: "Contenu : suppression {{collection}} « {{slug}} »"
+    uploadMedia: "Médias : ajout {{path}}"
+    deleteMedia: "Médias : suppression {{path}}"
+
+site_url: https://nicolashubert-graphiste.com
+display_url: https://nicolashubert-graphiste.com
+locale: fr
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# Media live on the existing S3 bucket (same as the old Rails/Paperclip site).
+# The secret access key is NEVER stored here: the editor enters it once in the CMS UI.
+media_libraries:
+  default: false
+  aws_s3:
+    bucket: nicolashubert-graphiste-production
+    region: REPLACE-ME # e.g. eu-west-1 (from `heroku config`)
+    access_key_id: REPLACE-ME # CMS-only IAM user, bucket-scoped
+    prefix: cms/
+    # public_url: https://media.nicolashubert-graphiste.com  # optional CloudFront/custom domain
+  all:
+    max_file_size: 5000000 # 5 MB for images; the video field overrides this
+    slugify_filename: true
+    filename_template: "{{year}}-{{uuid_short}}"
+    transformations:
+      raster_image:
+        format: webp
+        quality: 82
+        width: 2400
+        height: 2400
+      svg:
+        optimize: true
+
+# Reusable field groups
+_media_item_fields: &media_item_fields
+  - name: src
+    label: Fichier (image ou vidéo MP4)
+    widget: file
+    accept: "image/*,video/mp4"
+    media_libraries:
+      all:
+        max_file_size: 200000000 # 200 MB for videos
+  - name: poster
+    label: Image d’aperçu (vidéo uniquement)
+    widget: image
+    required: false
+  - name: layout
+    label: Disposition
+    widget: select
+    default: full
+    options:
+      - { label: Pleine largeur, value: full }
+      - { label: Demi-largeur (deux côte à côte), value: half }
+  - name: caption
+    label: Légende
+    widget: string
+    required: false
+  - name: caption_en
+    label: Légende (anglais, facultatif)
+    widget: string
+    required: false
+  - {
+      name: width,
+      label: Largeur (px),
+      widget: number,
+      value_type: int,
+      required: false,
+      hint: "Rempli automatiquement pour les anciens projets.",
+    }
+  - {
+      name: height,
+      label: Hauteur (px),
+      widget: number,
+      value_type: int,
+      required: false,
+    }
+
+collections:
+  - name: projets
+    label: Projets
+    label_singular: Projet
+    folder: src/content/projets
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{year}}"
+    sortable_fields:
+      fields: [year, title, order]
+      default: { field: year, direction: descending }
+    view_filters:
+      - { label: Édition, field: categories, pattern: edition }
+      - { label: Signalétique, field: categories, pattern: signaletique }
+      - { label: Identité, field: categories, pattern: identite }
+      - { label: Archives, field: categories, pattern: archives }
+      - { label: Brouillons, field: draft, pattern: true }
+    fields:
+      - { name: title, label: Titre, widget: string }
+      - name: client
+        label: Client
+        widget: relation
+        collection: clients
+        value_field: "{{slug}}"
+        display_fields: ["{{short}}"]
+        search_fields: [short, full]
+      - name: categories
+        label: Catégories
+        widget: select
+        multiple: true
+        min: 1
+        options:
+          - { label: Édition, value: edition }
+          - { label: Signalétique, value: signaletique }
+          - { label: Identité, value: identite }
+          - { label: Archives, value: archives }
+      - {
+          name: year,
+          label: Année,
+          widget: number,
+          value_type: int,
+          required: false,
+        }
+      - {
+          name: nouveau,
+          label: Nouveau (badge « Nouveau »),
+          widget: boolean,
+          default: false,
+        }
+      - name: designers
+        label: Graphistes
+        widget: select
+        multiple: true
+        default: [nh, ab]
+        options:
+          - { label: Nicolas Hubert, value: nh }
+          - { label: Amélina Bouchez, value: ab }
+      - name: cover
+        label: Image de couverture (grille)
+        widget: image
+        hint: "Recadrée en 4:3 dans la grille des projets."
+      - name: body
+        label: Texte
+        widget: markdown
+        hint: "Intro, dates, puis les lignes « Format : … », « Impression : … ». « Client » et « Année » sont ajoutés automatiquement."
+        buttons: [bold, italic, link]
+        editor_components: []
+        modes: [rich_text, raw]
+      - name: media
+        label: Images et vidéos
+        widget: list
+        collapsed: true
+        summary: "{{fields.src}}"
+        fields: *media_item_fields
+      - name: related
+        label: Projets liés
+        widget: relation
+        collection: projets
+        multiple: true
+        required: false
+        value_field: "{{slug}}"
+        display_fields: ["{{title}}"]
+        search_fields: [title]
+      # English is optional; French is the fallback on the site.
+      - {
+          name: title_en,
+          label: Titre (anglais,
+          facultatif),
+          widget: string,
+          required: false,
+        }
+      - name: body_en
+        label: Texte (anglais, facultatif)
+        widget: markdown
+        required: false
+        buttons: [bold, italic, link]
+        editor_components: []
+        modes: [rich_text, raw]
+      - {
+          name: order,
+          label: Ordre manuel (dans la même année),
+          widget: number,
+          value_type: int,
+          default: 0,
+        }
+      - {
+          name: draft,
+          label: Brouillon (non publié),
+          widget: boolean,
+          default: false,
+        }
+
+  - name: clients
+    label: Clients
+    label_singular: Client
+    folder: src/content/clients
+    extension: yml
+    format: yaml
+    create: true
+    slug: "{{slug}}"
+    identifier_field: short
+    summary: "{{short}}"
+    sortable_fields:
+      fields: [order, short]
+    fields:
+      - { name: short, label: Nom court (grille), widget: string }
+      - { name: full, label: Nom complet (page projet), widget: string }
+      - {
+          name: short_en,
+          label: Nom court (anglais),
+          widget: string,
+          required: false,
+        }
+      - {
+          name: full_en,
+          label: Nom complet (anglais),
+          widget: string,
+          required: false,
+        }
+      - {
+          name: order,
+          label: Ordre,
+          widget: number,
+          value_type: int,
+          default: 0,
+        }
+
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Accueil (diaporama)
+        file: src/content/home.yml
+        fields:
+          - name: slides
+            label: Images
+            widget: list
+            summary: "{{fields.projet}}"
+            fields:
+              - { name: image, label: Image, widget: image }
+              - name: projet
+                label: Projet lié
+                widget: relation
+                collection: projets
+                value_field: "{{slug}}"
+                display_fields: ["{{title}}"]
+                search_fields: [title]
+              - name: navColor
+                label: Couleur du menu sur cette image
+                widget: select
+                default: white
+                options:
+                  - { label: Blanc, value: white }
+                  - { label: Noir, value: black }
+
+      - name: infos
+        label: Infos
+        file: src/content/infos.yml
+        fields:
+          - {
+              name: studio,
+              label: Studio,
+              widget: markdown,
+              buttons: [bold, italic, link],
+              editor_components: [],
+              modes: [rich_text, raw],
+            }
+          - {
+              name: studio_en,
+              label: Studio (anglais),
+              widget: markdown,
+              required: false,
+              buttons: [bold, italic, link],
+              editor_components: [],
+              modes: [rich_text, raw],
+            }
+          - name: collaborations
+            label: Collaborations
+            widget: list
+            summary: "{{fields.heading}}"
+            fields:
+              - { name: heading, label: Sous-titre, widget: string }
+              - {
+                  name: heading_en,
+                  label: Sous-titre (anglais),
+                  widget: string,
+                  required: false,
+                }
+              - { name: names, label: Noms, widget: text }
+          - name: clients
+            label: Clients
+            widget: list
+            summary: "{{fields.heading}}"
+            fields:
+              - { name: heading, label: Sous-titre, widget: string }
+              - {
+                  name: heading_en,
+                  label: Sous-titre (anglais),
+                  widget: string,
+                  required: false,
+                }
+              - { name: names, label: Noms (un par ligne), widget: text }
+
+      - name: contact
+        label: Contact
+        file: src/content/contact.yml
+        fields:
+          - { name: name, label: Nom, widget: string }
+          - { name: address, label: Adresse, widget: text }
+          - { name: phone, label: Téléphone, widget: string, required: false }
+          - { name: email, label: E-mail, widget: string, required: false }
+          - name: bookRequest
+            label: Book sur demande
+            widget: object
+            required: false
+            fields:
+              - {
+                  name: label,
+                  label: Intitulé,
+                  widget: string,
+                  default: "Book sur demande :",
+                }
+              - {
+                  name: label_en,
+                  label: Intitulé (anglais),
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  name: emails,
+                  label: E-mails,
+                  widget: list,
+                  field: { name: email, label: E-mail, widget: string },
+                }
+          - {
+              name: instagram,
+              label: Lien Instagram,
+              widget: string,
+              required: false,
+            }
+          - {
+              name: credit,
+              label: Mention (bas de page),
+              widget: string,
+              required: false,
+            }
+          - {
+              name: credit_en,
+              label: Mention (anglais),
+              widget: string,
+              required: false,
+            }

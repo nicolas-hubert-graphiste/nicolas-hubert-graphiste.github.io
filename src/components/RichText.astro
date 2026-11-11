@@ -1,0 +1,12 @@
+---
+import { md } from "@/lib/markdown";
+
+interface Props {
+  text?: string | null;
+  class?: string;
+}
+const { text, class: className } = Astro.props;
+const html = md(text);
+---
+
+{html && <div class:list={["prose-nh", className]} set:html={html} />}
