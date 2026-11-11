@@ -1,0 +1,34 @@
+---
+import { getEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import HomeSlideshow, { type Slide } from "@/components/HomeSlideshow";
+import { loc, t, type Locale } from "@/i18n/ui";
+import { projectPath } from "@/lib/projects";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const home = await getEntry("home", "home");
+
+const slides: Slide[] = [];
+for (const slide of home?.data.slides ?? []) {
+  const projet = await getEntry(slide.projet);
+  if (!projet || (projet.data.draft && import.meta.env.PROD)) continue;
+  slides.push({
+    image: slide.image,
+    href: projectPath(locale, projet.id),
+    title: loc(projet.data, "title", locale),
+    navColor: slide.navColor,
+  });
+}
+---
+
+<Base locale={locale} theme="dark" bleed>
+  <HomeSlideshow
+    client:media="(min-width: 1024px)"
+    slides={slides}
+    labels={{ prev: tr("home.slideshowPrev"), next: tr("home.slideshowNext") }}
+  />
+</Base>

@@ -1,0 +1,10 @@
+slides:
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/stravinsky_bleu1.xlarge.jpg
+    projet: fontaine-stravinsky
+    navColor: white
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/ElectricOp1.xlarge.jpg
+    projet: electric-op
+    navColor: white
+  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Bernin1.xlarge.jpg
+    projet: louis-xiv-par-le-bernin
+    navColor: white

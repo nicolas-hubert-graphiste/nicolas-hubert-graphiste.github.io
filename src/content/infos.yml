@@ -1,0 +1,55 @@
+studio: |
+  Créé fin 2000, le studio – composé de Nicolas Hubert et d’Amélina Bouchez, diplômé·e de l’École nationale supérieure des Arts décoratifs de Paris – travaille dans les domaines de la culture (musées, expositions, théâtres), de l’édition et du design.
+  Nous élaborons des identités visuelles d’expositions, nous concevons des mises en page de beaux livres et nous mettons en forme des campagnes de communication pour de grandes institutions culturelles en France et à l’étranger avec une attention particulière portée à la typographie.
+collaborations:
+  - heading: "Graphistes, typographes :"
+    heading_en: "Graphic designers, typographers:"
+    names: François-Xavier Delarue, Anne Duranton, Fabienne Gabaude, Isabelle Martija-Ochoa, Virginie Poilièvre, agence Citizen Press, Axelle Hajduk, Arthur Calame, Dae Huen Lee, Francesca Guagliardo
+  - heading: "Scénographes, architectes et designers :"
+    heading_en: "Scenographers, architects and designers:"
+    names: Studio Vaste, Gilles Belley, Tovo+Jamil, Perrine Villemur, Christian Marti, Antoine Fontaine, Scénografia
+  - heading: "Interactif, vidéo, webdesigners :"
+    heading_en: "Interactive, video, web designers:"
+    names: Anne Amiand, Chris Masters, Buzzing Light, Sabine Morandini
+  - heading: "Photographes :"
+    heading_en: "Photographers:"
+    names: Patrick Burban, Philippe Castaño
+  - heading: "Stagiaires :"
+    heading_en: "Interns:"
+    names: Joseph Bouchez, Camille Bourdeau, Guillaume Brame, Maud Guerche, Pauline Sarrus, Jeroen van Norren, Beïna Bennacer, Louise Leret-Parmentier, Aïcha Sangaré
+clients:
+  - heading: "À Paris :"
+    heading_en: "In Paris:"
+    names: |
+      Paris Musées
+      Centre Pompidou
+      MAD Paris
+      Musée de l’Armée – Les Invalides
+      Philharmonie – musée de la Musique
+      Mobilier National – galerie des Gobelins
+      RMN – Grand Palais
+      Centre des Monuments nationaux
+      Galerie nationale du Jeu de Paume
+      Cinémathèque française
+      BnF François Mitterrand
+  - heading: "Ailleurs :"
+    heading_en: "Elsewhere:"
+    names: |
+      Château de Versailles
+      Musée d’arts de Nantes
+      Musée cantonal des Beaux-Arts de Lausanne
+      Musée international de la Réforme (Genève)
+      Musée de Vassogne
+      Louvre Abu Dhabi
+      Musées d’Angers
+      Centre Pompidou-Metz
+      LaM - Villeneuve d’Ascq
+      Musée des impressionnismes Giverny
+      Musées de Boulogne-sur-Mer
+      DRAC Hauts-de-France
+      Musées de Soissons
+      Musée Louis de Funès – Saint-Raphaël
+      Musée Fabre – Montpellier
+  - heading: Les maisons d’édition
+    heading_en: Publishers
+    names: Hazan, Flammarion, Delachaux et Niestlé (groupe La Martinière), Dunod et Somogy

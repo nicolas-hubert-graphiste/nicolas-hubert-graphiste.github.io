@@ -1,0 +1,118 @@
+---
+import "@/styles/global.css";
+import MainNav from "@/components/MainNav";
+import {
+  localePath,
+  otherLocale,
+  stripLocale,
+  t,
+  type Locale,
+} from "@/i18n/ui";
+
+interface Props {
+  locale: Locale;
+  title?: string;
+  description?: string;
+  /** `dark` = black page with white chrome (home). */
+  theme?: "light" | "dark";
+  /** Full-bleed pages (home) opt out of the page gutter. */
+  bleed?: boolean;
+}
+
+const {
+  locale,
+  title,
+  description,
+  theme = "light",
+  bleed = false,
+} = Astro.props;
+const tr = t(locale);
+const pageTitle = title ? `${title} — ${tr("siteTitle")}` : tr("siteTitle");
+const currentPath = Astro.url.pathname;
+const bare = stripLocale(currentPath);
+const site = Astro.site ?? new URL("https://nicolashubert-graphiste.com");
+const canonical = new URL(currentPath, site);
+const alternate = new URL(localePath(otherLocale(locale), bare), site);
+---
+
+<!doctype html>
+<html lang={locale} class:list={[bleed && "bleed"]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      href="/fonts/beausite_classic/BeausiteClassicWeb-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description ?? tr("siteDescription")} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="alternate" hreflang={locale} href={canonical.href} />
+    <link
+      rel="alternate"
+      hreflang={otherLocale(locale)}
+      href={alternate.href}
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical.href} />
+    {bleed && <script is:inline>
+      // Measure the classic scrollbar width (0 for overlay scrollbars) before
+      // first paint; the full-bleed layout uses it to keep the nav aligned
+      // with pages that reserve the scrollbar gutter. See global.css.
+      (() => {
+        const probe = document.createElement("div");
+        probe.style.cssText =
+          "position:absolute;top:-9999px;width:100px;height:100px;overflow:scroll";
+        document.documentElement.appendChild(probe);
+        document.documentElement.style.setProperty(
+          "--sbw",
+          `${probe.offsetWidth - probe.clientWidth}px`
+        );
+        probe.remove();
+      })();
+    </script>}
+    {!bleed && <style is:inline>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>}
+    {!bleed && <script is:inline>
+      // Never animate into the home slideshow: its chrome changes colour, so an
+      // instant swap reads better than a crossfade. Home doesn't opt in either;
+      // this cancels the outgoing half explicitly.
+      addEventListener("pageswap", (event) => {
+        const url = event.activation?.entry?.url;
+        if (!event.viewTransition || !url) return;
+        if (/^\/(en\/)?$/.test(new URL(url).pathname)) {
+          event.viewTransition.skipTransition();
+        }
+      });
+    </script>}
+    <slot name="head" />
+  </head>
+  <body data-theme={theme} class="flex min-h-dvh flex-col">
+    <header
+      class:list={[
+        "site-header top-0 z-40 px-2 pt-4 lg:px-6 lg:pt-6",
+        bleed ? "bleed-header fixed inset-x-0" : "sticky",
+      ]}
+    >
+      <MainNav client:load currentPath={currentPath} locale={locale} />
+    </header>
+    <main
+      class={
+        bleed
+          ? "flex-1"
+          : "flex-1 px-2 pt-[24.5px] pb-[12px] lg:px-6 lg:pt-[31px] lg:pb-[20px]"
+      }
+    >
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

@@ -1,0 +1,54 @@
+---
+import { getEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import RichText from "@/components/RichText.astro";
+import { loc, t, type Locale } from "@/i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const infos = await getEntry("infos", "infos");
+const data = infos?.data;
+const studioHeading = locale === "fr" ? "Studio" : "Studio";
+const collabHeading = locale === "fr" ? "Collaborations" : "Collaborations";
+const clientsHeading = locale === "fr" ? "Clients" : "Clients";
+---
+
+<Base locale={locale} title={tr("nav.infos")}>
+  {data && (
+    <div class="grid grid-cols-1 gap-x-5 gap-y-10 text-lg md:grid-cols-2 lg:grid-cols-4 lg:text-base">
+      <section class="border-b border-current pb-10 md:col-span-2 md:border-b-0 md:pb-0 lg:col-span-1">
+        <h1 class="mb-5 text-4xl">{studioHeading}</h1>
+        <RichText text={loc(data, "studio", locale)} />
+      </section>
+
+      <section class="border-b border-current pb-10 md:border-b-0 md:pb-0">
+        <h2 class="mb-5 text-4xl">{collabHeading}</h2>
+        <div class="flex flex-col gap-5">
+          {data.collaborations.map((group) => (
+            <div>
+              <h3 class="font-medium">{loc(group, "heading", locale)}</h3>
+              <RichText text={group.names} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 class="mb-5 text-4xl">{clientsHeading}</h2>
+        <div class="flex flex-col gap-5">
+          {data.clients.map((group) => (
+            <div>
+              <h3 class="font-medium">{loc(group, "heading", locale)}</h3>
+              <RichText text={group.names} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  )}
+  <SiteFooter slot="footer" locale={locale} />
+</Base>
