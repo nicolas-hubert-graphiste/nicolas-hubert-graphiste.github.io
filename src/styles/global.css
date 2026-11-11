@@ -185,11 +185,12 @@ body[data-menu-open] .site-header {
  * Page changes: keep the old page on screen until the new one is ready
  * (cross-document view transitions, Chrome 126+ / Safari 18.2+), hold the
  * header still and give the content a short crossfade.
+ *
+ * The opt-in (@view-transition) is emitted per page in Base.astro: the home
+ * slideshow leaves it out, because its chrome changes colour and a crossfade
+ * to or from it looks muddy. A transition only runs when both pages opt in,
+ * so home navigations become an instant swap.
  */
-@view-transition {
-  navigation: auto;
-}
-
 ::view-transition-group(site-header),
 ::view-transition-old(site-header),
 ::view-transition-new(site-header) {

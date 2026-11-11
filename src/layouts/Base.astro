@@ -76,6 +76,23 @@ const alternate = new URL(localePath(otherLocale(locale), bare), site);
         probe.remove();
       })();
     </script>}
+    {!bleed && <style is:inline>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>}
+    {!bleed && <script is:inline>
+      // Never animate into the home slideshow: its chrome changes colour, so an
+      // instant swap reads better than a crossfade. Home doesn't opt in either;
+      // this cancels the outgoing half explicitly.
+      addEventListener("pageswap", (event) => {
+        const url = event.activation?.entry?.url;
+        if (!event.viewTransition || !url) return;
+        if (/^\/(en\/)?$/.test(new URL(url).pathname)) {
+          event.viewTransition.skipTransition();
+        }
+      });
+    </script>}
     <slot name="head" />
   </head>
   <body data-theme={theme} class="flex min-h-dvh flex-col">
