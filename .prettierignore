@@ -2,3 +2,5 @@ dist
 .astro
 .cache
 bun.lock
+infra/image-variants/node_modules
+infra/image-variants/build

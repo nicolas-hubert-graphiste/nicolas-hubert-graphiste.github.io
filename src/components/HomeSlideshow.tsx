@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 export type Slide = {
   image: string;
+  srcset?: string;
   width?: number;
   height?: number;
   href: string;
@@ -72,7 +73,13 @@ export default function HomeSlideshow({
   useEffect(() => {
     if (!hydrated || count < 2) return;
     const next = slides[(index + 1) % count];
-    if (next) new Image().src = next.image;
+    if (!next) return;
+    const img = new Image();
+    if (next.srcset) {
+      img.sizes = "100vw";
+      img.srcset = next.srcset;
+    }
+    img.src = next.image;
   }, [hydrated, index, count, slides]);
 
   // Chrome colour follows the current slide (body[data-theme] drives the nav).
@@ -96,6 +103,8 @@ export default function HomeSlideshow({
           <a key={slide.href + i} href={slide.href} className="block">
             <img
               src={slide.image}
+              srcSet={slide.srcset}
+              sizes={slide.srcset ? "calc(100vw - 20px)" : undefined}
               alt={slide.title}
               loading={i === 0 ? "eager" : "lazy"}
               fetchPriority={i === 0 ? "high" : undefined}
@@ -123,6 +132,8 @@ export default function HomeSlideshow({
           >
             <img
               src={slide.image}
+              srcSet={slide.srcset}
+              sizes={slide.srcset ? "100vw" : undefined}
               alt={slide.title}
               loading={i === 0 ? "eager" : "lazy"}
               fetchPriority={i === 0 ? "high" : undefined}

@@ -1,6 +1,7 @@
 ---
 import { loc, type Locale } from "@/i18n/ui";
 import { groupMedia, isVideo } from "@/lib/projects";
+import { SIZES, srcsetFor } from "@/lib/media";
 import type { CollectionEntry } from "astro:content";
 
 type Media = CollectionEntry<"projets">["data"]["media"][number];
@@ -13,6 +14,13 @@ interface Props {
 }
 const { media, locale, priority = false } = Astro.props;
 const rows = groupMedia(media);
+const srcsets = new Map(
+  await Promise.all(
+    media.map(
+      async (item) => [item.src, await srcsetFor(item.src, item.width)] as const
+    )
+  )
+);
 let seen = 0;
 ---
 
@@ -43,6 +51,14 @@ let seen = 0;
         ) : (
           <img
             src={item.src}
+            srcset={srcsets.get(item.src)}
+            sizes={
+              srcsets.get(item.src)
+                ? row.length === 2
+                  ? SIZES.mediaHalf
+                  : SIZES.mediaFull
+                : undefined
+            }
             alt={alt}
             width={item.width}
             height={item.height}

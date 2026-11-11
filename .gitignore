@@ -19,3 +19,8 @@
 
 # migration inputs (DB dumps, S3 listings) never belong in the repo
 /scripts/migrate/input/
+
+# image-variants Lambda build output
+/infra/image-variants/node_modules/
+/infra/image-variants/build/
+/infra/image-variants/*.zip
