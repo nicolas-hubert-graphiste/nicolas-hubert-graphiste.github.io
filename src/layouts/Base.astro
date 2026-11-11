@@ -40,6 +40,13 @@ const alternate = new URL(localePath(otherLocale(locale), bare), site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      href="/fonts/beausite_classic/BeausiteClassicWeb-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <title>{pageTitle}</title>
     <meta name="description" content={description ?? tr("siteDescription")} />
     <link rel="canonical" href={canonical.href} />
@@ -74,8 +81,8 @@ const alternate = new URL(localePath(otherLocale(locale), bare), site);
   <body data-theme={theme} class="flex min-h-dvh flex-col">
     <header
       class:list={[
-        "px-2 pt-4 lg:px-6 lg:pt-6",
-        bleed && "bleed-header absolute inset-x-0 top-0 z-40",
+        "site-header top-0 z-40 px-2 pt-4 lg:px-6 lg:pt-6",
+        bleed ? "bleed-header fixed inset-x-0" : "sticky",
       ]}
     >
       <MainNav client:load currentPath={currentPath} locale={locale} />

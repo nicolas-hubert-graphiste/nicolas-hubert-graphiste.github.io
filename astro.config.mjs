@@ -9,6 +9,7 @@ export default defineConfig({
   site: "https://nicolashubert-graphiste.com",
   output: "static",
   trailingSlash: "always",
+  prefetch: { prefetchAll: true, defaultStrategy: "hover" },
   i18n: {
     defaultLocale: "fr",
     locales: ["fr", "en"],

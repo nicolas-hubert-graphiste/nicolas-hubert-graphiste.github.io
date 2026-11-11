@@ -43,8 +43,11 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    // Lets the header turn white behind the open menu (see global.css).
+    document.body.toggleAttribute("data-menu-open", isMenuOpen);
     return () => {
       document.body.style.overflow = "";
+      document.body.removeAttribute("data-menu-open");
     };
   }, [isMenuOpen]);
 

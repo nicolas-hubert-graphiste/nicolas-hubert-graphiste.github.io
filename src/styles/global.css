@@ -164,6 +164,52 @@
 }
 
 /*
+ * Site header stays at the top while content scrolls underneath (design:
+ * site_nh_2025_OK p.7 desktop, p.20 iPhone), so it needs an opaque background
+ * that follows the page theme. Unlayered so it beats the utilities.
+ */
+.site-header {
+  background-color: var(--color-white);
+  view-transition-name: site-header;
+}
+
+body[data-theme="dark"] .site-header {
+  background-color: var(--color-black);
+}
+
+body[data-menu-open] .site-header {
+  background-color: var(--color-white);
+}
+
+/*
+ * Page changes: keep the old page on screen until the new one is ready
+ * (cross-document view transitions, Chrome 126+ / Safari 18.2+), hold the
+ * header still and give the content a short crossfade.
+ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(site-header),
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 150ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/*
  * Full-bleed home slideshow. At desktop sizes the page is exactly one
  * viewport tall and never scrolls, so drop the reserved scrollbar gutter and
  * let the image reach both edges. The header is inset by the scrollbar width
@@ -180,6 +226,11 @@
     html.bleed .bleed-header {
       padding-inline: calc(var(--spacing) * 6 + var(--sbw, 0px));
     }
+  }
+
+  /* The desktop slideshow sits under a transparent header. */
+  html.bleed .site-header {
+    background-color: transparent;
   }
 }
 
