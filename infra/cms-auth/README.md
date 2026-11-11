@@ -6,16 +6,16 @@ client secret never reaches the browser. This is the official
 (`worker.mjs`, copied unchanged, MIT – see `LICENSE-sveltia-cms-auth.txt`)
 running on AWS Lambda behind a thin adapter (`index.mjs`).
 
-| Piece            | Value                                                                                                                    |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Function         | `nh-cms-auth` (us-east-1, Node 22, arm64) with a public Function URL                                                     |
-| URL              | `https://o7kdduyzppot2sildsrdczwscy0fgtmj.lambda-url.us-east-1.on.aws` (`backend.base_url` in `public/admin/config.yml`) |
-| Role             | `/projects/nicolas-hubert/nh-cms-auth` – logs + read the one secret parameter                                            |
-| GitHub OAuth app | "NH & AB graphistes – CMS", owned by the `nicolas-hubert-graphiste` org; callback `<URL>/callback`; non-expiring tokens  |
-| Client ID        | `Ov23likl80m5EQCTkjOb` (function environment, not secret)                                                                |
-| Client secret    | SSM SecureString `/projects/nicolas-hubert/cms-auth/github-client-secret` (only in AWS)                                  |
-| Allowed sites    | the domain, `www.`, the github.io address, `localhost`                                                                   |
-| Token scope      | `public_repo` (set by `auth_scope` in the CMS config)                                                                    |
+| Piece            | Value                                                                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Function         | `nh-cms-auth` (us-east-1, Node 22, arm64) with a public Function URL                                                             |
+| URL              | `https://o7kdduyzppot2sildsrdczwscy0fgtmj.lambda-url.us-east-1.on.aws` (`backend.base_url` in `public/admin/config.yml`)         |
+| Role             | `/projects/nicolas-hubert/nh-cms-auth` – logs + read the one secret parameter                                                    |
+| GitHub OAuth app | "NH & AB graphistes – CMS", owned by the `nicolas-hubert-graphiste` org; callback `<URL>/callback`; non-expiring tokens          |
+| Client ID        | `Ov23likl80m5EQCTkjOb` (function environment, not secret)                                                                        |
+| Client secret    | SSM SecureString `/projects/nicolas-hubert/cms-auth/github-client-secret` (only in AWS)                                          |
+| Allowed sites    | the domain, `www.`, the github.io address, `localhost` (plus `cms.netlify.com`, which Sveltia sends as its site ID on localhost) |
+| Token scope      | `public_repo` (set by `auth_scope` in the CMS config)                                                                            |
 
 ## Update or redeploy
 

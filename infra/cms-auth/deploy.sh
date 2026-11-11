@@ -11,7 +11,10 @@ FN=nh-cms-auth
 ROLE=nh-cms-auth
 IAM_PATH=/projects/nicolas-hubert/
 SECRET_PARAM=/projects/nicolas-hubert/cms-auth/github-client-secret
-ALLOWED_DOMAINS="nicolashubert-graphiste.com,www.nicolashubert-graphiste.com,nicolas-hubert-graphiste.github.io,localhost"
+# Hostnames the CMS may sign in from. Sveltia sends "cms.netlify.com" as its site
+# ID when it runs on localhost; the token itself is only ever posted to a window
+# whose (browser-verified) origin matches this list, so that entry is harmless.
+ALLOWED_DOMAINS="nicolashubert-graphiste.com,www.nicolashubert-graphiste.com,nicolas-hubert-graphiste.github.io,localhost,cms.netlify.com"
 ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
 
 # 1. Package (the AWS SDK ships with the Node.js runtime; no dependencies).
