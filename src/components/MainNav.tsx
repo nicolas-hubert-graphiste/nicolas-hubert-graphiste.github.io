@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import {
   localePath,
   otherLocale,
+  showLocaleSwitch,
   stripLocale,
   t,
   type Locale,
@@ -106,14 +107,16 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
             </div>
             {mobileItem(primary[1]!)}
             {mobileItem(primary[2]!)}
-            <a
-              href={switchHref}
-              lang={otherLocale(locale)}
-              aria-label={tr("nav.switchLocaleLabel")}
-              className="mt-14 text-3xl text-black"
-            >
-              {tr("nav.switchLocale")}
-            </a>
+            {showLocaleSwitch && (
+              <a
+                href={switchHref}
+                lang={otherLocale(locale)}
+                aria-label={tr("nav.switchLocaleLabel")}
+                className="mt-14 text-3xl text-black"
+              >
+                {tr("nav.switchLocale")}
+              </a>
+            )}
           </div>
         </div>
       )}
@@ -139,16 +142,18 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
           categories.map((item) => desktopItem(item, { sub: true }))}
         {desktopItem(primary[1]!)}
         {desktopItem(primary[2]!)}
-        <div className={cn("hidden h-full items-center pt-[2px] pl-3 lg:flex")}>
-          <a
-            href={switchHref}
-            lang={otherLocale(locale)}
-            aria-label={tr("nav.switchLocaleLabel")}
-            className={cn("text-xl", ink, "opacity-60 hover:opacity-100")}
-          >
-            {tr("nav.switchLocale")}
-          </a>
-        </div>
+        {showLocaleSwitch && (
+          <div className="hidden h-full items-center pt-[2px] pl-3 lg:flex">
+            <a
+              href={switchHref}
+              lang={otherLocale(locale)}
+              aria-label={tr("nav.switchLocaleLabel")}
+              className={cn("text-xl", ink, "opacity-60 hover:opacity-100")}
+            >
+              {tr("nav.switchLocale")}
+            </a>
+          </div>
+        )}
 
         <button
           type="button"

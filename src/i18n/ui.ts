@@ -3,6 +3,12 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "fr";
 
 /**
+ * Show the FR/EN switch in the nav. Off for now: /en/ pages still build and
+ * are indexed, and can be shared directly, but are not linked from the menu.
+ */
+export const showLocaleSwitch = false;
+
+/**
  * Static interface strings. CMS content is French-first with optional English
  * fields (see `loc()` below); only the chrome lives here.
  */
