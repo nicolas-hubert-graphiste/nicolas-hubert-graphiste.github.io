@@ -163,6 +163,26 @@
   }
 }
 
+/*
+ * Full-bleed home slideshow. At desktop sizes the page is exactly one
+ * viewport tall and never scrolls, so drop the reserved scrollbar gutter and
+ * let the image reach both edges. The header is inset by the scrollbar width
+ * (--sbw, measured in <head> before first paint) so the nav sits exactly where
+ * it does on pages that keep the gutter. Unlayered so it beats the utilities.
+ */
+@media (width >= 1024px) {
+  html.bleed {
+    scrollbar-gutter: auto;
+    overflow: hidden;
+  }
+
+  @supports (scrollbar-gutter: stable) {
+    html.bleed .bleed-header {
+      padding-inline: calc(var(--spacing) * 6 + var(--sbw, 0px));
+    }
+  }
+}
+
 /* Rich text from the CMS (project body, infos). Mirrors Rails simple_format output. */
 @utility prose-nh {
   & p {
