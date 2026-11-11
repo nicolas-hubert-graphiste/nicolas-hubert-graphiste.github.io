@@ -6,8 +6,9 @@ backend:
   repo: nicolas-hubert-graphiste/nicolas-hubert-graphiste.github.io
   branch: main
   # GitHub sign-in goes through our OAuth helper: Lambda nh-cms-auth
-  # (infra/cms-auth). The repo is public, so tokens only get public_repo,
-  # never access to a contributor's private repositories.
+  # (infra/cms-auth) with a GitHub App installed only on this repository, so a
+  # sign-in token cannot reach any other repository. auth_scope is required by
+  # Sveltia; GitHub ignores scopes for GitHub Apps.
   base_url: https://o7kdduyzppot2sildsrdczwscy0fgtmj.lambda-url.us-east-1.on.aws
   auth_scope: public_repo
   commit_messages:

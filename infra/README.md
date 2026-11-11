@@ -27,7 +27,7 @@ project.
 | GitHub OAuth client secret          | SSM SecureString `/projects/nicolas-hubert/cms-auth/github-client-secret` | Lambda `nh-cms-auth`               |
 | `nh-cms-uploader` secret access key | password manager                                                          | typed into the CMS once per device |
 
-The GitHub OAuth app "NH & AB graphistes – CMS" is owned by the
+The GitHub App "NH & AB graphistes CMS" (installed only on this repository) is owned by the
 `nicolas-hubert-graphiste` GitHub organisation (client ID in `cms-auth/README.md`).
 
 ## Bucket `nicolashubert-graphiste-production`

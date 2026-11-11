@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Deploy (or update) the CMS login helper: Lambda nh-cms-auth + public Function URL.
-#   GITHUB_CLIENT_ID=<id> infra/cms-auth/deploy.sh
+#   GITHUB_CLIENT_ID=<GitHub App client ID> infra/cms-auth/deploy.sh
 # The OAuth client secret is NOT passed here: it lives in the SSM SecureString
 # parameter below, which you create yourself (see README.md).
 set -euo pipefail
