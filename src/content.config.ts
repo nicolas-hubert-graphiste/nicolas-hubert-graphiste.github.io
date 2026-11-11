@@ -7,12 +7,25 @@ const CATEGORIES = ["edition", "signaletique", "identite", "archives"] as const;
 const url = z.url();
 const optionalText = z.string().optional();
 
+/**
+ * The CMS can save an empty optional field as "" (or null). Treat those as
+ * "not set" so they never fail validation or turn into 0.
+ */
+const unset = (value: unknown) =>
+  value === "" || value === null ? undefined : value;
+const optionalUrl = z.preprocess(unset, url.optional());
+const optionalInt = z.preprocess(
+  unset,
+  z.coerce.number().int().positive().optional()
+);
+const orderInt = z.preprocess(unset, z.coerce.number().int().default(0));
+
 /** Mirrors public/admin/config.yml – keep the two in sync. */
 const mediaItem = z.object({
   src: url,
-  poster: url.optional(),
-  width: z.number().int().positive().optional(),
-  height: z.number().int().positive().optional(),
+  poster: optionalUrl,
+  width: optionalInt,
+  height: optionalInt,
   caption: optionalText,
   caption_en: optionalText,
   layout: z.enum(["full", "half"]).default("full"),
@@ -26,7 +39,7 @@ const projets = defineCollection({
     client: reference("clients"),
     categories: z.array(z.enum(CATEGORIES)).min(1),
     // Edited as text in the CMS (see config.yml); stored or coerced to a number.
-    year: z.coerce.number().int().optional(),
+    year: optionalInt,
     nouveau: z.boolean().default(false),
     designers: z.array(z.enum(["nh", "ab"])).default(["nh", "ab"]),
     cover: url,
@@ -36,7 +49,7 @@ const projets = defineCollection({
     credits: optionalText,
     credits_en: optionalText,
     body_en: optionalText,
-    order: z.number().int().default(0),
+    order: orderInt,
     draft: z.boolean().default(false),
   }),
 });
@@ -48,7 +61,7 @@ const clients = defineCollection({
     short_en: optionalText,
     full: z.string(),
     full_en: optionalText,
-    order: z.number().int().default(0),
+    order: orderInt,
   }),
 });
 
@@ -59,8 +72,8 @@ const home = defineCollection({
       .array(
         z.object({
           image: url,
-          width: z.number().int().positive().optional(),
-          height: z.number().int().positive().optional(),
+          width: optionalInt,
+          height: optionalInt,
           projet: reference("projets"),
           navColor: z.enum(["black", "white"]).default("white"),
         })
@@ -99,7 +112,7 @@ const contact = defineCollection({
         emails: z.array(z.string()).default([]),
       })
       .optional(),
-    instagram: url.optional(),
+    instagram: optionalUrl,
     credit: optionalText,
     credit_en: optionalText,
   }),
