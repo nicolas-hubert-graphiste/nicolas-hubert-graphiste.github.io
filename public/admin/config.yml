@@ -29,8 +29,8 @@ media_libraries:
   default: false
   aws_s3:
     bucket: nicolashubert-graphiste-production
-    region: REPLACE-ME # e.g. eu-west-1 (from `heroku config`)
-    access_key_id: REPLACE-ME # CMS-only IAM user, bucket-scoped
+    region: us-east-1
+    access_key_id: AKIAXXBSTUZUREWERFZ7 # IAM user /projects/nicolas-hubert/nh-cms-uploader (cms/* only)
     prefix: cms/
     # public_url: https://media.nicolashubert-graphiste.com  # optional CloudFront/custom domain
   all:

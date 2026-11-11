@@ -15,7 +15,7 @@ Images are never enlarged; a smaller source keeps its own width.
 - `index.mjs` – Lambda handler. Triggered by uploads under `cms/` (where the
   CMS stores media), it writes the three variants beside the upload. Files that
   are already variants, and videos, are skipped, so it never loops.
-- `deploy.sh` – creates/updates the role (read/write on `cms/*` only), the
+- `deploy.sh` – creates/updates the role `/projects/nicolas-hubert/nh-image-variants` (read/write on `cms/*` only), the
   function `nh-image-variants` (Node 22, us-east-1) and the S3 trigger. Safe to
   re-run after editing the code.
 - `backfill.mjs` – one-off: creates missing variants for existing objects,

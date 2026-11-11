@@ -8,7 +8,8 @@ REGION=us-east-1
 BUCKET=nicolashubert-graphiste-production
 PREFIX=cms/
 FN=nh-image-variants
-ROLE=nh-image-variants-role
+ROLE=nh-image-variants
+IAM_PATH=/projects/nicolas-hubert/
 ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
 
 # 1. Package: handler + Linux x64 build of sharp (the AWS SDK ships with the runtime).
@@ -21,7 +22,10 @@ echo "package: $(du -h function.zip | cut -f1)"
 
 # 2. Role: logs + read/write only under the CMS upload prefix.
 if ! aws iam get-role --role-name $ROLE >/dev/null 2>&1; then
-  aws iam create-role --role-name $ROLE --assume-role-policy-document '{
+  aws iam create-role --role-name $ROLE --path $IAM_PATH \
+    --tags Key=project,Value=nicolas-hubert Key=purpose,Value=image-variants \
+      "Key=used-by,Value=Lambda nh-image-variants" \
+    --assume-role-policy-document '{
     "Version": "2012-10-17",
     "Statement": [{"Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]
   }' >/dev/null
@@ -42,14 +46,17 @@ ROLE_ARN=$(aws iam get-role --role-name $ROLE --query Role.Arn --output text)
 # 3. Function (create, or update code).
 if aws lambda get-function --function-name $FN --region $REGION >/dev/null 2>&1; then
   aws lambda update-function-code --function-name $FN --region $REGION --zip-file fileb://function.zip >/dev/null
-  echo "function code updated"
+  aws lambda wait function-updated-v2 --function-name $FN --region $REGION
+  aws lambda update-function-configuration --function-name $FN --region $REGION --role "$ROLE_ARN" >/dev/null
+  echo "function code and role updated"
 else
   sleep 10 # a brand-new role takes a moment to become assumable
   aws lambda create-function --function-name $FN --region $REGION \
     --runtime nodejs22.x --architectures x86_64 --handler index.handler \
     --role "$ROLE_ARN" --zip-file fileb://function.zip \
     --memory-size 1536 --timeout 60 \
-    --description "Writes medium/large/xlarge variants for CMS uploads" >/dev/null
+    --description "Writes medium/large/xlarge variants for CMS uploads" \
+    --tags project=nicolas-hubert,purpose=image-variants >/dev/null
   echo "function created"
 fi
 aws lambda wait function-active-v2 --function-name $FN --region $REGION
