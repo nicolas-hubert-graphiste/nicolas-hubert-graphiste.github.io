@@ -31,6 +31,25 @@ const images = new Map(
       )
   )
 );
+// Videos: the poster gives the frame size (so the player doesn't jump while
+// loading) and a 1280px variant is used as the poster itself.
+const posters = new Map(
+  await Promise.all(
+    media
+      .filter((item) => isVideo(item.src) && item.poster)
+      .map(
+        async (item) =>
+          [
+            item.src,
+            await responsiveImage(item.poster!, {
+              width: item.width,
+              height: item.height,
+              prefer: "large",
+            }),
+          ] as const
+      )
+  )
+);
 let seen = 0;
 ---
 
@@ -47,14 +66,15 @@ let seen = 0;
         const alt = loc(item, "caption", locale);
         const eager = priority && index === 0;
         const image = images.get(item.src);
+        const poster = posters.get(item.src);
         return isVideo(item.src) ? (
           <video
             controls
             playsinline
             preload={eager ? "metadata" : "none"}
-            poster={item.poster}
-            width={item.width}
-            height={item.height}
+            poster={poster?.src ?? item.poster}
+            width={item.width ?? poster?.width}
+            height={item.height ?? poster?.height}
             class="w-full bg-placeholder"
           >
             <source src={item.src} type="video/mp4" />

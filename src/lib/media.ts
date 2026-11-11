@@ -18,7 +18,10 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { inferRemoteSize } from "astro:assets";
 
-const S3_HOST = "nicolashubert-graphiste-production.s3.amazonaws.com";
+// Old Paperclip URLs use the global endpoint; the CMS writes the regional one
+// (…s3.us-east-1.amazonaws.com). Both serve the same bucket.
+const S3_HOST_RE =
+  /^nicolashubert-graphiste-production\.s3(\.[a-z0-9-]+)?\.amazonaws\.com$/;
 const VARIANTS = [
   ["medium", 800],
   ["large", 1280],
@@ -137,7 +140,7 @@ export function variantBase(src: string): string | undefined {
   } catch {
     return undefined;
   }
-  if (url.hostname !== S3_HOST || VIDEO_RE.test(url.pathname)) return undefined;
+  if (!S3_HOST_RE.test(url.hostname) || VIDEO_RE.test(url.pathname)) return undefined;
   if (STYLE_RE.test(url.pathname))
     return url.origin + url.pathname.replace(STYLE_RE, "");
   if (url.pathname.startsWith("/cms/"))

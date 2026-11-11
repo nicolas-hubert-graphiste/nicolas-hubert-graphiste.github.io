@@ -83,21 +83,9 @@ _media_item_fields: &media_item_fields
     label: Légende (anglais, facultatif)
     widget: string
     required: false
-  - {
-      name: width,
-      label: Largeur (px),
-      widget: number,
-      value_type: int,
-      required: false,
-      hint: "Rempli automatiquement pour les anciens projets.",
-    }
-  - {
-      name: height,
-      label: Hauteur (px),
-      widget: number,
-      value_type: int,
-      required: false,
-    }
+  # Dimensions: kept on migrated items, read automatically for new uploads.
+  - { name: width, widget: hidden, required: false }
+  - { name: height, widget: hidden, required: false }
 
 collections:
   - name: projets
@@ -286,20 +274,8 @@ collections:
                 options:
                   - { label: Blanc, value: white }
                   - { label: Noir, value: black }
-              - {
-                  name: width,
-                  label: Largeur (px),
-                  widget: number,
-                  value_type: int,
-                  required: false,
-                }
-              - {
-                  name: height,
-                  label: Hauteur (px),
-                  widget: number,
-                  value_type: int,
-                  required: false,
-                }
+              - { name: width, widget: hidden, required: false }
+              - { name: height, widget: hidden, required: false }
 
       - name: infos
         label: Infos
