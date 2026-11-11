@@ -25,12 +25,16 @@ const projets = defineCollection({
     title_en: optionalText,
     client: reference("clients"),
     categories: z.array(z.enum(CATEGORIES)).min(1),
-    year: z.number().int().optional(),
+    // Edited as text in the CMS (see config.yml); stored or coerced to a number.
+    year: z.coerce.number().int().optional(),
     nouveau: z.boolean().default(false),
     designers: z.array(z.enum(["nh", "ab"])).default(["nh", "ab"]),
     cover: url,
     media: z.array(mediaItem).default([]),
     related: z.array(reference("projets")).default([]),
+    /** Lines shown under Client / Année, e.g. "Format : 21 x 30 cm, relié". */
+    credits: optionalText,
+    credits_en: optionalText,
     body_en: optionalText,
     order: z.number().int().default(0),
     draft: z.boolean().default(false),
@@ -55,6 +59,8 @@ const home = defineCollection({
       .array(
         z.object({
           image: url,
+          width: z.number().int().positive().optional(),
+          height: z.number().int().positive().optional(),
           projet: reference("projets"),
           navColor: z.enum(["black", "white"]).default("white"),
         })

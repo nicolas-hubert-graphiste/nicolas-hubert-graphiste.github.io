@@ -22,7 +22,8 @@ const S3_BASE = (
   process.env.S3_BASE ??
   "https://nicolashubert-graphiste-production.s3.amazonaws.com"
 ).replace(/\/$/, "");
-const LISTING = path.join(ROOT, "scripts/migrate/input/s3-listing.txt");
+// One S3 key per line: aws s3api list-objects-v2 ... --query 'Contents[].Key' (see README)
+const LISTING = path.join(ROOT, "scripts/migrate/input/s3-keys.txt");
 
 const args = new Set(process.argv.slice(2));
 const dryRun = args.has("--dry-run");
@@ -83,6 +84,7 @@ type AssetRow = {
   poster_file_name: string | null;
 };
 type HomeRow = {
+  dimensions: string | null;
   id: number;
   position: number | null;
   projet_id: number;
@@ -105,7 +107,7 @@ const listing = existsSync(LISTING)
   ? new Set(
       (await readFile(LISTING, "utf8"))
         .split("\n")
-        .map((line) => line.trim().split(/\s+/).pop() ?? "")
+        .map((line) => line.trim())
         .filter(Boolean)
     )
   : null;
@@ -120,12 +122,20 @@ function ext(fileName: string) {
 function s3Url(
   folder: "projet_assets" | "home_images",
   fileName: string,
-  style: "original" | "xlarge"
+  style: "original" | "large" | "xlarge"
 ) {
-  const extension = style === "xlarge" ? "jpg" : ext(fileName);
+  const extension = style === "original" ? ext(fileName) : "jpg";
   const key = `${folder}/${basename(fileName)}.${style}.${extension}`;
-  if (listing && !listing.has(key)) warn(`missing in S3 listing: ${key}`);
-  return `${S3_BASE}/${key}`;
+  if (listing && !listing.has(key)) {
+    // A few uploads never got their xlarge variant: fall back to the original.
+    const original = `${folder}/${basename(fileName)}.original.${ext(fileName)}`;
+    if (style !== "original" && listing.has(original)) {
+      warn(`no ${style} for ${fileName}, using original`);
+      return `${S3_BASE}/${encodeURI(original)}`;
+    }
+    warn(`missing in S3 listing: ${key}`);
+  }
+  return `${S3_BASE}/${encodeURI(key)}`;
 }
 /** Rails serialised `[w, h]` arrays come back as YAML ("---\n- 2560\n- 1707\n"). */
 function dimensions(raw: string | null): { width?: number; height?: number } {
@@ -135,14 +145,46 @@ function dimensions(raw: string | null): { width?: number; height?: number } {
     return { width: Number(parsed[0]), height: Number(parsed[1]) };
   return {};
 }
-/** Plain text from simple_format: keep paragraphs, keep single line breaks (marked renders them with `breaks`). */
-function toMarkdown(...parts: Array<string | null | undefined>) {
-  return parts
-    .map((part) => (part ?? "").replace(/\r\n/g, "\n").trim())
+function clean(text?: string | null) {
+  return (text ?? "").replace(/\r\n?/g, "\n").trim();
+}
+/**
+ * Project text in the design's order: description, then the date line on
+ * the next line (marked renders single newlines as <br>, like simple_format).
+ */
+function toBody(description?: string | null, dateinfo?: string | null) {
+  return [clean(description), clean(dateinfo)]
     .filter(Boolean)
-    .join("\n\n")
+    .join("\n")
     .replace(/^Client\s*:.*\n?/im, "") // rendered from the client field now
     .trim();
+}
+/**
+ * A caption repeated on every image is project-level information (usually
+ * the format, e.g. "19,5 x 25 cm / Relié, 272 pages"). The design shows that
+ * as a "Format : …" line under Client / Année, so turn it into credits.
+ */
+function toCredits(caption: string) {
+  const lines = clean(caption)
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const isFormat =
+    /^\d+([,.]\d+)?\s*x\s*\d/i.test(lines[0] ?? "") && !lines[0]!.includes(":");
+  if (!isFormat) return lines.join("\n");
+  const joined = lines
+    .map((line, i) =>
+      i > 0 && /^\p{Lu}\p{Ll}/u.test(line)
+        ? line[0]!.toLowerCase() + line.slice(1)
+        : line
+    )
+    .join(", ");
+  return `Format : ${joined}`;
+}
+function uniformCaption(values: Array<string | null>) {
+  const texts = values.map((v) => clean(v));
+  if (texts.length === 0 || texts.some((t) => !t)) return undefined;
+  return new Set(texts).size === 1 ? texts[0] : undefined;
 }
 function frontmatter(data: Record<string, unknown>, body: string) {
   const clean = Object.fromEntries(
@@ -265,10 +307,22 @@ if (only.has("projets")) {
       ),
     ];
 
-    const media = (assetsByProjet.get(projet.id) ?? []).map((asset) => {
+    const assetRows = assetsByProjet.get(projet.id) ?? [];
+    const sharedFr = uniformCaption(assetRows.map((a) => a.description_fr));
+    const sharedEn = uniformCaption(assetRows.map((a) => a.description_en));
+    const media = assetRows.map((asset, index) => {
       const video = asset.asset_content_type === "video/mp4";
       const dims = dimensions(asset.asset_dimensions);
       const ratio = dims.width && dims.height ? dims.width / dims.height : 1.5;
+      // Design rhythm: one full-width image, then a pair (full, half, half, ...).
+      // Videos stay full width; portrait images are never full width.
+      const layout = video
+        ? "full"
+        : ratio < 1
+          ? "half"
+          : index % 3 === 0
+            ? "full"
+            : "half";
       report.assets++;
       if (video) report.videos++;
       return {
@@ -282,12 +336,23 @@ if (only.has("projets")) {
             ? s3Url("projet_assets", asset.poster_file_name, "original")
             : undefined,
         ...dims,
-        caption: asset.description_fr?.trim() || undefined,
-        caption_en: asset.description_en?.trim() || undefined,
-        layout: ratio < 1.2 ? "half" : "full",
+        caption: sharedFr
+          ? undefined
+          : clean(asset.description_fr) || undefined,
+        caption_en: sharedEn
+          ? undefined
+          : clean(asset.description_en) || undefined,
+        layout,
       };
     });
-    const cover = media.find((m) => !/\.mp4$/i.test(m.src))?.src;
+    // Grid covers use Paperclip's 1280px "large" variant; the 2560px xlarge is
+    // only needed for the project page itself.
+    const coverAsset = assetRows.find((a) =>
+      a.asset_content_type.startsWith("image/")
+    );
+    const cover = coverAsset
+      ? s3Url("projet_assets", coverAsset.asset_file_name, "large")
+      : undefined;
     if (!cover) warn(`projet ${projet.slug} has no image asset for a cover`);
 
     const related = (relatedByProjet.get(projet.id) ?? [])
@@ -310,11 +375,13 @@ if (only.has("projets")) {
           cover: cover ?? `${S3_BASE}/MISSING-COVER`,
           media,
           related: related.length ? related : undefined,
-          body_en: projet.description_en?.trim()
-            ? toMarkdown(projet.dateinfo_en, projet.description_en)
+          credits: sharedFr ? toCredits(sharedFr) : undefined,
+          credits_en: sharedEn ? toCredits(sharedEn) : undefined,
+          body_en: clean(projet.description_en)
+            ? toBody(projet.description_en, projet.dateinfo_en)
             : undefined,
         },
-        toMarkdown(projet.dateinfo_fr, projet.description_fr)
+        toBody(projet.description_fr, projet.dateinfo_fr)
       )
     );
     report.projets++;
@@ -341,6 +408,7 @@ if (only.has("home")) {
       report.slides++;
       return {
         image: s3Url("home_images", home.image_file_name, "original"),
+        ...dimensions(home.dimensions),
         projet: projet.slug,
         navColor: home.white_arrow ? "white" : "black",
       };

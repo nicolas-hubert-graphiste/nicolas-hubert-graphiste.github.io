@@ -30,6 +30,12 @@ jobs:
           bun-version: latest
 
       - run: bun install --frozen-lockfile
+      # Remembers which S3 image variants exist (see src/lib/media.ts).
+      - uses: actions/cache@v4
+        with:
+          path: .cache
+          key: image-variants-${{ github.sha }}
+          restore-keys: image-variants-
       - run: bun run build
 
       - uses: actions/upload-pages-artifact@v3

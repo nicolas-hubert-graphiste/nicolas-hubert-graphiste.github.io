@@ -5,8 +5,12 @@ backend:
   name: github
   repo: nicolas-hubert-graphiste/nicolas-hubert-graphiste.github.io
   branch: main
-  # OAuth helper (sveltia-cms-auth on Cloudflare Workers). Set after step 4 of the plan.
-  base_url: https://REPLACE-ME.workers.dev
+  # GitHub sign-in goes through our OAuth helper: Lambda nh-cms-auth
+  # (infra/cms-auth) with a GitHub App installed only on this repository, so a
+  # sign-in token cannot reach any other repository. auth_scope is required by
+  # Sveltia; GitHub ignores scopes for GitHub Apps.
+  base_url: https://o7kdduyzppot2sildsrdczwscy0fgtmj.lambda-url.us-east-1.on.aws
+  auth_scope: public_repo
   commit_messages:
     create: "Contenu : ajout {{collection}} « {{slug}} »"
     update: "Contenu : modification {{collection}} « {{slug}} »"
@@ -29,8 +33,8 @@ media_libraries:
   default: false
   aws_s3:
     bucket: nicolashubert-graphiste-production
-    region: REPLACE-ME # e.g. eu-west-1 (from `heroku config`)
-    access_key_id: REPLACE-ME # CMS-only IAM user, bucket-scoped
+    region: us-east-1
+    access_key_id: AKIAXXBSTUZUREWERFZ7 # IAM user /projects/nicolas-hubert/nh-cms-uploader (cms/* only)
     prefix: cms/
     # public_url: https://media.nicolashubert-graphiste.com  # optional CloudFront/custom domain
   all:
@@ -130,13 +134,12 @@ collections:
           - { label: Signalétique, value: signaletique }
           - { label: Identité, value: identite }
           - { label: Archives, value: archives }
-      - {
-          name: year,
-          label: Année,
-          widget: number,
-          value_type: int,
-          required: false,
-        }
+      # Text, not a number widget: Sveltia shows numbers as "2,025" in lists.
+      - name: year
+        label: Année
+        widget: string
+        required: false
+        pattern: ['^\d{4}$', "Année sur 4 chiffres, ex. 2025"]
       - {
           name: nouveau,
           label: Nouveau (badge « Nouveau »),
@@ -158,10 +161,15 @@ collections:
       - name: body
         label: Texte
         widget: markdown
-        hint: "Intro, dates, puis les lignes « Format : … », « Impression : … ». « Client » et « Année » sont ajoutés automatiquement."
+        hint: "Description, puis la ligne des dates. « Client » et « Année » sont ajoutés automatiquement."
         buttons: [bold, italic, link]
         editor_components: []
         modes: [rich_text, raw]
+      - name: credits
+        label: Crédits (sous Client / Année)
+        widget: text
+        required: false
+        hint: "Une ligne par information, ex. « Format : 21 x 30 cm, relié, 336 pages », « Impression : … »."
       - name: media
         label: Images et vidéos
         widget: list
@@ -178,13 +186,14 @@ collections:
         display_fields: ["{{title}}"]
         search_fields: [title]
       # English is optional; French is the fallback on the site.
-      - {
-          name: title_en,
-          label: Titre (anglais,
-          facultatif),
-          widget: string,
-          required: false,
-        }
+      - name: title_en
+        label: "Titre (anglais, facultatif)"
+        widget: string
+        required: false
+      - name: credits_en
+        label: Crédits (anglais, facultatif)
+        widget: text
+        required: false
       - name: body_en
         label: Texte (anglais, facultatif)
         widget: markdown
@@ -268,6 +277,20 @@ collections:
                 options:
                   - { label: Blanc, value: white }
                   - { label: Noir, value: black }
+              - {
+                  name: width,
+                  label: Largeur (px),
+                  widget: number,
+                  value_type: int,
+                  required: false,
+                }
+              - {
+                  name: height,
+                  label: Hauteur (px),
+                  widget: number,
+                  value_type: int,
+                  required: false,
+                }
 
       - name: infos
         label: Infos

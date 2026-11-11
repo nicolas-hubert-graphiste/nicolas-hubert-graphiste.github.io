@@ -15,7 +15,7 @@ already exist in the S3 bucket (`projet_assets/<basename>.xlarge.jpg`,
    ```
 2. List the bucket so every URL can be verified:
    ```bash
-   aws s3 ls --recursive s3://nicolashubert-graphiste-production > scripts/migrate/input/s3-listing.txt
+   aws s3api list-objects-v2 --bucket nicolashubert-graphiste-production --query "Contents[].Key" --output json | bun -e "for (const k of await Bun.stdin.json()) console.log(k)" > scripts/migrate/input/s3-keys.txt
    ```
 
 ## Run

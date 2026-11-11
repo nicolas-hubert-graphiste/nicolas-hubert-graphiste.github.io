@@ -60,11 +60,15 @@
   --color-black: oklch(0 0 0);
   --color-white: oklch(1 0 0);
   --color-gray: oklch(0.65 0 0);
+  /* Tint behind images while they load (dark pages override it below). */
+  --color-placeholder: oklch(0.94 0 0);
 
   --spacing: 5px;
 
   --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
+  /* Desktop layout (inline nav, 3-column grid) starts where the full nav with
+     its category row fits: ~1,150px including page padding and scrollbar. */
+  --breakpoint-lg: 1200px;
 
   --font-sans: "Beausite Classic", ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
@@ -148,6 +152,7 @@
   body[data-theme="dark"] {
     background-color: var(--color-black);
     color: var(--color-white);
+    --color-placeholder: oklch(0.2 0 0);
   }
 
   img,
@@ -217,7 +222,7 @@ body[data-menu-open] .site-header {
  * (--sbw, measured in <head> before first paint) so the nav sits exactly where
  * it does on pages that keep the gutter. Unlayered so it beats the utilities.
  */
-@media (width >= 1024px) {
+@media (width >= 1200px) {
   html.bleed {
     scrollbar-gutter: auto;
     overflow: hidden;

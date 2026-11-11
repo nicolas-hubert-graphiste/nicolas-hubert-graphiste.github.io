@@ -57,18 +57,19 @@ const toLink = (entry?: Projet) =>
       <RichText text={body} />
       <dl class="mt-[1lh]">
         {client && (
-          <div class="flex gap-1">
-            <dt>{tr("project.client")} :</dt>
-            <dd>{loc(client.data, "full", locale)}</dd>
+          <div>
+            <dt class="inline">{tr("project.client")} :</dt>{" "}
+            <dd class="inline">{loc(client.data, "full", locale)}</dd>
           </div>
         )}
         {projet.data.year && (
-          <div class="flex gap-1">
-            <dt>{tr("project.year")} :</dt>
-            <dd>{projet.data.year}</dd>
+          <div>
+            <dt class="inline">{tr("project.year")} :</dt>{" "}
+            <dd class="inline">{projet.data.year}</dd>
           </div>
         )}
       </dl>
+      <RichText text={loc(projet.data, "credits", locale)} />
       {related.length > 0 && (
         <div class="mt-[1lh]">
           <h2>{tr("project.related")}</h2>

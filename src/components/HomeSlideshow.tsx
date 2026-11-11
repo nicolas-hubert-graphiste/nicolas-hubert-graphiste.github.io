@@ -3,6 +3,9 @@ import { cn } from "@/lib/utils";
 
 export type Slide = {
   image: string;
+  srcset?: string;
+  width?: number;
+  height?: number;
   href: string;
   title: string;
   navColor: "black" | "white";
@@ -66,6 +69,19 @@ export default function HomeSlideshow({
     return () => window.removeEventListener("keydown", onKey);
   }, [hydrated, go]);
 
+  // Fetch the next slide's image ahead of time so it is ready when we advance.
+  useEffect(() => {
+    if (!hydrated || count < 2) return;
+    const next = slides[(index + 1) % count];
+    if (!next) return;
+    const img = new Image();
+    if (next.srcset) {
+      img.sizes = "100vw";
+      img.srcset = next.srcset;
+    }
+    img.src = next.image;
+  }, [hydrated, index, count, slides]);
+
   // Chrome colour follows the current slide (body[data-theme] drives the nav).
   useEffect(() => {
     if (!hydrated) return;
@@ -87,11 +103,15 @@ export default function HomeSlideshow({
           <a key={slide.href + i} href={slide.href} className="block">
             <img
               src={slide.image}
+              srcSet={slide.srcset}
+              sizes={slide.srcset ? "calc(100vw - 20px)" : undefined}
               alt={slide.title}
               loading={i === 0 ? "eager" : "lazy"}
               fetchPriority={i === 0 ? "high" : undefined}
+              width={slide.width}
+              height={slide.height}
               decoding="async"
-              className="w-full"
+              className="w-full bg-placeholder"
             />
           </a>
         ))}
@@ -112,11 +132,13 @@ export default function HomeSlideshow({
           >
             <img
               src={slide.image}
+              srcSet={slide.srcset}
+              sizes={slide.srcset ? "100vw" : undefined}
               alt={slide.title}
               loading={i === 0 ? "eager" : "lazy"}
               fetchPriority={i === 0 ? "high" : undefined}
               decoding="async"
-              className="size-full object-cover"
+              className="size-full bg-placeholder object-cover"
             />
           </a>
         ))}

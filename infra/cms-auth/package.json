@@ -1,0 +1,9 @@
+{
+  "name": "nh-cms-auth",
+  "private": true,
+  "type": "module",
+  "description": "AWS Lambda adapter for sveltia-cms-auth (GitHub OAuth helper for Sveltia CMS)",
+  "devDependencies": {
+    "@aws-sdk/client-ssm": "^3.700.0"
+  }
+}

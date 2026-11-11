@@ -4,6 +4,7 @@ import Base from "@/layouts/Base.astro";
 import HomeSlideshow, { type Slide } from "@/components/HomeSlideshow";
 import { loc, t, type Locale } from "@/i18n/ui";
 import { projectPath } from "@/lib/projects";
+import { srcsetFor } from "@/lib/media";
 
 interface Props {
   locale: Locale;
@@ -18,6 +19,9 @@ for (const slide of home?.data.slides ?? []) {
   if (!projet || (projet.data.draft && import.meta.env.PROD)) continue;
   slides.push({
     image: slide.image,
+    srcset: await srcsetFor(slide.image, slide.width),
+    width: slide.width,
+    height: slide.height,
     href: projectPath(locale, projet.id),
     title: loc(projet.data, "title", locale),
     navColor: slide.navColor,
@@ -27,7 +31,7 @@ for (const slide of home?.data.slides ?? []) {
 
 <Base locale={locale} theme="dark" bleed>
   <HomeSlideshow
-    client:media="(min-width: 1024px)"
+    client:media="(min-width: 1200px)"
     slides={slides}
     labels={{ prev: tr("home.slideshowPrev"), next: tr("home.slideshowNext") }}
   />
