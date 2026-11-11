@@ -6,6 +6,14 @@ import tailwindcss from "@tailwindcss/vite";
 import redirects from "./scripts/migrate/redirects.json" with { type: "json" };
 
 export default defineConfig({
+  // The media bucket, by its global and regional addresses (old images use the
+  // first, CMS uploads the second). Lets the build read image sizes from it.
+  image: {
+    domains: [
+      "nicolashubert-graphiste-production.s3.amazonaws.com",
+      "nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com",
+    ],
+  },
   site: "https://nicolashubert-graphiste.com",
   output: "static",
   trailingSlash: "always",
