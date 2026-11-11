@@ -10,14 +10,25 @@ aws iam list-roles --path-prefix /projects/nicolas-hubert/
 
 ## Identities
 
-| Name                                         | Type     | Used by                                                | Can do                                      | Secret lives in                                                                                  |
-| -------------------------------------------- | -------- | ------------------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| `/projects/nicolas-hubert/nh-cms-uploader`   | IAM user | Sveltia CMS in the browser (`public/admin/config.yml`) | get / put / delete `cms/*`, list `cms/`     | Password manager. The key ID is in `config.yml`; the secret is typed once per device in the CMS. |
-| `/projects/nicolas-hubert/nh-image-variants` | IAM role | Lambda `nh-image-variants`                             | get / put / put-ACL `cms/*`, write its logs | none (role)                                                                                      |
+| Name                                         | Type     | Used by                                                        | Can do                                        | Secret lives in                                                                                  |
+| -------------------------------------------- | -------- | -------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `/projects/nicolas-hubert/nh-cms-uploader`   | IAM user | Sveltia CMS in the browser (`public/admin/config.yml`)         | get / put / delete `cms/*`, list `cms/`       | Password manager. The key ID is in `config.yml`; the secret is typed once per device in the CMS. |
+| `/projects/nicolas-hubert/nh-image-variants` | IAM role | Lambda `nh-image-variants`                                     | get / put / put-ACL `cms/*`, write its logs   | none (role)                                                                                      |
+| `/projects/nicolas-hubert/nh-cms-auth`       | IAM role | Lambda `nh-cms-auth`, the CMS GitHub sign-in (see `cms-auth/`) | read its SSM secret parameter, write its logs | none (role)                                                                                      |
 
 All carry the tags `project=nicolas-hubert` and `purpose=…`. Personal
 admin access is the separate `/people/chris-admin` user, not part of this
 project.
+
+## Secrets
+
+| Secret                              | Where                                                                     | Used by                            |
+| ----------------------------------- | ------------------------------------------------------------------------- | ---------------------------------- |
+| GitHub OAuth client secret          | SSM SecureString `/projects/nicolas-hubert/cms-auth/github-client-secret` | Lambda `nh-cms-auth`               |
+| `nh-cms-uploader` secret access key | password manager                                                          | typed into the CMS once per device |
+
+The GitHub OAuth app "NH & AB graphistes – CMS" is owned by the
+`nicolas-hubert-graphiste` GitHub organisation (client ID in `cms-auth/README.md`).
 
 ## Bucket `nicolashubert-graphiste-production`
 

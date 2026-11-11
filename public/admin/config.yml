@@ -5,8 +5,11 @@ backend:
   name: github
   repo: nicolas-hubert-graphiste/nicolas-hubert-graphiste.github.io
   branch: main
-  # OAuth helper (sveltia-cms-auth on Cloudflare Workers). Set after step 4 of the plan.
-  base_url: https://REPLACE-ME.workers.dev
+  # GitHub sign-in goes through our OAuth helper: Lambda nh-cms-auth
+  # (infra/cms-auth). The repo is public, so tokens only get public_repo,
+  # never access to a contributor's private repositories.
+  base_url: https://o7kdduyzppot2sildsrdczwscy0fgtmj.lambda-url.us-east-1.on.aws
+  auth_scope: public_repo
   commit_messages:
     create: "Contenu : ajout {{collection}} « {{slug}} »"
     update: "Contenu : modification {{collection}} « {{slug}} »"

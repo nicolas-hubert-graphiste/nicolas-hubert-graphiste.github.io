@@ -24,3 +24,5 @@
 /infra/image-variants/node_modules/
 /infra/image-variants/build/
 /infra/image-variants/*.zip
+/infra/cms-auth/*.zip
+/infra/cms-auth/node_modules/

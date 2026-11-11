@@ -4,3 +4,5 @@ dist
 bun.lock
 infra/image-variants/node_modules
 infra/image-variants/build
+infra/cms-auth/node_modules
+infra/cms-auth/worker.mjs
