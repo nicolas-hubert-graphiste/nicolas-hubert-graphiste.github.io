@@ -102,7 +102,14 @@ collections:
     format: frontmatter
     create: true
     delete: true
-    slug: "{{slug}}"
+    # The page address, editable when the project is created. Unique-title
+    # rule used for the migrated projects: the title alone, else add the year
+    # (if it differs from the other project's), else the first category.
+    slug:
+      template: "{{slug}}"
+      editable: [create]
+      hint: "Adresse de la page : /projets/adresse/. Laissée vide, elle reprend le titre. Si un projet porte déjà ce titre, ajoutez l’année (ex. design-d-aujourd-hui-2015) ou, la même année, la catégorie (ex. aubusson-nouvelle-generation-signaletique). Elle ne peut plus être modifiée ensuite."
+      pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Minuscules, chiffres et tirets uniquement, ex. mon-projet-2025"]
     identifier_field: title
     summary: "{{title}} — {{year}}"
     sortable_fields:
