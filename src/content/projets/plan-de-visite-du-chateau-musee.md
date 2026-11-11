@@ -1,35 +1,50 @@
 ---
-title: Plan de visite du Château-Musée
+title: Plan de visite du Château-Musée test
 client: musees-de-boulogne-sur-mer
 categories:
   - identite
-year: 2026
+year: '2026'
 nouveau: true
 designers:
   - nh
   - ab
 cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite1.large.jpg
+credits: ''
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite1.xlarge.jpg
-    width: 2560
-    height: 1707
+    poster: ''
+    layout: full
     caption: dépliant 6 volets, 10 x 21 cm
-    layout: full
+    caption_en: ''
+    width: 2560
+    height: 1707
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite4.xlarge.jpg
-    width: 2560
-    height: 1707
+    poster: ''
+    layout: half
     caption: plan du musée
-    layout: half
+    caption_en: ''
+    width: 2560
+    height: 1707
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite5.xlarge.jpg
-    width: 2560
-    height: 1707
-    caption: pictogrammes
+    poster: ''
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite6.xlarge.jpg
+    caption: pictogrammes
+    caption_en: ''
     width: 2560
     height: 1707
-    caption: Pictogrammes avec Francesca Guagliardo, typographe
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite6.xlarge.jpg
+    poster: ''
     layout: full
+    caption: Pictogrammes avec Francesca Guagliardo, typographe
+    caption_en: ''
+    width: 2560
+    height: 1707
+related: []
+title_en: ''
+credits_en: ''
+body_en: ''
+order: 0
+draft: false
 ---
 
 Conception graphique du document, dessin du plan et création des pictogrammes avec Francesca Guagliardo, typographe
