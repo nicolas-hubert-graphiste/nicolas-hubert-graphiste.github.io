@@ -211,10 +211,10 @@
   "/en/projets/identite-communication/guides-de-visite": "/en/projets/guides-de-visite/",
   "/fr/projets/edition/monet-chefs-d-oeuvre": "/projets/monet-chefs-d-oeuvre/",
   "/en/projets/edition/monet-chefs-d-oeuvre": "/en/projets/monet-chefs-d-oeuvre/",
-  "/fr/projets/signaletique/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/projets/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62/",
-  "/en/projets/signaletique/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/en/projets/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62/",
-  "/fr/projets/identite-communication/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/projets/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62/",
-  "/en/projets/identite-communication/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/en/projets/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62/",
+  "/fr/projets/signaletique/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/projets/japonismes-impressionnismes/",
+  "/en/projets/signaletique/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/en/projets/japonismes-impressionnismes/",
+  "/fr/projets/identite-communication/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/projets/japonismes-impressionnismes/",
+  "/en/projets/identite-communication/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/en/projets/japonismes-impressionnismes/",
   "/fr/projets/identite-communication/l-aventure-de-la-couleur": "/projets/l-aventure-de-la-couleur/",
   "/en/projets/identite-communication/l-aventure-de-la-couleur": "/en/projets/l-aventure-de-la-couleur/",
   "/fr/projets/signaletique/au-fil-du-siecle": "/projets/au-fil-du-siecle/",
@@ -380,5 +380,7 @@
   "/fr/projets/archives/saison-03-04": "/projets/saison-03-04/",
   "/en/projets/archives/saison-03-04": "/en/projets/saison-03-04/",
   "/fr/projets/archives/saison-02-03": "/projets/saison-02-03/",
-  "/en/projets/archives/saison-02-03": "/en/projets/saison-02-03/"
+  "/en/projets/archives/saison-02-03": "/en/projets/saison-02-03/",
+  "/projets/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/projets/japonismes-impressionnismes/",
+  "/en/projets/japonismes-impressionnismes-6157b882-d10c-44bc-832e-7a6b3a302f62": "/en/projets/japonismes-impressionnismes/"
 }
