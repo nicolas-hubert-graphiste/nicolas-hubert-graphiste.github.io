@@ -25,7 +25,8 @@ const projets = defineCollection({
     title_en: optionalText,
     client: reference("clients"),
     categories: z.array(z.enum(CATEGORIES)).min(1),
-    year: z.number().int().optional(),
+    // Edited as text in the CMS (see config.yml); stored or coerced to a number.
+    year: z.coerce.number().int().optional(),
     nouveau: z.boolean().default(false),
     designers: z.array(z.enum(["nh", "ab"])).default(["nh", "ab"]),
     cover: url,

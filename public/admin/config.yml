@@ -134,13 +134,12 @@ collections:
           - { label: Signalétique, value: signaletique }
           - { label: Identité, value: identite }
           - { label: Archives, value: archives }
-      - {
-          name: year,
-          label: Année,
-          widget: number,
-          value_type: int,
-          required: false,
-        }
+      # Text, not a number widget: Sveltia shows numbers as "2,025" in lists.
+      - name: year
+        label: Année
+        widget: string
+        required: false
+        pattern: ['^\d{4}$', "Année sur 4 chiffres, ex. 2025"]
       - {
           name: nouveau,
           label: Nouveau (badge « Nouveau »),
@@ -187,13 +186,10 @@ collections:
         display_fields: ["{{title}}"]
         search_fields: [title]
       # English is optional; French is the fallback on the site.
-      - {
-          name: title_en,
-          label: Titre (anglais,
-          facultatif),
-          widget: string,
-          required: false,
-        }
+      - name: title_en
+        label: "Titre (anglais, facultatif)"
+        widget: string
+        required: false
       - name: credits_en
         label: Crédits (anglais, facultatif)
         widget: text
