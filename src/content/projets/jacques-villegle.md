@@ -7,9 +7,9 @@ year: 2008
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/villegle1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/villegle1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     layout: full

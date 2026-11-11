@@ -7,9 +7,9 @@ year: 2022
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Romy_home.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Romy_home.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Mur de titre

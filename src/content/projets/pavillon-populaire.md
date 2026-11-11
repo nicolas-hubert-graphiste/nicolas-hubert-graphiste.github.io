@@ -7,9 +7,9 @@ year: 2024
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Munter-Welty_gris1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Munter-Welty_gris1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Gabriele Münter & Eudora Welty, 2024

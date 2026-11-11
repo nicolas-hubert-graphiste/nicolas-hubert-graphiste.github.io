@@ -8,9 +8,9 @@ year: 2018
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/guides_2018_1b.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/guides_2018_1b.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: |-

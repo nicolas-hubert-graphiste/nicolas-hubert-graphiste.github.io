@@ -7,9 +7,9 @@ year: 2024
 nouveau: true
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/40ans_arto1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/40ans_arto1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Visuel de la manifestation

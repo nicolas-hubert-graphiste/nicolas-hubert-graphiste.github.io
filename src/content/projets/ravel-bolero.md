@@ -7,9 +7,9 @@ year: 2024
 nouveau: true
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/ravel1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/ravel1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Réalisation du titre au pochoir par Œil de Lynx

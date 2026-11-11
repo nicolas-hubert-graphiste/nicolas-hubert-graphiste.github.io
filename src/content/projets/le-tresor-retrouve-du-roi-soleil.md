@@ -7,9 +7,9 @@ year: 2026
 nouveau: true
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/tresor_roi1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/tresor_roi1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Pose de la bâche du titre par Publimark

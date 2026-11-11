@@ -7,9 +7,9 @@ year: 2013
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/nordstrom_new1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/nordstrom_new1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: affiche, gare de Flandres, Lille

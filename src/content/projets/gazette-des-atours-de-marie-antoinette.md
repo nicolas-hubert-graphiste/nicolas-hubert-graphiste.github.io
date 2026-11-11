@@ -7,9 +7,9 @@ year: 2006
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/gazette_gris1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/gazette_gris1.xlarge.jpg
+    cover: true
     width: 2700
     height: 1707
     layout: full

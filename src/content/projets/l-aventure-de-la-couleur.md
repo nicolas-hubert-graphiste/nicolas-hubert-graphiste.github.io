@@ -7,9 +7,9 @@ year: 2018
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/couleur1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/couleur1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Flyer recto-verso

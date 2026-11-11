@@ -7,9 +7,9 @@ year: 2022
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/versailles_monde_gris5.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/versailles_monde_gris5.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     layout: full

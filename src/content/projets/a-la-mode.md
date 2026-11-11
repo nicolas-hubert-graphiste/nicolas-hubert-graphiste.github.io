@@ -7,9 +7,9 @@ year: 2021
 nouveau: false
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/mode4.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/mode4.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Visuel de l'exposition

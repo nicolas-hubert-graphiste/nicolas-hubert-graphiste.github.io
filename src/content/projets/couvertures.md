@@ -7,9 +7,9 @@ year: 2017
 nouveau: false
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/uberisons_new.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/uberisons_new.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: |-

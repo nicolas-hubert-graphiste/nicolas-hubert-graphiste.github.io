@@ -7,9 +7,9 @@ year: 2018
 nouveau: false
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/design_aujourdhui18_1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/design_aujourdhui18_1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     layout: full

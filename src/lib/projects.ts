@@ -83,3 +83,19 @@ export function groupMedia<T extends { layout: "full" | "half" }>(
 export function isVideo(src: string) {
   return /\.(mp4|webm|mov)(\?.*)?$/i.test(src);
 }
+
+/**
+ * The grid image for a project: the media item ticked "cover" in the CMS,
+ * else the first image, else the first video's poster.
+ */
+export function coverOf(projet: Projet) {
+  const media = projet.data.media;
+  const pick =
+    media.find((m) => m.cover) ??
+    media.find((m) => !isVideo(m.src)) ??
+    media.find((m) => m.poster);
+  if (!pick) return undefined;
+  if (!isVideo(pick.src))
+    return { src: pick.src, width: pick.width, height: pick.height };
+  return pick.poster ? { src: pick.poster } : undefined;
+}

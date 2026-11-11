@@ -8,9 +8,9 @@ year: 2012
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/100_france1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/100_france1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: 15 x 21 cm, 20 pages

@@ -7,9 +7,9 @@ year: 2017
 nouveau: true
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/AD_17_1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/AD_17_1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Rapport 2017

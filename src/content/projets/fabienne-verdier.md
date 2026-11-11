@@ -7,9 +7,9 @@ year: 2026
 nouveau: true
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/verdier3.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/verdier3.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: "Scénographie : Anthony Lelonge, fabrication et pose de la signalétique : L'Atelier"

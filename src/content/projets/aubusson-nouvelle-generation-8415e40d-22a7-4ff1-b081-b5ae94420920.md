@@ -8,9 +8,9 @@ year: 2024
 nouveau: false
 designers:
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Aubusson1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Aubusson1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Affiche de l'exposition

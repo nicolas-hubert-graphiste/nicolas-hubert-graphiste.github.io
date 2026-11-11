@@ -63,6 +63,12 @@ _media_item_fields: &media_item_fields
     media_libraries:
       all:
         max_file_size: 200000000 # 200 MB for videos
+  - name: cover
+    label: Image de couverture (grille des projets)
+    widget: boolean
+    default: false
+    required: false
+    hint: "Une seule image à la fois : cocher celle-ci décoche les autres. Par défaut, la première image. Recadrée en 4:3 dans la grille."
   - name: poster
     label: Image d’aperçu (vidéo uniquement)
     widget: image
@@ -147,11 +153,6 @@ collections:
         options:
           - { label: Nicolas Hubert, value: nh }
           - { label: Amélina Bouchez, value: ab }
-      - name: cover
-        label: Image de couverture (grille)
-        widget: image
-        accept: "image/jpeg,image/png,image/webp"
-        hint: "Recadrée en 4:3 dans la grille des projets."
       - name: body
         label: Texte
         widget: markdown
@@ -168,7 +169,8 @@ collections:
         label: Images et vidéos
         widget: list
         collapsed: true
-        summary: "{{fields.src}}"
+        hint: "La première image (ou celle cochée « Image de couverture ») apparaît dans la grille des projets."
+        summary: "{{fields.cover | ternary('Couverture · ', '')}}{{fields.src}}"
         fields: *media_item_fields
       - name: related
         label: Projets liés

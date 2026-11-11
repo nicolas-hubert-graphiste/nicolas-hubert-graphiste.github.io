@@ -8,9 +8,9 @@ nouveau: false
 designers:
   - nh
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/bache_museum.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/bache_museum.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: |-

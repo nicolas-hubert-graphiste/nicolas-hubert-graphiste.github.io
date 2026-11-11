@@ -8,9 +8,9 @@ nouveau: true
 designers:
   - nh
   - ab
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Affiches pour le musée des beaux-Arts et le musée Pincé

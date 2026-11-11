@@ -7,9 +7,9 @@ year: 2019
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/chaplin1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/chaplin1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Bâche signalétique sur la façade du musée

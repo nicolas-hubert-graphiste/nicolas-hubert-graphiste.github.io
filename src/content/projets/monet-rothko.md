@@ -8,9 +8,9 @@ year: 2022
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/comm_Monet-Rothko2.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/comm_Monet-Rothko2.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Affiche 4x3, métro Villiers

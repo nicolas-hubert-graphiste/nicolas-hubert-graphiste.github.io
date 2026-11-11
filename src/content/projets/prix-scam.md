@@ -8,9 +8,9 @@ year: 2009
 nouveau: false
 designers:
   - nh
-cover: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/scam1.large.jpg
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/scam1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: 4 pages 16,5 x 16,5 cm, carton brut
