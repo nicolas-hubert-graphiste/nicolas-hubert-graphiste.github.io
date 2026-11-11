@@ -13,13 +13,13 @@ slides:
     navColor: black
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/NSPJTPH_cat_home2.original.jpg
     projet: catalogue-saint-phalle-tinguely-hulten
-    navColor: black
+    navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/NSPJTPH_journal_home.original.jpg
     projet: journal-saint-phalle-tinguely-hulten
-    navColor: black
+    navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/stravinsky_bleu1.original.jpg
     projet: fontaine-stravinsky
-    navColor: black
+    navColor: white
   - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/ElectricOp4.original.jpg
     projet: electric-op
     navColor: white
