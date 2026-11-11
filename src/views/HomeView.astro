@@ -4,7 +4,7 @@ import Base from "@/layouts/Base.astro";
 import HomeSlideshow, { type Slide } from "@/components/HomeSlideshow";
 import { loc, t, type Locale } from "@/i18n/ui";
 import { projectPath } from "@/lib/projects";
-import { srcsetFor } from "@/lib/media";
+import { responsiveImage } from "@/lib/media";
 
 interface Props {
   locale: Locale;
@@ -17,11 +17,15 @@ const slides: Slide[] = [];
 for (const slide of home?.data.slides ?? []) {
   const projet = await getEntry(slide.projet);
   if (!projet || (projet.data.draft && import.meta.env.PROD)) continue;
-  slides.push({
-    image: slide.image,
-    srcset: await srcsetFor(slide.image, slide.width),
+  const image = await responsiveImage(slide.image, {
     width: slide.width,
     height: slide.height,
+  });
+  slides.push({
+    image: image.src,
+    srcset: image.srcset,
+    width: image.width,
+    height: image.height,
     href: projectPath(locale, projet.id),
     title: loc(projet.data, "title", locale),
     navColor: slide.navColor,

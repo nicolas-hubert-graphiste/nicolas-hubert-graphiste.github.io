@@ -12,7 +12,7 @@ import {
   isSourceImage,
   makeVariants,
   variantKey,
-  PUT_OPTIONS,
+  putParams,
 } from "./variants.mjs";
 
 const s3 = new S3Client({});
@@ -31,13 +31,12 @@ export async function handler(event) {
     const variants = await makeVariants(source);
 
     await Promise.all(
-      Object.entries(variants).map(([style, body]) =>
+      Object.entries(variants).map(([style, variant]) =>
         s3.send(
           new PutObjectCommand({
             Bucket: bucket,
             Key: variantKey(key, style),
-            Body: body,
-            ...PUT_OPTIONS,
+            ...putParams(variant),
           })
         )
       )
@@ -46,7 +45,10 @@ export async function handler(event) {
       JSON.stringify({
         key,
         variants: Object.fromEntries(
-          Object.entries(variants).map(([s, b]) => [s, b.length])
+          Object.entries(variants).map(([s, v]) => [
+            s,
+            `${v.width}x${v.height} ${v.body.length}B`,
+          ])
         ),
       })
     );

@@ -11,6 +11,13 @@ naming the old Rails/Paperclip site used:
 
 Images are never enlarged; a smaller source keeps its own width.
 
+CMS uploads are stored as uploaded, named like the old Paperclip originals
+(`cms/2026-ab12cd.original.jpg`); the variants go beside them
+(`cms/2026-ab12cd.medium.jpg` …). Each variant carries its exact pixel size
+as S3 metadata (`x-amz-meta-width` / `x-amz-meta-height`), which the site
+build reads to give every `<img>` its width and height. The site never serves
+an original, only the variants.
+
 - `variants.mjs` – the resizing (sharp), shared by both scripts below.
 - `index.mjs` – Lambda handler. Triggered by uploads under `cms/` (where the
   CMS stores media), it writes the three variants beside the upload. Files that

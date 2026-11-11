@@ -42,31 +42,31 @@ media_libraries:
     access_key_id: AKIAXXBSTUZUREWERFZ7 # IAM user /projects/nicolas-hubert/nh-cms-uploader (cms/* only)
     prefix: cms/
     # public_url: https://media.nicolashubert-graphiste.com  # optional CloudFront/custom domain
+  # Originals are stored as uploaded (no conversion), named like the old
+  # Paperclip files: cms/2026-ab12cd.original.jpg. The image-variants Lambda
+  # then writes .medium/.large/.xlarge.jpg beside them; the site only serves
+  # those. Slugify stays off: it would turn ".original" into "-original", and
+  # the template already produces safe names.
   all:
-    max_file_size: 5000000 # 5 MB for images; the video field overrides this
-    slugify_filename: true
-    filename_template: "{{year}}-{{uuid_short}}"
-    transformations:
-      raster_image:
-        format: webp
-        quality: 82
-        width: 2400
-        height: 2400
-      svg:
-        optimize: true
+    max_file_size: 20000000 # 20 MB for images; the video field overrides this
+    slugify_filename: false
+    filename_template: "{{year}}-{{uuid_short}}.original"
 
 # Reusable field groups
 _media_item_fields: &media_item_fields
   - name: src
     label: Fichier (image ou vidéo MP4)
     widget: file
-    accept: "image/*,video/mp4"
+    # JPEG/PNG/WebP or MP4. iPhones and Macs convert HEIC photos to JPEG
+    # when HEIC isn't accepted, so browsers and the Lambda can read them.
+    accept: "image/jpeg,image/png,image/webp,video/mp4"
     media_libraries:
       all:
         max_file_size: 200000000 # 200 MB for videos
   - name: poster
     label: Image d’aperçu (vidéo uniquement)
     widget: image
+    accept: "image/jpeg,image/png,image/webp"
     required: false
   - name: layout
     label: Disposition
@@ -162,6 +162,7 @@ collections:
       - name: cover
         label: Image de couverture (grille)
         widget: image
+        accept: "image/jpeg,image/png,image/webp"
         hint: "Recadrée en 4:3 dans la grille des projets."
       - name: body
         label: Texte
@@ -267,7 +268,10 @@ collections:
             widget: list
             summary: "{{fields.projet}}"
             fields:
-              - { name: image, label: Image, widget: image }
+              - name: image
+                label: Image
+                widget: image
+                accept: "image/jpeg,image/png,image/webp"
               - name: projet
                 label: Projet lié
                 widget: relation

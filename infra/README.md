@@ -32,12 +32,12 @@ The GitHub App "NH & AB graphistes CMS" (installed only on this repository) is o
 
 ## Bucket `nicolashubert-graphiste-production`
 
-| Setting            | Value                                                                                                                          |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| Public read        | Paperclip objects (`projet_assets/`, `home_images/`) via per-object ACLs; `cms/*` via the bucket policy `PublicReadCmsUploads` |
-| CORS               | `cms-browser-uploads`: GET/PUT/DELETE/HEAD from the site, `www.`, the github.io address and `localhost:4321`                   |
-| Event notification | uploads under `cms/` → Lambda `nh-image-variants` (writes medium/large/xlarge, see `image-variants/`)                          |
-| Backup             | full copy 2026-11-11 in `~/Backups/nicolashubert-graphiste-production-2026-11-11`                                              |
+| Setting            | Value                                                                                                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Public read        | Paperclip objects (`projet_assets/`, `home_images/`) via per-object ACLs; `cms/*` via the bucket policy `PublicReadCmsUploads`         |
+| CORS               | `cms-browser-uploads`: GET/PUT/DELETE/HEAD from the site, `www.`, the github.io address and `localhost:4321`                           |
+| Event notification | uploads under `cms/` → Lambda `nh-image-variants` (writes medium/large/xlarge JPEGs with width/height metadata, see `image-variants/`) |
+| Backup             | full copy 2026-11-11 in `~/Backups/nicolashubert-graphiste-production-2026-11-11`                                                      |
 
 ## Legacy, to retire
 

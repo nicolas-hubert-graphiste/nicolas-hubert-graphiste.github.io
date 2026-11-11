@@ -2,7 +2,7 @@
 import { getEntry } from "astro:content";
 import { loc, t, type Locale } from "@/i18n/ui";
 import { projectPath, type Projet } from "@/lib/projects";
-import { SIZES, srcsetFor } from "@/lib/media";
+import { SIZES, responsiveImage } from "@/lib/media";
 
 interface Props {
   projects: Projet[];
@@ -18,8 +18,11 @@ const cards = await Promise.all(
       href: projectPath(locale, projet.id),
       title: loc(projet.data, "title", locale),
       client: client ? loc(client.data, "short", locale) : "",
-      cover: projet.data.cover,
-      srcset: await srcsetFor(projet.data.cover),
+      // Cards are cropped to 4:3, so the 1280px variant is the default source.
+      cover: await responsiveImage(projet.data.cover, {
+        prefer: "large",
+        measureIfUnknown: false,
+      }),
       nouveau: projet.data.nouveau,
     };
   })
@@ -31,9 +34,11 @@ const cards = await Promise.all(
     <li>
       <a href={card.href} class="group block">
         <img
-          src={card.cover}
-          srcset={card.srcset}
-          sizes={card.srcset ? SIZES.grid : undefined}
+          src={card.cover.src}
+          srcset={card.cover.srcset}
+          sizes={card.cover.srcset ? SIZES.grid : undefined}
+          width={card.cover.width}
+          height={card.cover.height}
           alt=""
           class="aspect-[4/3] w-full bg-placeholder object-cover"
           loading={index < 3 ? "eager" : "lazy"}
