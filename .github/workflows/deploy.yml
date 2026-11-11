@@ -51,3 +51,56 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # A failed build or deploy leaves the live site on its last good version, but
+  # nobody may notice: GitHub only notifies whoever triggered the run (often the
+  # client, via the CMS). Open (or update) an issue assigned to the maintainer.
+  alert-failure:
+    needs: [build, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      COMMIT: ${{ github.sha }}
+      AUTHOR: ${{ github.event.head_commit.author.name || github.actor }}
+      MESSAGE: ${{ github.event.head_commit.message || 'manual run' }}
+      ASSIGNEE: chrism
+    steps:
+      - name: Open or update the "Deploy failed" issue
+        run: |
+          gh label create deploy-failed --color B60205 --description "The site failed to build or deploy" 2>/dev/null || true
+          body="The site did not update: run ${RUN_URL} failed.
+
+          - Commit: ${COMMIT:0:7} by ${AUTHOR}
+          - Message: $(printf '%s' "$MESSAGE" | head -n 1)
+
+          The live site keeps its last good version until a later run succeeds.
+          This issue closes itself after the next successful deploy."
+          existing=$(gh issue list --label deploy-failed --state open --limit 1 --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "Deploy failed: the site did not update" --label deploy-failed --assignee "$ASSIGNEE" --body "$body"
+          fi
+
+  # After a successful deploy, close the open "Deploy failed" issue, if any.
+  close-failure-alert:
+    needs: [deploy]
+    if: success()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Close the "Deploy failed" issue
+        run: |
+          for n in $(gh issue list --label deploy-failed --state open --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "Fixed: ${RUN_URL} deployed successfully."
+          done
