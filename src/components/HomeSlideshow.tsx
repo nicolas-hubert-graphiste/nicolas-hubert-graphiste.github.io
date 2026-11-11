@@ -82,7 +82,7 @@ export default function HomeSlideshow({
   return (
     <>
       {/* Phones and tablets: vertical stack, black background. */}
-      <div className="flex flex-col gap-8 px-3 pt-24 pb-10 lg:hidden">
+      <div className="flex flex-col gap-8 px-2 pt-16 pb-10 lg:hidden">
         {slides.map((slide, i) => (
           <a key={slide.href + i} href={slide.href} className="block">
             <img

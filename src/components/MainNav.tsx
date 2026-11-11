@@ -17,7 +17,19 @@ type MainNavProps = {
   locale: Locale;
 };
 
-/**
+type Item = { label: string; href: string };
+
+/*
+ * Geometry is taken from the design PDFs (site_nh_2025_12-04 and the iPhone
+ * version), measured at 4x:
+ *
+ * Phone:   nav 35px tall + 0.5px rule; logo 24px; divider 0.5px; menu icon
+ *          26x16 starting 13px after the divider, 1px in from the edge.
+ * Desktop: nav 50px tall + 1px rule; 26px text; dividers 1px.
+ *
+ * The cells stretch to the nav's height (`items-stretch`), so every divider
+ * runs from the top of the nav down to the rule.
+ *
  * Colours inherit from `body[data-theme]` (see global.css) so the home
  * slideshow can flip the chrome between black and white per slide.
  */
@@ -37,61 +49,47 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
   }, [isMenuOpen]);
 
   const ink = isMenuOpen ? "text-black" : "text-current";
-  const rule = isMenuOpen ? "border-black" : "border-current";
+  const line = isMenuOpen ? "border-black" : "border-current";
 
-  const primary = [
-    { label: tr("nav.projets"), href: "/projets/" },
-    { label: tr("nav.infos"), href: "/infos/" },
-    { label: tr("nav.contact"), href: "/contact/" },
-  ];
-  const categories = CATEGORIES.map((category) => ({
+  const projets: Item = { label: tr("nav.projets"), href: "/projets/" };
+  const infos: Item = { label: tr("nav.infos"), href: "/infos/" };
+  const contact: Item = { label: tr("nav.contact"), href: "/contact/" };
+  const categories: Item[] = CATEGORIES.map((category) => ({
     label: tr(`category.${category}`),
     href: `/projets/${category}/`,
   }));
   const switchHref = localePath(otherLocale(locale), path);
 
-  const desktopItem = (
-    item: { label: string; href: string },
-    options: { sub?: boolean } = {}
-  ) => (
-    <div
-      key={item.href}
-      className={cn(
-        "hidden h-full items-center pt-[2px] pr-3 pl-2 last:pr-0 lg:flex",
-        !options.sub && ["border-l", rule]
-      )}
-    >
-      <a
-        href={localePath(locale, item.href)}
-        className={cn(
-          "text-3xl lg:text-4xl",
-          ink,
-          isActive(item.href) && "opacity-30"
-        )}
-        aria-current={isActive(item.href) ? "page" : undefined}
-      >
-        {item.label}
-      </a>
-    </div>
-  );
-
-  const mobileItem = (
-    item: { label: string; href: string },
-    options: { sub?: boolean } = {}
-  ) => (
+  const link = (item: Item, className?: string) => (
     <a
       key={item.href}
       href={localePath(locale, item.href)}
-      onClick={() => setIsMenuOpen(false)}
-      className={cn(
-        "block py-1 text-5xl text-black",
-        !options.sub && "border-b border-black",
-        isActive(item.href) && "opacity-30"
-      )}
+      className={className}
+      aria-current={isActive(item.href) ? "page" : undefined}
     >
-      {item.label}
+      {/* Grey only the label, so a rule under the link stays black. */}
+      <span className={cn(isActive(item.href) && "opacity-30")}>
+        {item.label}
+      </span>
     </a>
   );
+
+  /** Desktop cell between two dividers; text sits 2px below the nav top. */
+  const cell = (children: React.ReactNode, className: string) => (
+    <div className={cn("flex items-start border-l pt-[2px]", line, className)}>
+      {children}
+    </div>
+  );
+
+  /** Phone menu line: 30px text on a 45px rhythm, optional hairline rule. */
+  const menuLine = (item: Item, ruled: boolean) =>
+    link(
+      item,
+      cn(
+        "block pt-[6px] text-5xl leading-[34px] text-black",
+        ruled ? "border-b-[0.5px] border-black pb-[4px]" : "pb-[5px]"
+      )
+    );
 
   return (
     <>
@@ -100,19 +98,26 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
           id="mobile-menu"
           className="fixed inset-0 z-30 overflow-y-auto bg-white lg:hidden"
         >
-          <div className="flex flex-col px-3 pt-24 pb-10">
-            {mobileItem(primary[0]!)}
-            <div className="mb-14 flex flex-col pt-2">
-              {categories.map((item) => mobileItem(item, { sub: true }))}
+          <div
+            className="flex flex-col px-2 pt-[150px] pb-10"
+            onClick={(event) => {
+              if ((event.target as HTMLElement).closest("a")) {
+                setIsMenuOpen(false);
+              }
+            }}
+          >
+            {menuLine(projets, true)}
+            {categories.map((item) => menuLine(item, false))}
+            <div className="mt-[45px] flex flex-col">
+              {menuLine(infos, true)}
+              {menuLine(contact, true)}
             </div>
-            {mobileItem(primary[1]!)}
-            {mobileItem(primary[2]!)}
             {showLocaleSwitch && (
               <a
                 href={switchHref}
                 lang={otherLocale(locale)}
                 aria-label={tr("nav.switchLocaleLabel")}
-                className="mt-14 text-3xl text-black"
+                className="mt-[45px] text-3xl text-black"
               >
                 {tr("nav.switchLocale")}
               </a>
@@ -123,53 +128,63 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
 
       <nav
         className={cn(
-          "relative z-40 flex w-full items-center justify-end border-b",
-          rule
+          "relative z-40 flex h-[35.5px] w-full items-stretch border-b-[0.5px] lg:h-[51px] lg:border-b",
+          line,
+          ink
         )}
         aria-label="Navigation principale"
       >
-        <div className="flex grow basis-0 items-center pt-[2px] pr-3 pb-2 lg:pb-3">
-          <a
-            href={localePath(locale, "/")}
-            className={cn("text-3xl lg:text-4xl", ink)}
-          >
+        <a
+          href={localePath(locale, "/")}
+          className="flex grow basis-0 items-start pr-3 text-3xl leading-[26px] lg:pt-[2px] lg:text-4xl lg:leading-[30px]"
+        >
+          <span className="relative -top-[2.25px] lg:top-0">
             {tr("siteTitle")}
-          </a>
-        </div>
+          </span>
+        </a>
 
-        {desktopItem(primary[0]!)}
-        {onProjets &&
-          categories.map((item) => desktopItem(item, { sub: true }))}
-        {desktopItem(primary[1]!)}
-        {desktopItem(primary[2]!)}
-        {showLocaleSwitch && (
-          <div className="hidden h-full items-center pt-[2px] pl-3 lg:flex">
-            <a
-              href={switchHref}
-              lang={otherLocale(locale)}
-              aria-label={tr("nav.switchLocaleLabel")}
-              className={cn("text-xl", ink, "opacity-60 hover:opacity-100")}
-            >
-              {tr("nav.switchLocale")}
-            </a>
-          </div>
-        )}
+        <div className="hidden items-stretch text-4xl leading-[30px] lg:flex">
+          {cell(link(projets), "pr-[13.2px] pl-[14px]")}
+          {onProjets &&
+            cell(
+              <div className="flex gap-[19px]">
+                {categories.map((item) => link(item))}
+              </div>,
+              "pr-[12.7px] pl-[11.2px]"
+            )}
+          {cell(link(infos), "pr-[13.8px] pl-[11.7px]")}
+          {cell(link(contact), "pr-0 pl-[11px]")}
+          {showLocaleSwitch && (
+            <div className="flex items-start pt-[2px] pl-3">
+              <a
+                href={switchHref}
+                lang={otherLocale(locale)}
+                aria-label={tr("nav.switchLocaleLabel")}
+                className="text-xl opacity-60 hover:opacity-100"
+              >
+                {tr("nav.switchLocale")}
+              </a>
+            </div>
+          )}
+        </div>
 
         <button
           type="button"
           onClick={() => setIsMenuOpen((open) => !open)}
           className={cn(
-            "flex h-full min-h-[44px] min-w-[44px] cursor-pointer items-center justify-end border-l pl-3 lg:hidden",
-            rule
+            "relative w-[40.5px] shrink-0 cursor-pointer border-l-[0.5px] lg:hidden",
+            // Invisible hit area so the target is at least 44px tall.
+            "after:absolute after:-inset-y-[5px] after:-right-[10px] after:left-0 after:content-['']",
+            line
           )}
           aria-label={isMenuOpen ? tr("nav.menuClose") : tr("nav.menuOpen")}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
         >
           {isMenuOpen ? (
-            <CloseIcon className="size-[24px] text-black" />
+            <CloseIcon className="absolute top-[2px] left-[18px] text-black" />
           ) : (
-            <MenuIcon className={cn("size-[24px]", ink)} />
+            <MenuIcon className="absolute top-[3px] left-[13px]" />
           )}
         </button>
       </nav>
