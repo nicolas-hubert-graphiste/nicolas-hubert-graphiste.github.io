@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/salon_new5.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Invitation, 2012

@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/cogitore-zidane8.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Titre de l'exposition “Zidane”. Pochoir réalisé par l'atelier Œil de Lynx

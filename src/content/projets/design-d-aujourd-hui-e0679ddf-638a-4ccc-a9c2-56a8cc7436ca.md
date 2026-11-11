@@ -9,6 +9,7 @@ designers:
   - ab
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/design_aujourdhui14_1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     layout: full

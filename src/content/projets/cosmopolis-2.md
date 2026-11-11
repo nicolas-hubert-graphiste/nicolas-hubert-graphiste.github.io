@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/cosmopolis1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Peinture au pochoir du titre par l'atelier Œil de lynx

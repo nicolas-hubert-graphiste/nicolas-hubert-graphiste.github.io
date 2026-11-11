@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/des_foules_gris1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     layout: full

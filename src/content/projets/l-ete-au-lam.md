@@ -9,6 +9,7 @@ designers:
   - ab
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/ete_lam_new8.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: visuel de l'été 2018

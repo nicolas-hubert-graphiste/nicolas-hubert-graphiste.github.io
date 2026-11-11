@@ -310,6 +310,12 @@ if (only.has("projets")) {
     const assetRows = assetsByProjet.get(projet.id) ?? [];
     const sharedFr = uniformCaption(assetRows.map((a) => a.description_fr));
     const sharedEn = uniformCaption(assetRows.map((a) => a.description_en));
+    // The grid cover is the first image of the gallery (as on the old site).
+    const coverIndex = assetRows.findIndex((a) =>
+      a.asset_content_type.startsWith("image/")
+    );
+    if (coverIndex === -1)
+      warn(`projet ${projet.slug} has no image asset for a cover`);
     const media = assetRows.map((asset, index) => {
       const video = asset.asset_content_type === "video/mp4";
       const dims = dimensions(asset.asset_dimensions);
@@ -331,6 +337,7 @@ if (only.has("projets")) {
           asset.asset_file_name,
           video ? "original" : "xlarge"
         ),
+        cover: index === coverIndex ? true : undefined,
         poster:
           video && asset.poster_file_name
             ? s3Url("projet_assets", asset.poster_file_name, "original")
@@ -345,9 +352,6 @@ if (only.has("projets")) {
         layout,
       };
     });
-    // The grid cover is the first image of the gallery (as on the old site).
-    if (!assetRows.some((a) => a.asset_content_type.startsWith("image/")))
-      warn(`projet ${projet.slug} has no image asset for a cover`);
 
     const related = (relatedByProjet.get(projet.id) ?? [])
       .map((r) => projetById.get(r.related_id)?.slug)

@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/gazette_gris1.xlarge.jpg
+    cover: true
     width: 2700
     height: 1707
     layout: full

@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Sorin1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Page d'accueil du site internet

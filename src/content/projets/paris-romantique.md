@@ -10,6 +10,7 @@ designers:
   - ab
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/paris_romantique_gris1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Couvertures du catalogue et du petit journal

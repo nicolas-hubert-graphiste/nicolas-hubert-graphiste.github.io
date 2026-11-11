@@ -10,6 +10,7 @@ designers:
   - ab
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite1.xlarge.jpg
+    cover: true
     layout: full
     caption: dépliant 6 volets, 10 x 21 cm
     width: 2560

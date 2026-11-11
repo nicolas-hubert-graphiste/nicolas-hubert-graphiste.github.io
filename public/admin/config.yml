@@ -68,7 +68,7 @@ _media_item_fields: &media_item_fields
     widget: boolean
     default: false
     required: false
-    hint: "À cocher sur une seule image. Sans case cochée, la première image sert de couverture. Recadrée en 4:3 dans la grille."
+    hint: "Une seule image à la fois : cocher celle-ci décoche les autres. Par défaut, la première image. Recadrée en 4:3 dans la grille."
   - name: poster
     label: Image d’aperçu (vidéo uniquement)
     widget: image

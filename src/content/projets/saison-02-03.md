@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/TDB_new8.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: "Visuel générique : affiche et bâche"

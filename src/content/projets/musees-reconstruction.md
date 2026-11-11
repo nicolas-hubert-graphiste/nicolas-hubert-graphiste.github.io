@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/musees_reconstruction_BS1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Dépliant du bon de souscription de l'ouvrage à paraître en fin d'année. Œuvres de Gabriel Folli

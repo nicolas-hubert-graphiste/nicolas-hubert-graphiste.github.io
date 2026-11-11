@@ -10,6 +10,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/extreme_hotel1.xlarge.jpg
+    cover: true
     width: 2560
     height: 1707
     caption: Photo Perrine Villemur

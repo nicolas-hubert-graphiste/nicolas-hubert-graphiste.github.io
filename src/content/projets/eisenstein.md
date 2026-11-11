@@ -9,6 +9,7 @@ designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/eisenstein3.xlarge.jpg
+    cover: true
     width: 2253
     height: 1707
     caption: Affiche (visuel 1)
