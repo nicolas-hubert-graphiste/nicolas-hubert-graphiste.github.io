@@ -36,15 +36,20 @@ const cards = await Promise.all(
           fetchpriority={index === 0 ? "high" : undefined}
           decoding="async"
         />
-        <p class="mt-2 text-base">
-          {card.title}
+        {/* One line each: long titles and client names end in an ellipsis. */}
+        <div class="mt-2 flex min-w-0 items-center gap-2 text-base">
+          <p class="min-w-0 truncate" title={card.title}>
+            {card.title}
+          </p>
           {card.nouveau && (
-            <span class="ml-2 text-sm text-gray uppercase">
+            <span class="inline-flex h-[15px] shrink-0 items-center rounded-full border border-gray px-[6px] text-xs leading-none tracking-[0.02em] text-gray uppercase">
               {tr("project.new")}
             </span>
           )}
+        </div>
+        <p class="truncate text-base text-gray" title={card.client}>
+          {card.client}
         </p>
-        <p class="text-base text-gray">{card.client}</p>
       </a>
     </li>
   ))}
