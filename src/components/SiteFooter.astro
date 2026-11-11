@@ -1,0 +1,49 @@
+---
+import { localePath, t, type Locale } from "@/i18n/ui";
+
+interface Props {
+  locale: Locale;
+  prev?: { href: string; title: string };
+  next?: { href: string; title: string };
+}
+const { locale, prev, next } = Astro.props;
+const tr = t(locale);
+
+/*
+ * Site footer, pinned to the bottom of the window by the layout (body is a
+ * min-height column and <main> grows), so it never floats up on short pages.
+ * Geometry from site_nh_2025_OK (desktop p.8/11/12, iPhone p.20/23):
+ *   phone   12px text, 0.5px rule, 30px tall incl. rule, baseline 12px from bottom
+ *   desktop 18px text, 1px rule, 54.25px tall incl. rule, baseline ~24px from bottom
+ */
+---
+
+<footer class="px-2 lg:px-6">
+  <nav
+    class="grid grid-cols-[1fr_auto_1fr] items-start gap-x-3 border-t-[0.5px] border-current pt-[5.5px] pb-[9px] text-sm leading-[15px] whitespace-nowrap lg:border-t lg:pt-[10.3px] lg:pb-[19px] lg:text-xl lg:leading-[24px]"
+    aria-label={
+      locale === "fr" ? "Navigation de pied de page" : "Footer navigation"
+    }
+  >
+    <div class="justify-self-start">
+      {prev && (
+        <a href={prev.href} title={prev.title}>
+          <span aria-hidden="true">← </span>
+          {tr("project.prev")}
+        </a>
+      )}
+    </div>
+    <a href={localePath(locale, "/")}>
+      {tr("project.home")}
+      <span aria-hidden="true"> ↑</span>
+    </a>
+    <div class="justify-self-end">
+      {next && (
+        <a href={next.href} title={next.title}>
+          {tr("project.next")}
+          <span aria-hidden="true"> →</span>
+        </a>
+      )}
+    </div>
+  </nav>
+</footer>

@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import Base from "@/layouts/Base.astro";
-import ProjectNav from "@/components/ProjectNav.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
 import RichText from "@/components/RichText.astro";
 import { loc, t, type Locale } from "@/i18n/ui";
 
@@ -50,5 +50,5 @@ const clientsHeading = locale === "fr" ? "Clients" : "Clients";
       </section>
     </div>
   )}
-  <ProjectNav locale={locale} />
+  <SiteFooter slot="footer" locale={locale} />
 </Base>

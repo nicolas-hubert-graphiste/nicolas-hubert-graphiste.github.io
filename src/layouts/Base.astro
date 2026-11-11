@@ -89,7 +89,9 @@ const alternate = new URL(localePath(otherLocale(locale), bare), site);
     </header>
     <main
       class={
-        bleed ? "flex-1" : "flex-1 px-2 pt-[24.5px] pb-16 lg:px-6 lg:pt-[31px]"
+        bleed
+          ? "flex-1"
+          : "flex-1 px-2 pt-[24.5px] pb-[12px] lg:px-6 lg:pt-[31px] lg:pb-[20px]"
       }
     >
       <slot />
