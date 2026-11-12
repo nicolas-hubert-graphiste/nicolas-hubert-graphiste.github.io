@@ -1,16 +1,16 @@
 name: Nicolas Hubert graphiste
-address: |
+address: |-
   7 rue Ganneron
   75018 Paris
   France
 phone: +33 (0)1 46 33 54 95
 email: nicolas.hubert10@orange.fr
 bookRequest:
-  label: "Book sur demande :"
-  label_en: "Portfolio on request:"
+  label: 'Book sur demande :'
+  label_en: 'Portfolio on request:'
   emails:
     - nicolas.hubert10@orange.fr
     - contact@nicolashubert-graphiste.com
 instagram: https://www.instagram.com/nicolashubert_graphiste/
-credit: Site développé par [Chris Masters](https://www.chrismasters.net)
-credit_en: Website by [Chris Masters](https://www.chrismasters.net)
+credit: Site développé par [Chris Masters](https://www.chrismasters.studio)
+credit_en: Website by [Chris Masters](https://www.chrismasters.studio)
