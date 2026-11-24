@@ -42,7 +42,6 @@ const projets = defineCollection({
     categories: z.array(z.enum(CATEGORIES)).min(1),
     // Edited as text in the CMS (see config.yml); stored or coerced to a number.
     year: optionalInt,
-    nouveau: z.boolean().default(false),
     designers: z.array(z.enum(["nh", "ab"])).default(["nh", "ab"]),
     media: z.array(mediaItem).default([]),
     related: z.array(reference("projets")).default([]),

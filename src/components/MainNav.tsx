@@ -155,12 +155,12 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
 
         <div className="hidden items-stretch text-4xl leading-[30px] lg:flex">
           {cell(
-            <div className="flex gap-[13px]">
+            <div className="flex gap-[12.75px]">
               {sections.map((item) => link(item))}
             </div>,
-            "pr-[13px] pl-[16px]"
+            "pr-[12.75px] pl-[15.25px]"
           )}
-          {cell(link(infos), "pr-0 pl-[11.7px]")}
+          {cell(link(infos), "pr-0 pl-[12.2px]")}
           {showLocaleSwitch && (
             <div className="flex items-start pt-[2px] pl-3">
               <a

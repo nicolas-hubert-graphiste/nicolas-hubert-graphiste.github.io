@@ -146,12 +146,6 @@ collections:
         widget: string
         required: false
         pattern: ['^\d{4}$', "Année sur 4 chiffres, ex. 2025"]
-      - {
-          name: nouveau,
-          label: Nouveau (badge « Nouveau »),
-          widget: boolean,
-          default: false,
-        }
       - name: designers
         label: Graphistes
         widget: select
