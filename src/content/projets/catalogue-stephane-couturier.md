@@ -25,6 +25,7 @@ media:
     height: 1707
     layout: full
 credits: "Format : 15,5 x 22 cm, broché, 60 pages, découpe en couverture"
+draft: true
 ---
 
 Catalogue publié à l'occasion d'une commande effectuée à l'artiste par l'artothèque d'Angers

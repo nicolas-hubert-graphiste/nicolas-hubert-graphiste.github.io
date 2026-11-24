@@ -17,6 +17,14 @@ const retired = {
   // Contact is now the last section of the infos page.
   "/contact": "/infos/#contact",
   "/en/contact": "/en/infos/#contact",
+  // Projects the studio removed from the old site after the migration; they
+  // are kept here as drafts, which production builds leave out.
+  "/fr/projets/edition/catalogue-stephane-couturier": "/projets/edition/",
+  "/en/projets/edition/catalogue-stephane-couturier": "/en/projets/edition/",
+  "/fr/projets/edition/catalogue-spectacles-de-la-scene-aux-musees":
+    "/projets/edition/",
+  "/en/projets/edition/catalogue-spectacles-de-la-scene-aux-musees":
+    "/en/projets/edition/",
 };
 
 /*

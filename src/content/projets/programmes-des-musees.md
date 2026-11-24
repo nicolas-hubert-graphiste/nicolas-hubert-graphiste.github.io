@@ -7,46 +7,46 @@ year: 2023
 designers:
   - ab
 media:
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_sept_23-1.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_1.xlarge.jpg
     cover: true
     width: 2560
     height: 1707
-    caption: Programme septembre 2023
+    caption: Programme octobre 2026
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_sept_23-2.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_2.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Programme septembre 2023
+    caption: Programme octobre 2026
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_sept_23-3.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_3.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Programme septembre 2023
+    caption: Programme octobre 2026
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_sept_23-4.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_4.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Programme septembre 2023
+    caption: Programme octobre 2026
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_sept_23-5.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_5.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Programme septembre 2023
+    caption: Programme octobre 2026
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_sept_23-6.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_6.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Programme septembre 2023
+    caption: Programme octobre 2026
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_mai_23-2.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_7.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Programme mai 2023
+    caption: Programme octobre 2026
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_jan_19-4.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_9.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Programme janvier 2019
+    caption: Couvertures du programme
     layout: half
 ---
 
