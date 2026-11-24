@@ -26,6 +26,7 @@ media:
     height: 1707
     layout: full
 credits: "Format : 20 x 23 cm, broché, 80 pages"
+draft: true
 ---
 
 Catalogue de l'exposition du musée Pincé.
