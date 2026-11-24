@@ -1,33 +1,33 @@
-studio: |
+studio: |-
   L’atelier, créé en 2000 par Nicolas Hubert, exerce ses compétences dans des projets liés à la culture (musées, expositions, théâtres), au design et à l’édition.
   Dans ce cadre, nous élaborons des identités visuelles d’expositions, nous concevons des mises en page de beaux livres et nous mettons en forme des campagnes de communication pour de nombreuses institutions culturelles en France et à l’étranger, avec une attention particulière portée à la typographie.
 team:
-  heading: "Équipe :"
-  heading_en: "Team:"
-  names: |
+  heading: 'Équipe :'
+  heading_en: 'Team:'
+  names: |-
     Nicolas Hubert (associé) : designer
     Amélina Bouchez (associée) : designer
     Francesca Guagliardo : designer,
     type designer
     Aïcha Sangaré : designer
 collaborations:
-  - heading: "Designers :"
-    heading_en: "Designers:"
+  - heading: 'Designers :'
+    heading_en: 'Designers:'
     names: François-Xavier Delarue, Anne Duranton, Fabienne Gabaude, Isabelle Martija-Ochoa, Virginie Poilièvre, Axelle Hajduk, Arthur Calame, Dae Huen Lee
-  - heading: "Scénographes, architectes :"
-    heading_en: "Scenographers, architects:"
+  - heading: 'Scénographes, architectes :'
+    heading_en: 'Scenographers, architects:'
     names: Studio Vaste, Gilles Belley, Tovo+Jamil, Perrine Villemur, Christian Marti, Antoine Fontaine, Scénografia, Jean-Julien Simonot
-  - heading: "Interactif, vidéo, webdesigners :"
-    heading_en: "Interactive, video, web designers:"
+  - heading: 'Interactif, vidéo, webdesigners :'
+    heading_en: 'Interactive, video, web designers:'
     names: Anne Amiand, Chris Masters, Buzzing Light, Sabine Morandini
-  - heading: "Photographes :"
-    heading_en: "Photographers:"
+  - heading: 'Photographes :'
+    heading_en: 'Photographers:'
     names: Patrick Burban, Philippe Castaño
-  - heading: "Stagiaires :"
-    heading_en: "Interns:"
+  - heading: 'Stagiaires :'
+    heading_en: 'Interns:'
     names: Joseph Bouchez, Camille Bourdeau, Guillaume Brame, Maud Guerche, Pauline Sarrus, Jeroen van Norren, Beïna Bennacer, Louise Leret-Parmentier, Aïcha Sangaré
 clients:
-  - names: |
+  - names: |-
       Paris Musées
       Centre Pompidou
       MAD Paris
@@ -39,7 +39,7 @@ clients:
       Galerie nationale du Jeu de Paume
       Cinémathèque française
       BnF François Mitterrand
-      Château de Versailles
+      [Château de Versailles](https://www.chateauversailles.fr/)
       Musée d’arts de Nantes
       Musée cantonal des Beaux-Arts
       de Lausanne
