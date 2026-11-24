@@ -8,25 +8,25 @@ designers:
   - nh
   - ab
 media:
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite1.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-493c874cc8ef.original.jpg
     cover: true
     layout: full
     caption: dépliant 6 volets, 10 x 21 cm
     width: 2560
     height: 1707
-  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-2d530e37b62f.original.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-bcd873bfeb90.original.jpg
     cover: false
     layout: half
     caption: plan du musée
     width: 2560
     height: 1707
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite5.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-42dcdd9e941e.original.jpg
     cover: false
     layout: half
     caption: pictogrammes
     width: 2560
     height: 1707
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/plan_visite6.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-c5a5a385f162.original.jpg
     cover: false
     layout: full
     caption: Pictogrammes avec Francesca Guagliardo, typographe
