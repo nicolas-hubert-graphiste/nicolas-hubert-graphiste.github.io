@@ -3,37 +3,34 @@ title: Affiches pour les musées d'Angers
 client: musees-d-angers
 categories:
   - identite
-year: 2026
+year: '2026'
 designers:
   - nh
   - ab
 media:
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers1.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-a5a9aee00474.original.jpg
     cover: true
-    width: 2560
-    height: 1707
-    caption: Affiches pour le musée des beaux-Arts et le musée Pincé
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers2.xlarge.jpg
-    width: 2560
-    height: 1707
-    caption: Affiches pour le musée Pincé et le musée Jean Lurçat
-    layout: half
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers3.xlarge.jpg
-    width: 2560
-    height: 1707
-    caption: Affiches pour l'Artothèque
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers4.xlarge.jpg
+    caption: Affiches pour l'Artothèque
     width: 2560
     height: 1707
-    caption: Affiches pour l'Artothèque
-    layout: full
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers5.xlarge.jpg
+    cover: false
+    layout: half
+    caption: Affiches pour le Repaire Urbain et l'Artothèque
     width: 2560
     height: 1707
-    caption: Affiches pour le Repaire Urbain et l'Artothèque
-    layout: half
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/affiches_Angers4.xlarge.jpg
+    cover: false
+    layout: full
+    caption: Affiches pour l'Artothèque
+    width: 2560
+    height: 1707
+order: 0
+draft: false
 ---
 
 Conception des affiches des expositions et des évènements pour les musées de la ville
