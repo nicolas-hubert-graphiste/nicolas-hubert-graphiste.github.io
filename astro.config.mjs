@@ -14,6 +14,9 @@ const retired = {
   "/projets": "/projets/edition/",
   "/fr/projets": "/projets/edition/",
   "/en/projets": "/en/projets/edition/",
+  // Contact is now the last section of the infos page.
+  "/contact": "/infos/#contact",
+  "/en/contact": "/en/infos/#contact",
 };
 
 /*

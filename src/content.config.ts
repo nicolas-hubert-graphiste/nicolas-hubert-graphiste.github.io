@@ -83,8 +83,9 @@ const home = defineCollection({
   }),
 });
 
+/** A list of names, with an optional sub-heading ("Designers :"). */
 const namedList = z.object({
-  heading: z.string(),
+  heading: optionalText,
   heading_en: optionalText,
   names: z.string(),
 });
@@ -94,6 +95,17 @@ const infos = defineCollection({
   schema: z.object({
     studio: z.string(),
     studio_en: optionalText,
+    /** "Équipe :" block under the studio text; hidden while it has no names. */
+    team: z.preprocess(
+      unset,
+      z
+        .object({
+          heading: optionalText,
+          heading_en: optionalText,
+          names: optionalText,
+        })
+        .optional()
+    ),
     collaborations: z.array(namedList).default([]),
     clients: z.array(namedList).default([]),
   }),
@@ -102,7 +114,6 @@ const infos = defineCollection({
 const contact = defineCollection({
   loader: glob({ pattern: "contact.yml", base: "./src/content" }),
   schema: z.object({
-    name: z.string(),
     address: z.string(),
     phone: optionalText,
     email: optionalText,
