@@ -2,27 +2,31 @@
 title: Leiris & co
 client: centre-pompidou-metz
 categories:
-  - identite
-year: 2015
+  - archives
+year: '2015'
 designers:
   - nh
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leiris_new1.xlarge.jpg
     cover: true
-    width: 2560
-    height: 1707
-    caption: Carton d'invitation
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leiris_new2.xlarge.jpg
-    width: 2560
-    height: 1707
     caption: Carton d'invitation
-    layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leiris_new3.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Affiche 150 x 100 cm
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leiris_new2.xlarge.jpg
+    cover: false
     layout: half
+    caption: Carton d'invitation
+    width: 2560
+    height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leiris_new3.xlarge.jpg
+    cover: false
+    layout: half
+    caption: Affiche 150 x 100 cm
+    width: 2560
+    height: 1707
+order: 0
+draft: false
 ---
 
 Identité et communication de l'exposition
