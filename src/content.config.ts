@@ -61,6 +61,8 @@ const clients = defineCollection({
     short_en: optionalText,
     full: z.string(),
     full_en: optionalText,
+    /** Client's website; links the client name on the project page. */
+    url: optionalUrl,
     order: orderInt,
   }),
 });

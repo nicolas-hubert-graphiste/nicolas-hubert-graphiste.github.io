@@ -79,7 +79,20 @@ const sequences = await Promise.all(
           {client && (
             <div>
               <dt class="inline">{tr("project.client")} :</dt>{" "}
-              <dd class="inline">{loc(client.data, "full", locale)}</dd>
+              <dd class="inline">
+                {client.data.url ? (
+                  <a
+                    href={client.data.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="underline underline-offset-2"
+                  >
+                    {loc(client.data, "full", locale)}
+                  </a>
+                ) : (
+                  loc(client.data, "full", locale)
+                )}
+              </dd>
             </div>
           )}
           {projet.data.year && (

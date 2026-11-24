@@ -240,6 +240,14 @@ collections:
           required: false,
         }
       - {
+          name: url,
+          label: Site web (facultatif),
+          hint: "Adresse complète, ex. https://www.centrepompidou.fr. Le nom du client devient un lien sur la page projet.",
+          widget: string,
+          required: false,
+          pattern: ['^https?://\S+$', "Adresse complète commençant par https://"],
+        }
+      - {
           name: order,
           label: Ordre,
           widget: number,
