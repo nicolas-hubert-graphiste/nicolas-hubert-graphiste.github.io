@@ -1,6 +1,6 @@
-# NH & AB graphistes — site web
+# Atelier NHAB — site web
 
-Static site for the graphic design studio of Nicolas Hubert and Amélina Bouchez,
+Static site for Atelier NHAB, the graphic design studio of Nicolas Hubert and Amélina Bouchez,
 replacing the Rails/Heroku site. Content is edited by the studio through a web
 CMS; every save is a commit that redeploys the site.
 

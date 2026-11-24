@@ -14,9 +14,9 @@ export const showLocaleSwitch = false;
  */
 export const ui = {
   fr: {
-    siteTitle: "NH & AB graphistes",
+    siteTitle: "Atelier NHAB",
     siteDescription:
-      "Nicolas Hubert et Amélina Bouchez, graphistes à Paris : édition, signalétique, identité visuelle.",
+      "Atelier NHAB — Nicolas Hubert et Amélina Bouchez, design graphique à Paris : édition, signalétique, identités visuelles.",
     "nav.projets": "Projets",
     "nav.infos": "Infos",
     "nav.contact": "Contact",
@@ -26,7 +26,7 @@ export const ui = {
     "nav.switchLocaleLabel": "English version",
     "category.edition": "Édition",
     "category.signaletique": "Signalétique",
-    "category.identite": "Identité",
+    "category.identite": "Identités",
     "category.archives": "Archives",
     "project.client": "Client",
     "project.year": "Année",
@@ -42,9 +42,9 @@ export const ui = {
     "notFound.link": "Retour à l’accueil",
   },
   en: {
-    siteTitle: "NH & AB graphistes",
+    siteTitle: "Atelier NHAB",
     siteDescription:
-      "Nicolas Hubert and Amélina Bouchez, graphic designers in Paris: publishing, signage, visual identity.",
+      "Atelier NHAB — Nicolas Hubert and Amélina Bouchez, graphic design in Paris: publishing, signage, visual identities.",
     "nav.projets": "Projects",
     "nav.infos": "About",
     "nav.contact": "Contact",
@@ -54,7 +54,7 @@ export const ui = {
     "nav.switchLocaleLabel": "Version française",
     "category.edition": "Publishing",
     "category.signaletique": "Signage",
-    "category.identite": "Identity",
+    "category.identite": "Identities",
     "category.archives": "Archives",
     "project.client": "Client",
     "project.year": "Year",

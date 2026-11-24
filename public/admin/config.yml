@@ -118,7 +118,7 @@ collections:
     view_filters:
       - { label: Édition, field: categories, pattern: edition }
       - { label: Signalétique, field: categories, pattern: signaletique }
-      - { label: Identité, field: categories, pattern: identite }
+      - { label: Identités, field: categories, pattern: identite }
       - { label: Archives, field: categories, pattern: archives }
       - { label: Brouillons, field: draft, pattern: true }
     fields:
@@ -138,7 +138,7 @@ collections:
         options:
           - { label: Édition, value: edition }
           - { label: Signalétique, value: signaletique }
-          - { label: Identité, value: identite }
+          - { label: Identités, value: identite }
           - { label: Archives, value: archives }
       # Text, not a number widget: Sveltia shows numbers as "2,025" in lists.
       - name: year
