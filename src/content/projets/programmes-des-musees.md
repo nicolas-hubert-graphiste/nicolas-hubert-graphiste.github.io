@@ -8,7 +8,7 @@ designers:
   - ab
 media:
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_1.xlarge.jpg
-    cover: true
+    cover: false
     layout: full
     caption: Programme octobre 2026
     width: 2560
@@ -50,7 +50,7 @@ media:
     width: 2560
     height: 1707
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/prog_2026_9.xlarge.jpg
-    cover: false
+    cover: true
     layout: half
     caption: Couvertures du programme
     width: 2560
