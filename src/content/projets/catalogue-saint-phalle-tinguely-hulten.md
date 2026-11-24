@@ -13,9 +13,6 @@ credits: |-
   Direction d’ouvrage : Sophie Duplaix
   Coordination éditoriale : 
   Geneviève Munier
-  Fabrication : Luigi Beretta
-  Photogravure : Key Graphic
-  Impression : Printer Trento
   En collaboration 
   avec Francesca Guagliardo
 media:
