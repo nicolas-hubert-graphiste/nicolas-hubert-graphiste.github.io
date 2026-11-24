@@ -51,7 +51,8 @@ const sequences = await Promise.all(
 ---
 
 <Base locale={locale} title={title} sections={projet.data.categories}>
-  <article class="lg:grid lg:grid-cols-4 lg:gap-x-5">
+  {/* Four columns 15px apart; the media span the last three (design p.6). */}
+  <article class="lg:grid lg:grid-cols-4 lg:gap-x-3">
     {first && (
       <div class="lg:col-span-3 lg:col-start-2 lg:row-start-1">
         <ProjectMedia media={[first]} locale={locale} priority />

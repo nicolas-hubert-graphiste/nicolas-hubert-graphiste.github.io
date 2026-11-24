@@ -220,8 +220,8 @@ export async function responsiveImage(
 /** `sizes` for the layouts on this site (page padding 10px / 30px, desktop from 1200px). */
 export const SIZES = {
   grid: "(min-width: 1200px) calc((100vw - 70px) / 3), (min-width: 768px) calc((100vw - 25px) / 2), calc(100vw - 20px)",
-  mediaFull: "(min-width: 1200px) calc(75vw - 40px), calc(100vw - 20px)",
-  mediaHalf: "(min-width: 1200px) calc(37.5vw - 22px), calc(50vw - 12px)",
+  mediaFull: "(min-width: 1200px) calc(75vw - 49px), calc(100vw - 20px)",
+  mediaHalf: "(min-width: 1200px) calc(37.5vw - 27px), calc(50vw - 12px)",
   homeStack: "calc(100vw - 20px)",
   homeStage: "100vw",
 } as const;
