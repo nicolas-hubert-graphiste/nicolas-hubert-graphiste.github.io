@@ -4,7 +4,6 @@ client: lam-villeneuve-d-ascq
 categories:
   - signaletique
 year: 2021
-nouveau: false
 designers:
   - nh
   - ab

@@ -4,7 +4,6 @@ client: centre-pompidou
 categories:
   - signaletique
 year: 2019
-nouveau: false
 designers:
   - nh
 media:

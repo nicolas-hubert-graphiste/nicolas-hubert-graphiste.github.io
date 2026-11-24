@@ -4,7 +4,6 @@ client: centre-pompidou-metz
 categories:
   - edition
 year: 2020
-nouveau: false
 designers:
   - nh
 media:

@@ -4,7 +4,6 @@ client: musees-d-angers
 categories:
   - signaletique
 year: 2023
-nouveau: false
 designers:
   - ab
 media:

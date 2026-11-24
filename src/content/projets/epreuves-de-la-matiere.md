@@ -4,7 +4,6 @@ client: bnf
 categories:
   - signaletique
 year: 2023
-nouveau: false
 designers:
   - nh
 media:

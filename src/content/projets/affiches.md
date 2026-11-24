@@ -4,7 +4,6 @@ client: association-swane
 categories:
   - identite
 year: 2020
-nouveau: false
 designers:
   - nh
 media:

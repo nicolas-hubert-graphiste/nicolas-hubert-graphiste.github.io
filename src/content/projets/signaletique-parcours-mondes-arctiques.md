@@ -4,7 +4,6 @@ client: musees-de-boulogne-sur-mer
 categories:
   - signaletique
 year: 2025
-nouveau: true
 designers:
   - nh
   - ab

@@ -4,7 +4,6 @@ client: musees-d-angers
 categories:
   - archives
 year: 2020
-nouveau: false
 designers:
   - nh
   - ab

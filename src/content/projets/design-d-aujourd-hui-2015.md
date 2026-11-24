@@ -4,7 +4,6 @@ client: dunod
 categories:
   - archives
 year: 2015
-nouveau: false
 designers:
   - nh
   - ab

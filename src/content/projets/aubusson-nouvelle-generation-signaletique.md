@@ -5,7 +5,6 @@ categories:
   - signaletique
   - identite
 year: 2024
-nouveau: false
 designers:
   - ab
 media:

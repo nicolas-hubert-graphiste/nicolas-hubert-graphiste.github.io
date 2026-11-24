@@ -4,7 +4,6 @@ client: citizen-press
 categories:
   - archives
 year: 2013
-nouveau: false
 designers:
   - ab
 media:

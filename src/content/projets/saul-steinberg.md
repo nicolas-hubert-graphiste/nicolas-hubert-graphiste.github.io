@@ -4,7 +4,6 @@ client: centre-pompidou
 categories:
   - edition
 year: 2021
-nouveau: false
 designers:
   - nh
 media:

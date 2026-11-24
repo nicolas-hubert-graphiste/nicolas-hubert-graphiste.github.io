@@ -5,7 +5,6 @@ categories:
   - signaletique
   - identite
 year: 2017
-nouveau: false
 designers:
   - nh
   - ab

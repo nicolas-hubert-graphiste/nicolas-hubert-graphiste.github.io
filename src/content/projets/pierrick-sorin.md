@@ -4,7 +4,6 @@ client: musee-d-arts-de-nantes
 categories:
   - identite
 year: 2024
-nouveau: false
 designers:
   - nh
 media:

@@ -4,7 +4,6 @@ client: flammarion
 categories:
   - edition
 year: 2018
-nouveau: false
 designers:
   - nh
 media:

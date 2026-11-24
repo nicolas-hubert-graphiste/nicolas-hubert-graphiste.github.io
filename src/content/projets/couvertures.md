@@ -4,7 +4,6 @@ client: armand-colin
 categories:
   - edition
 year: 2017
-nouveau: false
 designers:
   - ab
 media:

@@ -4,7 +4,6 @@ client: lam-villeneuve-d-ascq
 categories:
   - identite
 year: 2018
-nouveau: false
 designers:
   - ab
 media:

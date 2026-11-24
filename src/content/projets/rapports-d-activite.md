@@ -4,7 +4,6 @@ client: mad
 categories:
   - edition
 year: 2017
-nouveau: true
 designers:
   - nh
 media:

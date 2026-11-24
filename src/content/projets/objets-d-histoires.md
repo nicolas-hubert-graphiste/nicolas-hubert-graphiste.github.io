@@ -4,7 +4,6 @@ client: musee-de-vassogne
 categories:
   - edition
 year: 2024
-nouveau: true
 designers:
   - nh
 media:

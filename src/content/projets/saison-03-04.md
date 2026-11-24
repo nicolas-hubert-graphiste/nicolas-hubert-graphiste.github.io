@@ -4,7 +4,6 @@ client: tdb
 categories:
   - archives
 year: 2003
-nouveau: false
 designers:
   - nh
   - ab

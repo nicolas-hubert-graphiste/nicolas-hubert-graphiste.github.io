@@ -4,7 +4,6 @@ client: musee-fabre
 categories:
   - signaletique
 year: 2021
-nouveau: false
 designers:
   - nh
 media:

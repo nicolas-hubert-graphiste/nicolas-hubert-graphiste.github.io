@@ -4,7 +4,6 @@ client: ideo
 categories:
   - archives
 year: 2010
-nouveau: false
 designers:
   - ab
 media:

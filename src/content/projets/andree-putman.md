@@ -4,7 +4,6 @@ client: silvera
 categories:
   - archives
 year: 2009
-nouveau: false
 designers:
   - nh
 media:

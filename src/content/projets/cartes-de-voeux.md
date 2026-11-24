@@ -4,7 +4,6 @@ client: citizen-press
 categories:
   - identite
 year: 2025
-nouveau: false
 designers:
   - nh
 media:

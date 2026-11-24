@@ -4,7 +4,6 @@ client: somogy
 categories:
   - archives
 year: 2015
-nouveau: false
 designers:
   - nh
 media:

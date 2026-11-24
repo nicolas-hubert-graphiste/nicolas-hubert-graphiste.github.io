@@ -4,7 +4,6 @@ client: dunod
 categories:
   - edition
 year: 2016
-nouveau: false
 designers:
   - ab
 media:

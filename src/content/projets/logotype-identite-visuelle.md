@@ -4,7 +4,6 @@ client: les-petits-pois-sont-rouges
 categories:
   - archives
 year: 2011
-nouveau: false
 designers:
   - ab
 media:
