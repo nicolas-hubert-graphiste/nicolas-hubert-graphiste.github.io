@@ -162,9 +162,17 @@
     height: auto;
   }
 
+  /*
+   * Underlined links (contact e-mails, Instagram, rich text) use the same
+   * hairline as the header rule: 0.5px below lg, 1px from lg up.
+   */
   a {
     color: inherit;
     text-decoration: none;
+    text-decoration-thickness: 0.5px;
+    @variant lg {
+      text-decoration-thickness: 1px;
+    }
   }
 }
 
@@ -294,7 +302,8 @@ html[data-section="archives"] [data-seq="archives"] {
     margin-top: 1lh;
   }
   & a {
-    text-decoration: underline;
+    /* Line only: the shorthand would reset the base hairline thickness. */
+    text-decoration-line: underline;
     text-underline-offset: 2px;
   }
   & strong {
