@@ -14,7 +14,7 @@ const data = contact?.data;
 ---
 
 {data && (
-  <div class="flex flex-col gap-[1lh]">
+  <div class="copy flex flex-col gap-[1lh]">
     <RichText text={data.address} />
     {(data.phone || data.email) && (
       <div>

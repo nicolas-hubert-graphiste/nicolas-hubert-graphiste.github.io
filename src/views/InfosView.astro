@@ -11,6 +11,10 @@ import { loc, t, type Locale } from "@/i18n/ui";
  * on desktop (15px apart, site_nhab_2026_ordi p.16), two on tablets, and one
  * on phones with a hairline between sections (site_nh_2026_iPhone p.10-12).
  * The first three come from `infos.yml`, the last from `contact.yml`.
+ *
+ * Type from the design files: 26px headings over 17/22.5 copy from tablets
+ * up, 21px headings over 14/19 copy on phones. The small offsets place the
+ * capitals where the PDFs have them.
  */
 interface Props {
   locale: Locale;
@@ -22,15 +26,16 @@ const data = infos?.data;
 const team = data?.team?.names?.trim() ? data.team : undefined;
 
 /** Stacked sections are separated by a hairline; columns are not. */
-const section = "border-b-[0.5px] border-current pb-10 md:border-b-0 md:pb-0";
-const heading = "mb-5 text-4xl";
-/** Sub-headed groups sit half a line apart on phones, a full line on desktop. */
-const groups = "flex flex-col gap-[0.5lh] lg:gap-[1lh]";
+const section =
+  "border-b-[0.5px] border-current pb-[17px] md:border-b-0 md:pb-0";
+const heading = "mb-[7.5px] text-2xl md:mb-[21.75px] md:text-4xl";
+/** Sub-headed groups sit 9px apart on phones, a full line from tablets up. */
+const groups = "copy flex flex-col gap-[9px] md:gap-[1lh]";
 ---
 
 <Base locale={locale} title={tr("nav.infosContact")} sections={["infos"]}>
   {data && (
-    <div class="grid grid-cols-1 gap-x-3 gap-y-10 text-lg md:grid-cols-2 lg:grid-cols-4 lg:text-base">
+    <div class="grid grid-cols-1 gap-x-3 gap-y-[10.75px] pt-[6.25px] text-base md:-mt-[3.3px] md:grid-cols-2 md:gap-y-10 md:pt-0 md:text-lg lg:grid-cols-4">
       <section class={section}>
         <h1 class={heading}>{tr("infos.studio")}</h1>
         <div class={groups}>

@@ -271,6 +271,20 @@ html[data-section="archives"] [data-seq="archives"] {
   }
 }
 
+/*
+ * Body copy (project text, infos, contact). The design sets it in the Clear
+ * weight with no tracking; the menu, headings and captions keep Regular and
+ * the site-wide -0.01em. The descendant rule is needed because that tracking
+ * is set on every element (`*` above), so it does not inherit.
+ */
+@utility copy {
+  font-weight: var(--font-weight-clear);
+  letter-spacing: 0;
+  & * {
+    letter-spacing: 0;
+  }
+}
+
 /* Rich text from the CMS (project body, infos). Mirrors Rails simple_format output. */
 @utility prose-nh {
   & p {
