@@ -26,10 +26,12 @@ edit content without the GitHub login (Chrome/Edge).
 
 ## Where things live
 
-- `src/content/projets/*.md` — one file per project (frontmatter + French text). `src/content/clients/*.yml`, `home.yml`, `infos.yml`, `contact.yml`.
+- `src/content/projets/*.md` — one file per project (frontmatter + French text). `src/content/clients/*.yml`, `home.yml`, `infos.yml`, `contact.yml` (the last two make up the single "Infos, contact" page).
 - `src/content.config.ts` — schemas. `public/admin/config.yml` — the CMS form definitions. **Keep the two in sync.**
 - `src/views/*.astro` — page templates shared by the FR and EN routes in `src/pages/`.
-- `src/lib/categories.ts` — the four project categories (nav, routes, schema).
+- `src/lib/categories.ts` — the four project categories (nav, routes, schema). Each has its own index at `/projets/<category>/`; there is no general projects index.
+- Current section — a page tells the layout which menu section it belongs to (`sections` on `src/layouts/Base.astro`). That sets `<html data-section>`, and `src/styles/global.css` greys the menu item and shows the matching previous / next links. A project in two sections follows the section the visitor came from (inline script in `Base.astro`).
+- `astro.config.mjs` — redirects: old-site addresses from `scripts/migrate/redirects.json`, plus the pages retired since (`/projets/`, `/contact/`).
 - `scripts/migrate/` — one-off import from the old Rails database (see its README).
 
 ## One-time setup still required
