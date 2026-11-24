@@ -54,11 +54,6 @@ export function projectPath(locale: Locale, id: string) {
   return locale === "fr" ? `/projets/${id}/` : `/en/projets/${id}/`;
 }
 
-export function categoryPath(locale: Locale, category?: Category) {
-  const base = category ? `/projets/${category}/` : "/projets/";
-  return locale === "fr" ? base : `/en${base}`;
-}
-
 /** Group consecutive `half` items into pairs; everything else is a full row. */
 export function groupMedia<T extends { layout: "full" | "half" }>(
   items: T[]

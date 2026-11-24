@@ -17,7 +17,6 @@ export const ui = {
     siteTitle: "Atelier NHAB",
     siteDescription:
       "Atelier NHAB — Nicolas Hubert et Amélina Bouchez, design graphique à Paris : édition, signalétique, identités visuelles.",
-    "nav.projets": "Projets",
     "nav.infosContact": "Infos, contact",
     "nav.contact": "Contact",
     "nav.menuOpen": "Ouvrir le menu",
@@ -45,7 +44,6 @@ export const ui = {
     siteTitle: "Atelier NHAB",
     siteDescription:
       "Atelier NHAB — Nicolas Hubert and Amélina Bouchez, graphic design in Paris: publishing, signage, visual identities.",
-    "nav.projets": "Projects",
     "nav.infosContact": "Info, contact",
     "nav.contact": "Contact",
     "nav.menuOpen": "Open menu",
