@@ -66,8 +66,8 @@
   --spacing: 5px;
 
   --breakpoint-md: 768px;
-  /* Desktop layout (inline nav, 3-column grid) starts where the full nav with
-     its category row fits: ~1,150px including page padding and scrollbar. */
+  /* Desktop layout (inline nav, 3-column grid). The full nav needs ~910px
+     including page padding; 1200px keeps three grid columns comfortable. */
   --breakpoint-lg: 1200px;
 
   --font-sans: "Beausite Classic", ui-sans-serif, system-ui, sans-serif;
@@ -184,6 +184,20 @@ body[data-theme="dark"] .site-header {
 
 body[data-menu-open] .site-header {
   background-color: var(--color-white);
+}
+
+/*
+ * Current section. `<html data-section>` names the menu section the page
+ * belongs to (Base.astro) and the matching menu label is greyed. It lives in
+ * CSS, keyed on the document element, so the static page is right before the
+ * nav island hydrates and nothing flashes. Unlayered so it beats the utilities.
+ */
+html[data-section="edition"] [data-nav="edition"] > span,
+html[data-section="signaletique"] [data-nav="signaletique"] > span,
+html[data-section="identite"] [data-nav="identite"] > span,
+html[data-section="archives"] [data-nav="archives"] > span,
+html[data-section="infos"] [data-nav="infos"] > span {
+  opacity: 0.3;
 }
 
 /*

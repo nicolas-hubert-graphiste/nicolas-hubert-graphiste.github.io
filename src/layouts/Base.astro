@@ -17,6 +17,12 @@ interface Props {
   theme?: "light" | "dark";
   /** Full-bleed pages (home) opt out of the page gutter. */
   bleed?: boolean;
+  /**
+   * The menu sections this page belongs to: one for a section index or the
+   * infos page, one or two for a project. The first is greyed in the menu
+   * (see the `data-section` rules in global.css).
+   */
+  sections?: string[];
 }
 
 const {
@@ -25,6 +31,7 @@ const {
   description,
   theme = "light",
   bleed = false,
+  sections = [],
 } = Astro.props;
 const tr = t(locale);
 const pageTitle = title ? `${title} — ${tr("siteTitle")}` : tr("siteTitle");
@@ -36,7 +43,12 @@ const alternate = new URL(localePath(otherLocale(locale), bare), site);
 ---
 
 <!doctype html>
-<html lang={locale} class:list={[bleed && "bleed"]}>
+<html
+  lang={locale}
+  class:list={[bleed && "bleed"]}
+  data-section={sections[0]}
+  data-sections={sections.length > 1 ? sections.join(" ") : undefined}
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

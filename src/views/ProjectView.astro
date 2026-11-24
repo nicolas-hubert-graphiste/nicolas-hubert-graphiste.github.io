@@ -44,7 +44,7 @@ const toLink = (entry?: Projet) =>
     : undefined;
 ---
 
-<Base locale={locale} title={title}>
+<Base locale={locale} title={title} sections={projet.data.categories}>
   <article class="lg:grid lg:grid-cols-4 lg:gap-x-5">
     {first && (
       <div class="lg:col-span-3 lg:col-start-2 lg:row-start-1">

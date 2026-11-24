@@ -17,29 +17,37 @@ type MainNavProps = {
   locale: Locale;
 };
 
-type Item = { label: string; href: string };
+/** `key` is the section name matched against `<html data-section>`. */
+type Item = { key: string; label: string; href: string };
 
 /*
- * Geometry is taken from the design PDFs (site_nh_2025_12-04 and the iPhone
- * version), measured at 4x:
+ * The same menu on every page: the studio name, the four sections, then
+ * "Infos, contact".
+ *
+ * Geometry is taken from the design PDFs (site_nhab_2026_ordi and
+ * site_nh_2026_iPhone), measured at 4x:
  *
  * Phone:   nav 35px tall + 0.5px rule; logo 24px; divider 0.5px; menu icon
  *          26x16 starting 13px after the divider, 1px in from the edge.
- * Desktop: nav 50px tall + 1px rule; 26px text; dividers 1px.
+ *          Open menu: a hairline 194px down, the sections on a 45px rhythm,
+ *          a second hairline, then "Infos, contact".
+ * Desktop: nav 50px tall + 1px rule; 26px text; dividers 1px; 13px between
+ *          section names.
  *
  * The cells stretch to the nav's height (`items-stretch`), so every divider
  * runs from the top of the nav down to the rule.
  *
  * Colours inherit from `body[data-theme]` (see global.css) so the home
  * slideshow can flip the chrome between black and white per slide.
+ *
+ * The item for the current section is greyed by global.css from
+ * `<html data-section>` (set in Base.astro), not from state here, so the
+ * static HTML is already right before this island hydrates.
  */
 export default function MainNav({ currentPath, locale }: MainNavProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tr = t(locale);
   const path = stripLocale(currentPath);
-  const onProjets = path.startsWith("/projets");
-  const isActive = (href: string) =>
-    href === "/projets/" ? path === "/projets/" : path.startsWith(href);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -54,26 +62,28 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
   const ink = isMenuOpen ? "text-black" : "text-current";
   const line = isMenuOpen ? "border-black" : "border-current";
 
-  const projets: Item = { label: tr("nav.projets"), href: "/projets/" };
-  const infos: Item = { label: tr("nav.infos"), href: "/infos/" };
-  const contact: Item = { label: tr("nav.contact"), href: "/contact/" };
-  const categories: Item[] = CATEGORIES.map((category) => ({
+  const sections: Item[] = CATEGORIES.map((category) => ({
+    key: category,
     label: tr(`category.${category}`),
     href: `/projets/${category}/`,
   }));
+  const infos: Item = {
+    key: "infos",
+    label: tr("nav.infosContact"),
+    href: "/infos/",
+  };
   const switchHref = localePath(otherLocale(locale), path);
 
   const link = (item: Item, className?: string) => (
     <a
-      key={item.href}
+      key={item.key}
       href={localePath(locale, item.href)}
       className={className}
-      aria-current={isActive(item.href) ? "page" : undefined}
+      data-nav={item.key}
+      aria-current={path === item.href ? "page" : undefined}
     >
-      {/* Grey only the label, so a rule under the link stays black. */}
-      <span className={cn(isActive(item.href) && "opacity-30")}>
-        {item.label}
-      </span>
+      {/* The label is what global.css greys for the current section. */}
+      <span>{item.label}</span>
     </a>
   );
 
@@ -84,14 +94,11 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
     </div>
   );
 
-  /** Phone menu line: 30px text on a 45px rhythm, optional hairline rule. */
-  const menuLine = (item: Item, ruled: boolean) =>
+  /** Phone menu line: 30px text on a 45px rhythm. */
+  const menuLine = (item: Item, className = "pt-[6px]") =>
     link(
       item,
-      cn(
-        "block pt-[6px] text-5xl leading-[34px] text-black",
-        ruled ? "border-b-[0.5px] border-black pb-[4px]" : "pb-[5px]"
-      )
+      cn("block pb-[5px] text-5xl leading-[34px] text-black", className)
     );
 
   return (
@@ -102,18 +109,18 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
           className="fixed inset-0 z-30 overflow-y-auto bg-white lg:hidden"
         >
           <div
-            className="flex flex-col px-2 pt-[150px] pb-10"
+            className="flex flex-col px-2 pt-[194px] pb-10"
             onClick={(event) => {
               if ((event.target as HTMLElement).closest("a")) {
                 setIsMenuOpen(false);
               }
             }}
           >
-            {menuLine(projets, true)}
-            {categories.map((item) => menuLine(item, false))}
-            <div className="mt-[45px] flex flex-col">
-              {menuLine(infos, true)}
-              {menuLine(contact, true)}
+            <div className="flex flex-col border-t-[0.5px] border-black pt-[2px]">
+              {sections.map((item) => menuLine(item))}
+            </div>
+            <div className="mt-[48.25px] flex flex-col border-t-[0.5px] border-black">
+              {menuLine(infos, "pt-[2px]")}
             </div>
             {showLocaleSwitch && (
               <a
@@ -147,16 +154,13 @@ export default function MainNav({ currentPath, locale }: MainNavProps) {
         </a>
 
         <div className="hidden items-stretch text-4xl leading-[30px] lg:flex">
-          {cell(link(projets), "pr-[13.2px] pl-[14px]")}
-          {onProjets &&
-            cell(
-              <div className="flex gap-[19px]">
-                {categories.map((item) => link(item))}
-              </div>,
-              "pr-[12.7px] pl-[11.2px]"
-            )}
-          {cell(link(infos), "pr-[13.8px] pl-[11.7px]")}
-          {cell(link(contact), "pr-0 pl-[11px]")}
+          {cell(
+            <div className="flex gap-[13px]">
+              {sections.map((item) => link(item))}
+            </div>,
+            "pr-[13px] pl-[16px]"
+          )}
+          {cell(link(infos), "pr-0 pl-[11.7px]")}
           {showLocaleSwitch && (
             <div className="flex items-start pt-[2px] pl-3">
               <a

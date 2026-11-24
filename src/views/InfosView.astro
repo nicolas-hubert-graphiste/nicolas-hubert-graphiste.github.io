@@ -17,7 +17,7 @@ const collabHeading = locale === "fr" ? "Collaborations" : "Collaborations";
 const clientsHeading = locale === "fr" ? "Clients" : "Clients";
 ---
 
-<Base locale={locale} title={tr("nav.infos")}>
+<Base locale={locale} title={tr("nav.infosContact")} sections={["infos"]}>
   {data && (
     <div class="grid grid-cols-1 gap-x-5 gap-y-10 text-lg md:grid-cols-2 lg:grid-cols-4 lg:text-base">
       <section class="border-b border-current pb-10 md:col-span-2 md:border-b-0 md:pb-0 lg:col-span-1">
