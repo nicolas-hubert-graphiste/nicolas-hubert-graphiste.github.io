@@ -1,8 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <style>
-    path { fill: #000; }
-    @media (prefers-color-scheme: dark) { path { fill: #fff; } }
+    rect { fill: #000; }
+    path { fill: #fff; }
+    @media (prefers-color-scheme: dark) {
+      rect { fill: #fff; }
+      path { fill: #000; }
+    }
   </style>
+  <rect width="32" height="32"/>
   <path d="M18.9189 13.8V4H20.3189V8.102H25.6669V4H27.0809V13.8H25.6669V9.32H20.3189V13.8H18.9189Z"/>
   <path d="M11.3171 13.8L6.26311 5.778V13.8H4.89111V4H6.68311L11.7371 12.022V4H13.1091V13.8H11.3171Z"/>
   <path d="M12.2202 27.8L11.2262 25.238H6.69023L5.69623 27.8H4.28223L8.23023 18H9.77023L13.7182 27.8H12.2202ZM7.16623 24.034H10.7502L8.95823 19.428L7.16623 24.034Z"/>
