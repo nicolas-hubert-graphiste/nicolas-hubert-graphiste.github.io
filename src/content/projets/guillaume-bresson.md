@@ -4,7 +4,6 @@ client: chateau-de-versailles
 categories:
   - signaletique
 year: 2025
-nouveau: true
 designers:
   - nh
 media:

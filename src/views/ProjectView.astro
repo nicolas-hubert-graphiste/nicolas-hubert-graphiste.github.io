@@ -20,8 +20,6 @@ const { locale, projet } = Astro.props;
 const tr = t(locale);
 
 const client = await getEntry(projet.data.client);
-const all = await getProjects();
-const { prev, next } = getPrevNext(all, projet.id);
 const related = (
   await Promise.all(projet.data.related.map((ref) => getEntry(ref)))
 ).filter(
@@ -42,63 +40,81 @@ const toLink = (entry?: Projet) =>
         title: loc(entry.data, "title", locale),
       }
     : undefined;
+// Previous / next follow the order of the section index, one pair per section
+// the project is in; the footer shows the pair for the current section.
+const sequences = await Promise.all(
+  projet.data.categories.map(async (section) => {
+    const { prev, next } = getPrevNext(await getProjects(section), projet.id);
+    return { section, prev: toLink(prev), next: toLink(next) };
+  })
+);
 ---
 
-<Base locale={locale} title={title}>
-  <article class="lg:grid lg:grid-cols-4 lg:gap-x-5">
+<Base locale={locale} title={title} sections={projet.data.categories}>
+  {/* Four columns 15px apart; the media span the last three (design p.6). */}
+  <article class="lg:grid lg:grid-cols-4 lg:gap-x-3">
     {first && (
       <div class="lg:col-span-3 lg:col-start-2 lg:row-start-1">
         <ProjectMedia media={[first]} locale={locale} priority />
       </div>
     )}
 
-    <div class="mt-5 text-lg lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:pr-5 lg:text-base">
+    {/*
+      Text column, set as in the design files. Tablets and desktop: everything
+      at 17/22.5 (site_nhab_2026_ordi p.6), starting a few px above the image
+      so the first line's capitals sit level with its top edge. Phones: the
+      description at 14/18 and the details under it at 10/13
+      (site_nh_2026_iPhone p.6).
+    */}
+    <div class="copy mt-[6.25px] md:mt-3 md:text-lg lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:-mt-[3.8px] lg:pr-5">
       <h1 class="sr-only">{title}</h1>
-      <RichText text={body} />
-      <dl class="mt-[1lh]">
-        {client && (
-          <div>
-            <dt class="inline">{tr("project.client")} :</dt>{" "}
-            <dd class="inline">{loc(client.data, "full", locale)}</dd>
+      <RichText text={body} class="text-base/[18px] md:text-lg" />
+      <div
+        class:list={[
+          "text-xs md:text-lg",
+          body?.trim() && "mt-[10.5px] md:mt-[1lh]",
+        ]}
+      >
+        <dl>
+          {client && (
+            <div>
+              <dt class="inline">{tr("project.client")} :</dt>{" "}
+              <dd class="inline">{loc(client.data, "full", locale)}</dd>
+            </div>
+          )}
+          {projet.data.year && (
+            <div>
+              <dt class="inline">{tr("project.year")} :</dt>{" "}
+              <dd class="inline">{projet.data.year}</dd>
+            </div>
+          )}
+        </dl>
+        <RichText text={loc(projet.data, "credits", locale)} />
+        {related.length > 0 && (
+          <div class="mt-[1lh]">
+            <h2>{tr("project.related")}</h2>
+            <ul>
+              {related.map((entry) => (
+                <li>
+                  <a
+                    href={projectPath(locale, entry.id)}
+                    class="underline underline-offset-2"
+                  >
+                    {loc(entry.data, "title", locale)}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
-        {projet.data.year && (
-          <div>
-            <dt class="inline">{tr("project.year")} :</dt>{" "}
-            <dd class="inline">{projet.data.year}</dd>
-          </div>
-        )}
-      </dl>
-      <RichText text={loc(projet.data, "credits", locale)} />
-      {related.length > 0 && (
-        <div class="mt-[1lh]">
-          <h2>{tr("project.related")}</h2>
-          <ul>
-            {related.map((entry) => (
-              <li>
-                <a
-                  href={projectPath(locale, entry.id)}
-                  class="underline underline-offset-2"
-                >
-                  {loc(entry.data, "title", locale)}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      </div>
     </div>
 
     {rest.length > 0 && (
-      <div class="mt-5 lg:col-span-3 lg:col-start-2 lg:row-start-2 lg:mt-1">
+      <div class="mt-[14.5px] md:mt-5 lg:col-span-3 lg:col-start-2 lg:row-start-2 lg:mt-1">
         <ProjectMedia media={rest} locale={locale} />
       </div>
     )}
   </article>
-  <SiteFooter
-    slot="footer"
-    locale={locale}
-    prev={toLink(prev)}
-    next={toLink(next)}
-  />
+  <SiteFooter slot="footer" locale={locale} sequences={sequences} />
 </Base>

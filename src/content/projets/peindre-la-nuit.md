@@ -4,7 +4,6 @@ client: centre-pompidou-metz
 categories:
   - identite
 year: 2018
-nouveau: false
 designers:
   - nh
 media:

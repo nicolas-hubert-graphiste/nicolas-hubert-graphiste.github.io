@@ -4,7 +4,6 @@ client: musees-d-angers
 categories:
   - signaletique
 year: 2022
-nouveau: false
 designers:
   - nh
   - ab

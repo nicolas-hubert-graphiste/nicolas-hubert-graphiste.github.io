@@ -6,7 +6,6 @@ categories:
   - signaletique
   - identite
 year: 2016
-nouveau: false
 designers:
   - nh
   - ab

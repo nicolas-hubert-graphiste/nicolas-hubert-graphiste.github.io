@@ -4,7 +4,6 @@ client: mcba-lausanne
 categories:
   - edition
 year: 2026
-nouveau: true
 designers:
   - nh
 media:

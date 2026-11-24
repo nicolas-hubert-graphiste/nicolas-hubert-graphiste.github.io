@@ -4,7 +4,6 @@ client: mcba-lausanne
 categories:
   - edition
 year: 2016
-nouveau: false
 designers:
   - nh
 media:

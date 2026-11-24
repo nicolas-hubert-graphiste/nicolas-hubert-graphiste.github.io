@@ -4,7 +4,6 @@ client: cinematheque-francaise
 categories:
   - edition
 year: 2026
-nouveau: true
 designers:
   - nh
 media:

@@ -4,7 +4,6 @@ client: cinematheque-francaise
 categories:
   - signaletique
 year: 2022
-nouveau: false
 designers:
   - nh
 media:

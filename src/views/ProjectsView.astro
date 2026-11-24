@@ -6,15 +6,15 @@ import { getProjects, type Category } from "@/lib/projects";
 
 interface Props {
   locale: Locale;
-  category?: Category;
+  category: Category;
 }
 const { locale, category } = Astro.props;
 const tr = t(locale);
 const projects = await getProjects(category);
-const title = category ? tr(`category.${category}`) : tr("nav.projets");
+const title = tr(`category.${category}`);
 ---
 
-<Base locale={locale} title={title}>
+<Base locale={locale} title={title} sections={[category]}>
   <h1 class="sr-only">{title}</h1>
   <ProjectGrid projects={projects} locale={locale} />
 </Base>

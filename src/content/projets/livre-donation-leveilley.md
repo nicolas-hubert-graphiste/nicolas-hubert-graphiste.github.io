@@ -4,7 +4,6 @@ client: musees-d-angers
 categories:
   - edition
 year: 2024
-nouveau: false
 designers:
   - nh
   - ab

@@ -4,7 +4,6 @@ client: editions-d-artistes
 categories:
   - edition
 year: 2017
-nouveau: false
 designers:
   - nh
   - ab

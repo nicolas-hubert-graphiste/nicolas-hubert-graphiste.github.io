@@ -5,7 +5,6 @@ categories:
   - signaletique
   - identite
 year: 2022
-nouveau: false
 designers:
   - nh
 media:

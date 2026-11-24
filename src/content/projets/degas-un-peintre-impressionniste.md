@@ -5,7 +5,6 @@ categories:
   - signaletique
   - identite
 year: 2015
-nouveau: false
 designers:
   - nh
 media:

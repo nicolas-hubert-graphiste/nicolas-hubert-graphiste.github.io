@@ -4,7 +4,6 @@ client: musee-de-vassogne
 categories:
   - identite
 year: 2026
-nouveau: true
 designers:
   - nh
 media:

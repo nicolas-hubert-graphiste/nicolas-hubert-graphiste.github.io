@@ -4,7 +4,6 @@ client: musee-d-arts-de-nantes
 categories:
   - identite
 year: 2020
-nouveau: false
 designers:
   - ab
 media:

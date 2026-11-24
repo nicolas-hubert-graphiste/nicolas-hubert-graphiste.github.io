@@ -4,7 +4,6 @@ client: mobilier-national
 categories:
   - signaletique
 year: 2026
-nouveau: true
 designers:
   - nh
 media:

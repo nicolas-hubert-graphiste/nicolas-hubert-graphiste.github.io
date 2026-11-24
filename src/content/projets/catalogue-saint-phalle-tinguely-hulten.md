@@ -4,7 +4,6 @@ client: centre-pompidou
 categories:
   - edition
 year: 2025
-nouveau: true
 designers:
   - nh
 media:

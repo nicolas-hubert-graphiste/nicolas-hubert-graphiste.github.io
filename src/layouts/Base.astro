@@ -17,6 +17,12 @@ interface Props {
   theme?: "light" | "dark";
   /** Full-bleed pages (home) opt out of the page gutter. */
   bleed?: boolean;
+  /**
+   * The menu sections this page belongs to: one for a section index or the
+   * infos page, one or two for a project. The first is greyed in the menu
+   * (see the `data-section` rules in global.css).
+   */
+  sections?: string[];
 }
 
 const {
@@ -25,6 +31,7 @@ const {
   description,
   theme = "light",
   bleed = false,
+  sections = [],
 } = Astro.props;
 const tr = t(locale);
 const pageTitle = title ? `${title} — ${tr("siteTitle")}` : tr("siteTitle");
@@ -36,7 +43,12 @@ const alternate = new URL(localePath(otherLocale(locale), bare), site);
 ---
 
 <!doctype html>
-<html lang={locale} class:list={[bleed && "bleed"]}>
+<html
+  lang={locale}
+  class:list={[bleed && "bleed"]}
+  data-section={sections[0]}
+  data-sections={sections.length > 1 ? sections.join(" ") : undefined}
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -58,8 +70,39 @@ const alternate = new URL(localePath(otherLocale(locale), bare), site);
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:title" content={pageTitle} />
+    <meta property="og:site_name" content={tr("siteTitle")} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical.href} />
+    <script is:inline>
+      // A project in two sections shows the one the visitor came from: the
+      // section index they arrived from, else the last section they browsed,
+      // else the first listed (what the static page already says). Runs
+      // before first paint; global.css reads the result from <html>.
+      (() => {
+        try {
+          const root = document.documentElement;
+          const own = (root.dataset.sections || root.dataset.section || "")
+            .split(" ")
+            .filter(Boolean);
+          if (!own.length) return sessionStorage.removeItem("section");
+          if (own.length > 1) {
+            const from =
+              document.referrer &&
+              new URL(document.referrer).pathname.match(
+                /^\/(?:en\/)?projets\/([^/]+)\/$/
+              );
+            const pick =
+              from && own.includes(from[1])
+                ? from[1]
+                : sessionStorage.getItem("section");
+            if (own.includes(pick)) root.dataset.section = pick;
+          }
+          sessionStorage.setItem("section", root.dataset.section);
+        } catch {
+          // Storage blocked: the first-listed section stays.
+        }
+      })();
+    </script>
     {bleed && <script is:inline>
       // Measure the classic scrollbar width (0 for overlay scrollbars) before
       // first paint; the full-bleed layout uses it to keep the nav aligned

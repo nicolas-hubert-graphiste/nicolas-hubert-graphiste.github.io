@@ -4,7 +4,6 @@ client: rmn-grand-palais
 categories:
   - archives
 year: 2006
-nouveau: false
 designers:
   - nh
 media:

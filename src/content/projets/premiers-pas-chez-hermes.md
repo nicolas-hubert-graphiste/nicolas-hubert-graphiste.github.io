@@ -4,7 +4,6 @@ client: hermes
 categories:
   - archives
 year: 2013
-nouveau: false
 designers:
   - nh
 media:

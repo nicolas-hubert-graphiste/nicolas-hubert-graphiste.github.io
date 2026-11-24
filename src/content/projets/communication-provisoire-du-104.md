@@ -4,7 +4,6 @@ client: le-104
 categories:
   - archives
 year: 2007
-nouveau: false
 designers:
   - nh
 media:

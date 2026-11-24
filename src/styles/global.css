@@ -66,8 +66,8 @@
   --spacing: 5px;
 
   --breakpoint-md: 768px;
-  /* Desktop layout (inline nav, 3-column grid) starts where the full nav with
-     its category row fits: ~1,150px including page padding and scrollbar. */
+  /* Desktop layout (inline nav, 3-column grid). The full nav needs ~910px
+     including page padding; 1200px keeps three grid columns comfortable. */
   --breakpoint-lg: 1200px;
 
   --font-sans: "Beausite Classic", ui-sans-serif, system-ui, sans-serif;
@@ -187,6 +187,37 @@ body[data-menu-open] .site-header {
 }
 
 /*
+ * Current section. `<html data-section>` names the menu section the page
+ * belongs to (Base.astro) and the matching menu label is greyed. It lives in
+ * CSS, keyed on the document element, so the static page is right before the
+ * nav island hydrates and nothing flashes. For a project in two sections, an
+ * inline script in Base.astro switches it to the section the visitor came
+ * from before first paint. Unlayered so it beats the utilities.
+ */
+html[data-section="edition"] [data-nav="edition"] > span,
+html[data-section="signaletique"] [data-nav="signaletique"] > span,
+html[data-section="identite"] [data-nav="identite"] > span,
+html[data-section="archives"] [data-nav="archives"] > span,
+html[data-section="infos"] [data-nav="infos"] > span {
+  opacity: 0.3;
+}
+
+/*
+ * A project page carries one previous / next pair per section it belongs to
+ * (SiteFooter.astro); only the pair for the current section is shown.
+ */
+[data-seq] {
+  display: none;
+}
+
+html[data-section="edition"] [data-seq="edition"],
+html[data-section="signaletique"] [data-seq="signaletique"],
+html[data-section="identite"] [data-seq="identite"],
+html[data-section="archives"] [data-seq="archives"] {
+  display: inline;
+}
+
+/*
  * Page changes: keep the old page on screen until the new one is ready
  * (cross-document view transitions, Chrome 126+ / Safari 18.2+), hold the
  * header still and give the content a short crossfade.
@@ -237,6 +268,20 @@ body[data-menu-open] .site-header {
   /* The desktop slideshow sits under a transparent header. */
   html.bleed .site-header {
     background-color: transparent;
+  }
+}
+
+/*
+ * Body copy (project text, infos, contact). The design sets it in the Clear
+ * weight with no tracking; the menu, headings and captions keep Regular and
+ * the site-wide -0.01em. The descendant rule is needed because that tracking
+ * is set on every element (`*` above), so it does not inherit.
+ */
+@utility copy {
+  font-weight: var(--font-weight-clear);
+  letter-spacing: 0;
+  & * {
+    letter-spacing: 0;
   }
 }
 

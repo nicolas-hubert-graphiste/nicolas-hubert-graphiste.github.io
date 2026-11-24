@@ -4,7 +4,6 @@ client: dunod
 categories:
   - edition
 year: 2018
-nouveau: false
 designers:
   - ab
 media:

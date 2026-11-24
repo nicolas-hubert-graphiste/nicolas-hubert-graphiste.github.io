@@ -4,7 +4,6 @@ client: ministere-de-la-culture
 categories:
   - archives
 year: 2014
-nouveau: false
 designers:
   - nh
   - ab

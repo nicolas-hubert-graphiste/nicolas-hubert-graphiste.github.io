@@ -4,7 +4,6 @@ client: editions-hazan
 categories:
   - edition
 year: 2024
-nouveau: false
 designers:
   - nh
 media:

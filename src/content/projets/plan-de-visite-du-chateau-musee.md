@@ -4,7 +4,6 @@ client: musees-de-boulogne-sur-mer
 categories:
   - identite
 year: '2026'
-nouveau: true
 designers:
   - nh
   - ab

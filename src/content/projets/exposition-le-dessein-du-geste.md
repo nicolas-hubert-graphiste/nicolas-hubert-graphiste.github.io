@@ -4,7 +4,6 @@ client: le-dessein-du-geste
 categories:
   - archives
 year: 2012
-nouveau: false
 designers:
   - nh
 media:

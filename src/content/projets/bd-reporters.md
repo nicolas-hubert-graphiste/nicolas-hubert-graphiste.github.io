@@ -4,7 +4,6 @@ client: centre-pompidou
 categories:
   - archives
 year: 2007
-nouveau: false
 designers:
   - nh
 media:

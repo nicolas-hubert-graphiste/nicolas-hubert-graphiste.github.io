@@ -4,7 +4,6 @@ client: philharmonie
 categories:
   - signaletique
 year: 2018
-nouveau: false
 designers:
   - nh
 media:

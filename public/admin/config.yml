@@ -118,7 +118,7 @@ collections:
     view_filters:
       - { label: Édition, field: categories, pattern: edition }
       - { label: Signalétique, field: categories, pattern: signaletique }
-      - { label: Identité, field: categories, pattern: identite }
+      - { label: Identités, field: categories, pattern: identite }
       - { label: Archives, field: categories, pattern: archives }
       - { label: Brouillons, field: draft, pattern: true }
     fields:
@@ -138,7 +138,7 @@ collections:
         options:
           - { label: Édition, value: edition }
           - { label: Signalétique, value: signaletique }
-          - { label: Identité, value: identite }
+          - { label: Identités, value: identite }
           - { label: Archives, value: archives }
       # Text, not a number widget: Sveltia shows numbers as "2,025" in lists.
       - name: year
@@ -146,12 +146,6 @@ collections:
         widget: string
         required: false
         pattern: ['^\d{4}$', "Année sur 4 chiffres, ex. 2025"]
-      - {
-          name: nouveau,
-          label: Nouveau (badge « Nouveau »),
-          widget: boolean,
-          default: false,
-        }
       - name: designers
         label: Graphistes
         widget: select
@@ -307,6 +301,30 @@ collections:
               editor_components: [],
               modes: [rich_text, raw],
             }
+          - name: team
+            label: Équipe
+            widget: object
+            required: false
+            fields:
+              - {
+                  name: heading,
+                  label: Sous-titre,
+                  widget: string,
+                  required: false,
+                  default: "Équipe :",
+                }
+              - {
+                  name: heading_en,
+                  label: Sous-titre (anglais),
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  name: names,
+                  label: Membres (un par ligne),
+                  widget: text,
+                  required: false,
+                }
           - name: collaborations
             label: Collaborations
             widget: list
@@ -325,7 +343,12 @@ collections:
             widget: list
             summary: "{{fields.heading}}"
             fields:
-              - { name: heading, label: Sous-titre, widget: string }
+              - {
+                  name: heading,
+                  label: Sous-titre (facultatif),
+                  widget: string,
+                  required: false,
+                }
               - {
                   name: heading_en,
                   label: Sous-titre (anglais),
@@ -338,7 +361,6 @@ collections:
         label: Contact
         file: src/content/contact.yml
         fields:
-          - { name: name, label: Nom, widget: string }
           - { name: address, label: Adresse, widget: text }
           - { name: phone, label: Téléphone, widget: string, required: false }
           - { name: email, label: E-mail, widget: string, required: false }

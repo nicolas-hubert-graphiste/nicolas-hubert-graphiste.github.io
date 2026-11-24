@@ -4,7 +4,6 @@ client: musee-d-arts-de-nantes
 categories:
   - identite
 year: 2025
-nouveau: true
 designers:
   - nh
 media:

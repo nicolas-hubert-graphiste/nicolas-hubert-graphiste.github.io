@@ -4,7 +4,6 @@ client: centre-pompidou
 categories:
   - edition
 year: 2022
-nouveau: false
 designers:
   - nh
 media:

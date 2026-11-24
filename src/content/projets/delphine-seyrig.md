@@ -4,7 +4,6 @@ client: lam-villeneuve-d-ascq
 categories:
   - identite
 year: 2019
-nouveau: false
 designers:
   - nh
   - ab

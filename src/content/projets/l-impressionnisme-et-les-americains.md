@@ -4,7 +4,6 @@ client: musee-des-impressionnismes-giverny
 categories:
   - archives
 year: 2014
-nouveau: false
 designers:
   - nh
   - ab

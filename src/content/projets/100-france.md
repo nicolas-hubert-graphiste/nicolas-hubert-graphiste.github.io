@@ -5,7 +5,6 @@ client: via
 categories:
   - archives
 year: 2012
-nouveau: false
 designers:
   - nh
 media:

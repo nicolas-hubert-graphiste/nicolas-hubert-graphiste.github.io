@@ -4,7 +4,6 @@ client: musee-des-impressionnismes-giverny
 categories:
   - edition
 year: 2021
-nouveau: false
 designers:
   - nh
 media:

@@ -4,7 +4,6 @@ client: editions-du-patrimoine
 categories:
   - edition
 year: 2015
-nouveau: false
 designers:
   - nh
 media:

@@ -4,7 +4,6 @@ client: saint-louis
 categories:
   - archives
 year: 2011
-nouveau: false
 designers:
   - nh
 media:

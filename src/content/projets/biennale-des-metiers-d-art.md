@@ -4,7 +4,6 @@ client: ateliers-d-art-de-france
 categories:
   - archives
 year: 2012
-nouveau: false
 designers:
   - nh
 media:

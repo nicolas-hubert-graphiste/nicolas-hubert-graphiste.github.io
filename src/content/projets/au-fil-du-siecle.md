@@ -4,7 +4,6 @@ client: mobilier-national
 categories:
   - signaletique
 year: 2018
-nouveau: false
 designers:
   - ab
 media:

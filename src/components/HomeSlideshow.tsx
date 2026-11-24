@@ -13,30 +13,16 @@ export type Slide = {
 
 type Props = {
   slides: Slide[];
-  labels: { prev: string; next: string };
   intervalMs?: number;
 };
 
-const ARROW = (
-  <svg
-    viewBox="0 0 100 100"
-    className="size-10 fill-current"
-    aria-hidden="true"
-  >
-    <polygon points="44.21 89.03 48.82 93.65 92.8 49.82 48.82 6 44.21 10.61 80.19 46.44 7 46.44 7 53.21 80.19 53.21" />
-  </svg>
-);
-
 /**
  * Server-renders a vertical stack (phones) and a single-slide stage (desktop).
- * Once hydrated at `lg` it becomes an autoplaying slideshow with arrows and
- * keyboard control, and flips the page chrome colour per slide.
+ * Once hydrated at `lg` it becomes an autoplaying slideshow that flips the
+ * page chrome colour per slide. There are no on-screen arrows (the design
+ * has none); the left and right arrow keys still step through the slides.
  */
-export default function HomeSlideshow({
-  slides,
-  labels,
-  intervalMs = 5000,
-}: Props) {
+export default function HomeSlideshow({ slides, intervalMs = 5000 }: Props) {
   const [index, setIndex] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   const timer = useRef<number | null>(null);
@@ -142,26 +128,6 @@ export default function HomeSlideshow({
             />
           </a>
         ))}
-        {hydrated && count > 1 && (
-          <>
-            <button
-              type="button"
-              onClick={() => go(-1)}
-              aria-label={labels.prev}
-              className="absolute top-1/2 left-3 z-10 flex size-12 -translate-y-1/2 rotate-180 cursor-pointer items-center justify-center"
-            >
-              {ARROW}
-            </button>
-            <button
-              type="button"
-              onClick={() => go(1)}
-              aria-label={labels.next}
-              className="absolute top-1/2 right-3 z-10 flex size-12 -translate-y-1/2 cursor-pointer items-center justify-center"
-            >
-              {ARROW}
-            </button>
-          </>
-        )}
       </div>
     </>
   );

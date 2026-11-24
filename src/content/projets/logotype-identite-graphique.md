@@ -4,7 +4,6 @@ client: trois-ailes
 categories:
   - archives
 year: 2014
-nouveau: false
 designers:
   - nh
 media:

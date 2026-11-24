@@ -4,7 +4,6 @@ client: lam-villeneuve-d-ascq
 categories:
   - edition
 year: 2020
-nouveau: false
 designers:
   - ab
 media:

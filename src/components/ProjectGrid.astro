@@ -1,6 +1,6 @@
 ---
 import { getEntry } from "astro:content";
-import { loc, t, type Locale } from "@/i18n/ui";
+import { loc, type Locale } from "@/i18n/ui";
 import { coverOf, projectPath, type Projet } from "@/lib/projects";
 import { SIZES, responsiveImage } from "@/lib/media";
 
@@ -9,7 +9,6 @@ interface Props {
   locale: Locale;
 }
 const { projects, locale } = Astro.props;
-const tr = t(locale);
 
 const cards = await Promise.all(
   projects.map(async (projet) => {
@@ -19,7 +18,7 @@ const cards = await Promise.all(
       href: projectPath(locale, projet.id),
       title: loc(projet.data, "title", locale),
       client: client ? loc(client.data, "short", locale) : "",
-      // Cards are cropped to 4:3, so the 1280px variant is the default source.
+      // Cards are cropped to 3:2, so the 1280px variant is the default source.
       cover: cover
         ? await responsiveImage(cover.src, {
             width: cover.width,
@@ -28,13 +27,17 @@ const cards = await Promise.all(
             measureIfUnknown: false,
           })
         : undefined,
-      nouveau: projet.data.nouveau,
     };
   })
 );
 ---
 
-<ul class="grid grid-cols-1 gap-x-5 gap-y-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-y-10">
+{/*
+  Section index (site_nhab_2026_ordi p.5, site_nh_2026_iPhone p.5): 3:2 covers
+  5px apart, with the title and client set tight underneath. Phones get one
+  column and 12px captions; from tablets up, 14px captions on a 17px line.
+*/}
+<ul class="grid grid-cols-1 gap-x-1 gap-y-[12.25px] md:grid-cols-2 md:gap-y-[16px] lg:grid-cols-3">
   {cards.map((card, index) => (
     <li>
       <a href={card.href} class="group block">
@@ -46,28 +49,23 @@ const cards = await Promise.all(
             width={card.cover.width}
             height={card.cover.height}
             alt=""
-            class="aspect-[4/3] w-full bg-placeholder object-cover"
+            class="aspect-[3/2] w-full bg-placeholder object-cover"
             loading={index < 3 ? "eager" : "lazy"}
             fetchpriority={index === 0 ? "high" : undefined}
             decoding="async"
           />
         ) : (
-          <div class="aspect-[4/3] w-full bg-placeholder" />
+          <div class="aspect-[3/2] w-full bg-placeholder" />
         )}
         {/* One line each: long titles and client names end in an ellipsis. */}
-        <div class="mt-2 flex min-w-0 items-center gap-2 text-base">
-          <p class="min-w-0 truncate" title={card.title}>
+        <div class="mt-[6.25px] text-sm md:mt-[7.75px] md:text-base md:leading-[17px]">
+          <p class="truncate" title={card.title}>
             {card.title}
           </p>
-          {card.nouveau && (
-            <span class="inline-flex h-[15px] shrink-0 items-center rounded-[2px] bg-placeholder px-[5px] text-xs leading-none tracking-[0.02em] text-black/55 uppercase">
-              {tr("project.new")}
-            </span>
-          )}
+          <p class="truncate text-gray" title={card.client}>
+            {card.client}
+          </p>
         </div>
-        <p class="truncate text-base text-gray" title={card.client}>
-          {card.client}
-        </p>
       </a>
     </li>
   ))}

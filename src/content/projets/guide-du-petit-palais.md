@@ -4,7 +4,6 @@ client: paris-musees
 categories:
   - archives
 year: 2008
-nouveau: false
 designers:
   - nh
 media:

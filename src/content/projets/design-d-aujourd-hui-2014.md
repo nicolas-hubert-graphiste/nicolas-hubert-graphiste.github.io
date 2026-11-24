@@ -4,7 +4,6 @@ client: dunod
 categories:
   - archives
 year: 2014
-nouveau: false
 designers:
   - ab
 media:

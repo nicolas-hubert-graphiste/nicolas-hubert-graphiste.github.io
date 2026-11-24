@@ -1,13 +1,22 @@
 studio: |
-  Créé fin 2000, le studio – composé de Nicolas Hubert et d’Amélina Bouchez, diplômé·e de l’École nationale supérieure des Arts décoratifs de Paris – travaille dans les domaines de la culture (musées, expositions, théâtres), de l’édition et du design.
-  Nous élaborons des identités visuelles d’expositions, nous concevons des mises en page de beaux livres et nous mettons en forme des campagnes de communication pour de grandes institutions culturelles en France et à l’étranger avec une attention particulière portée à la typographie.
+  L’atelier, créé en 2000 par Nicolas Hubert, exerce ses compétences dans des projets liés à la culture (musées, expositions, théâtres), au design et à l’édition.
+  Dans ce cadre, nous élaborons des identités visuelles d’expositions, nous concevons des mises en page de beaux livres et nous mettons en forme des campagnes de communication pour de nombreuses institutions culturelles en France et à l’étranger, avec une attention particulière portée à la typographie.
+team:
+  heading: "Équipe :"
+  heading_en: "Team:"
+  names: |
+    Nicolas Hubert (associé) : designer
+    Amélina Bouchez (associée) : designer
+    Francesca Guagliardo : designer,
+    type designer
+    Aïcha Sangaré : designer
 collaborations:
-  - heading: "Graphistes, typographes :"
-    heading_en: "Graphic designers, typographers:"
-    names: François-Xavier Delarue, Anne Duranton, Fabienne Gabaude, Isabelle Martija-Ochoa, Virginie Poilièvre, agence Citizen Press, Axelle Hajduk, Arthur Calame, Dae Huen Lee, Francesca Guagliardo
-  - heading: "Scénographes, architectes et designers :"
-    heading_en: "Scenographers, architects and designers:"
-    names: Studio Vaste, Gilles Belley, Tovo+Jamil, Perrine Villemur, Christian Marti, Antoine Fontaine, Scénografia
+  - heading: "Designers :"
+    heading_en: "Designers:"
+    names: François-Xavier Delarue, Anne Duranton, Fabienne Gabaude, Isabelle Martija-Ochoa, Virginie Poilièvre, Axelle Hajduk, Arthur Calame, Dae Huen Lee
+  - heading: "Scénographes, architectes :"
+    heading_en: "Scenographers, architects:"
+    names: Studio Vaste, Gilles Belley, Tovo+Jamil, Perrine Villemur, Christian Marti, Antoine Fontaine, Scénografia, Jean-Julien Simonot
   - heading: "Interactif, vidéo, webdesigners :"
     heading_en: "Interactive, video, web designers:"
     names: Anne Amiand, Chris Masters, Buzzing Light, Sabine Morandini
@@ -18,9 +27,7 @@ collaborations:
     heading_en: "Interns:"
     names: Joseph Bouchez, Camille Bourdeau, Guillaume Brame, Maud Guerche, Pauline Sarrus, Jeroen van Norren, Beïna Bennacer, Louise Leret-Parmentier, Aïcha Sangaré
 clients:
-  - heading: "À Paris :"
-    heading_en: "In Paris:"
-    names: |
+  - names: |
       Paris Musées
       Centre Pompidou
       MAD Paris
@@ -32,12 +39,10 @@ clients:
       Galerie nationale du Jeu de Paume
       Cinémathèque française
       BnF François Mitterrand
-  - heading: "Ailleurs :"
-    heading_en: "Elsewhere:"
-    names: |
       Château de Versailles
       Musée d’arts de Nantes
-      Musée cantonal des Beaux-Arts de Lausanne
+      Musée cantonal des Beaux-Arts
+      de Lausanne
       Musée international de la Réforme (Genève)
       Musée de Vassogne
       Louvre Abu Dhabi
@@ -50,6 +55,6 @@ clients:
       Musées de Soissons
       Musée Louis de Funès – Saint-Raphaël
       Musée Fabre – Montpellier
-  - heading: Les maisons d’édition
-    heading_en: Publishers
-    names: Hazan, Flammarion, Delachaux et Niestlé (groupe La Martinière), Dunod et Somogy
+      Hazan, Flammarion, Albin Michel,
+      Delachaux et Niestlé (groupe
+      La Martinière), Dunod, Somogy

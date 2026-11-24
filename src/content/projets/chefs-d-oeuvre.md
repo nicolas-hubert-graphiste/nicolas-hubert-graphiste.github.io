@@ -4,7 +4,6 @@ client: centre-pompidou-metz
 categories:
   - archives
 year: 2010
-nouveau: false
 designers:
   - nh
 media:

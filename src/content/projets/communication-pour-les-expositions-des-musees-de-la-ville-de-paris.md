@@ -4,7 +4,6 @@ client: paris-musees
 categories:
   - identite
 year: 2019
-nouveau: false
 designers:
   - nh
   - ab

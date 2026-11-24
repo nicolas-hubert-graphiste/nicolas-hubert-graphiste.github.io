@@ -4,7 +4,6 @@ client: editions-hazan
 categories:
   - archives
 year: 2014
-nouveau: false
 designers:
   - nh
 media:

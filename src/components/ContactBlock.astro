@@ -1,0 +1,66 @@
+---
+import { getEntry } from "astro:content";
+import RichText from "@/components/RichText.astro";
+import { loc, t, type Locale } from "@/i18n/ui";
+
+/** Address, phone, e-mails, Instagram and credit from `contact.yml`. */
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const contact = await getEntry("contact", "contact");
+const data = contact?.data;
+---
+
+{data && (
+  <div class="copy flex flex-col gap-[1lh]">
+    <RichText text={data.address} />
+    {(data.phone || data.email) && (
+      <div>
+        {data.phone && (
+          <p>
+            {tr("contact.phone")} {data.phone}
+          </p>
+        )}
+        {data.email && (
+          <p>
+            <a
+              href={`mailto:${data.email}`}
+              class="underline underline-offset-2"
+            >
+              {data.email}
+            </a>
+          </p>
+        )}
+      </div>
+    )}
+    {data.bookRequest && (
+      <div>
+        <p>{loc(data.bookRequest, "label", locale)}</p>
+        {data.bookRequest.emails.map((email) => (
+          <p>
+            <a href={`mailto:${email}`} class="underline underline-offset-2">
+              {email}
+            </a>
+          </p>
+        ))}
+      </div>
+    )}
+    {data.instagram && (
+      <p>
+        <a
+          href={data.instagram}
+          target="_blank"
+          rel="noopener"
+          class="underline underline-offset-2"
+        >
+          Instagram
+        </a>
+      </p>
+    )}
+    {loc(data, "credit", locale) && (
+      <RichText text={loc(data, "credit", locale)} />
+    )}
+  </div>
+)}
