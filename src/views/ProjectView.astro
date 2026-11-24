@@ -20,8 +20,6 @@ const { locale, projet } = Astro.props;
 const tr = t(locale);
 
 const client = await getEntry(projet.data.client);
-const all = await getProjects();
-const { prev, next } = getPrevNext(all, projet.id);
 const related = (
   await Promise.all(projet.data.related.map((ref) => getEntry(ref)))
 ).filter(
@@ -42,6 +40,14 @@ const toLink = (entry?: Projet) =>
         title: loc(entry.data, "title", locale),
       }
     : undefined;
+// Previous / next follow the order of the section index, one pair per section
+// the project is in; the footer shows the pair for the current section.
+const sequences = await Promise.all(
+  projet.data.categories.map(async (section) => {
+    const { prev, next } = getPrevNext(await getProjects(section), projet.id);
+    return { section, prev: toLink(prev), next: toLink(next) };
+  })
+);
 ---
 
 <Base locale={locale} title={title} sections={projet.data.categories}>
@@ -95,10 +101,5 @@ const toLink = (entry?: Projet) =>
       </div>
     )}
   </article>
-  <SiteFooter
-    slot="footer"
-    locale={locale}
-    prev={toLink(prev)}
-    next={toLink(next)}
-  />
+  <SiteFooter slot="footer" locale={locale} sequences={sequences} />
 </Base>

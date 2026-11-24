@@ -190,7 +190,9 @@ body[data-menu-open] .site-header {
  * Current section. `<html data-section>` names the menu section the page
  * belongs to (Base.astro) and the matching menu label is greyed. It lives in
  * CSS, keyed on the document element, so the static page is right before the
- * nav island hydrates and nothing flashes. Unlayered so it beats the utilities.
+ * nav island hydrates and nothing flashes. For a project in two sections, an
+ * inline script in Base.astro switches it to the section the visitor came
+ * from before first paint. Unlayered so it beats the utilities.
  */
 html[data-section="edition"] [data-nav="edition"] > span,
 html[data-section="signaletique"] [data-nav="signaletique"] > span,
@@ -198,6 +200,21 @@ html[data-section="identite"] [data-nav="identite"] > span,
 html[data-section="archives"] [data-nav="archives"] > span,
 html[data-section="infos"] [data-nav="infos"] > span {
   opacity: 0.3;
+}
+
+/*
+ * A project page carries one previous / next pair per section it belongs to
+ * (SiteFooter.astro); only the pair for the current section is shown.
+ */
+[data-seq] {
+  display: none;
+}
+
+html[data-section="edition"] [data-seq="edition"],
+html[data-section="signaletique"] [data-seq="signaletique"],
+html[data-section="identite"] [data-seq="identite"],
+html[data-section="archives"] [data-seq="archives"] {
+  display: inline;
 }
 
 /*

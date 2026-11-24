@@ -1,12 +1,17 @@
 ---
 import { localePath, t, type Locale } from "@/i18n/ui";
 
+type Link = { href: string; title: string };
+
 interface Props {
   locale: Locale;
-  prev?: { href: string; title: string };
-  next?: { href: string; title: string };
+  /**
+   * Previous / next project, one pair per section the project belongs to.
+   * Only the pair for `<html data-section>` is shown (see global.css).
+   */
+  sequences?: { section: string; prev?: Link; next?: Link }[];
 }
-const { locale, prev, next } = Astro.props;
+const { locale, sequences = [] } = Astro.props;
 const tr = t(locale);
 
 /*
@@ -26,11 +31,14 @@ const tr = t(locale);
     }
   >
     <div class="justify-self-start">
-      {prev && (
-        <a href={prev.href} title={prev.title}>
-          <span aria-hidden="true">← </span>
-          {tr("project.prev")}
-        </a>
+      {sequences.map(
+        ({ section, prev }) =>
+          prev && (
+            <a href={prev.href} title={prev.title} data-seq={section}>
+              <span aria-hidden="true">← </span>
+              {tr("project.prev")}
+            </a>
+          )
       )}
     </div>
     <a href={localePath(locale, "/")}>
@@ -38,11 +46,14 @@ const tr = t(locale);
       <span aria-hidden="true"> ↑</span>
     </a>
     <div class="justify-self-end">
-      {next && (
-        <a href={next.href} title={next.title}>
-          {tr("project.next")}
-          <span aria-hidden="true"> →</span>
-        </a>
+      {sequences.map(
+        ({ section, next }) =>
+          next && (
+            <a href={next.href} title={next.title} data-seq={section}>
+              {tr("project.next")}
+              <span aria-hidden="true"> →</span>
+            </a>
+          )
       )}
     </div>
   </nav>
