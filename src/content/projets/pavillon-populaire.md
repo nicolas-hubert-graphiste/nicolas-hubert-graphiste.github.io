@@ -3,171 +3,204 @@ title: Pavillon Populaire
 client: editions-hazan
 categories:
   - edition
-year: 2024
+year: '2024'
 designers:
   - nh
 media:
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Munter-Welty_gris1.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-7d309e402022.original.jpg
     cover: true
-    width: 2560
-    height: 1707
-    caption: Gabriele Münter & Eudora Welty, 2024
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Munter-Welty_gris2.xlarge.jpg
+    caption: Gabriele Münter & Eudora Welty, 2024
     width: 2560
     height: 1707
-    caption: Gabriele Münter & Eudora Welty, 2024
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-c29badedfd47.original.jpg
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Munter-Welty_gris3.xlarge.jpg
+    caption: Gabriele Münter & Eudora Welty, 2024
     width: 2560
     height: 1707
-    caption: Gabriele Münter & Eudora Welty, 2024
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-b7e2085bb21b.original.jpg
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Munter-Welty_gris4.xlarge.jpg
+    caption: Gabriele Münter & Eudora Welty, 2024
     width: 2560
     height: 1707
-    caption: Gabriele Münter & Eudora Welty, 2024
-    layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/Munter-Welty_gris5.xlarge.jpg
-    width: 2560
-    height: 1707
-    caption: Gabriele Münter & Eudora Welty, 2024
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-35a1d399fa11.original.jpg
+    cover: false
     layout: half
+    caption: Gabriele Münter & Eudora Welty, 2024
+    width: 2560
+    height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-f12ecfc429bf.original.jpg
+    cover: false
+    layout: half
+    caption: Gabriele Münter & Eudora Welty, 2024
+    width: 2560
+    height: 1707
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/campana1.xlarge.jpg
-    width: 2560
-    height: 1707
-    caption: Antoni Campañà, 2023
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/campana7.xlarge.jpg
+    caption: Antoni Campañà, 2023
     width: 2560
     height: 1707
-    caption: Antoni Campañà, 2023
-    layout: full
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/campana5.xlarge.jpg
-    width: 2560
-    height: 1707
+    cover: false
+    layout: half
     caption: Antoni Campañà, 2023
-    layout: half
+    width: 2560
+    height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/campana7.xlarge.jpg
+    cover: false
+    layout: full
+    caption: Antoni Campañà, 2023
+    width: 2560
+    height: 1707
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/dOra1.xlarge.jpg
+    cover: false
+    layout: half
+    caption: La Surface et la chair. Madame d'Ora, 2023
     width: 2560
     height: 1707
-    caption: La Surface et la chair. Madame d'Ora, 2023
-    layout: half
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/dOra2.xlarge.jpg
+    cover: false
+    layout: half
+    caption: La Surface et la chair. Madame d'Ora, 2023
     width: 2560
     height: 1707
-    caption: La Surface et la chair. Madame d'Ora, 2023
-    layout: full
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/dOra3.xlarge.jpg
+    cover: false
+    layout: half
+    caption: La Surface et la chair. Madame d'Ora, 2023
     width: 2560
     height: 1707
-    caption: La Surface et la chair. Madame d'Ora, 2023
-    layout: half
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/dOra4.xlarge.jpg
-    width: 2560
-    height: 1707
+    cover: false
+    layout: half
     caption: La Surface et la chair. Madame d'Ora, 2023
-    layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/muller-pohle_bleu1.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Andreas Müller-Pohle, 2021
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-a4a80a5a2f00.original.jpg
+    cover: false
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/muller-pohle_bleu2.xlarge.jpg
+    caption: Andreas Müller-Pohle, 2021
     width: 2560
     height: 1707
-    caption: Andreas Müller-Pohle, 2021
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-f6176e2045f9.original.jpg
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/muller-pohle_bleu3.xlarge.jpg
+    caption: Andreas Müller-Pohle, 2021
     width: 2560
     height: 1707
-    caption: Andreas Müller-Pohle, 2021
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-696f97534947.original.jpg
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/muller-pohle_bleu4.xlarge.jpg
+    caption: Andreas Müller-Pohle, 2021
     width: 2560
     height: 1707
-    caption: Andreas Müller-Pohle, 2021
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-210404a58e78.original.jpg
+    cover: false
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/muller-pohle_bleu5.xlarge.jpg
-    width: 2560
-    height: 1707
     caption: Andreas Müller-Pohle, 2021
-    layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/muller-pohle_bleu6.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-8593e2c72053.original.jpg
+    cover: false
+    layout: half
     caption: Andreas Müller-Pohle, 2021
-    layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/NYS_rouge1.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-4364b80a64c8.original.jpg
+    cover: false
+    layout: half
+    caption: Andreas Müller-Pohle, 2021
+    width: 2560
+    height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-8e70ec808abc.original.jpg
+    cover: false
+    layout: full
     caption: New York School Show, 2020, par Gilles Mora et Howard Greenberg
-    layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/NYS_rouge2.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-66efeba706d3.original.jpg
+    cover: false
+    layout: half
     caption: New York School Show, 2020, par Gilles Mora et Howard Greenberg
-    layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/NYS_rouge3.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-8549f8850ee7.original.jpg
+    cover: false
+    layout: half
     caption: New York School Show, 2020, par Gilles Mora et Howard Greenberg
-    layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/NYS_rouge4.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-77941e4e2349.original.jpg
+    cover: false
+    layout: full
     caption: New York School Show, 2020, par Gilles Mora et Howard Greenberg
-    layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/valie1.xlarge.jpg
     width: 2560
     height: 1707
-    caption: Valie Export, 2019
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-8054cc8ca450.original.jpg
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/valie2.xlarge.jpg
+    caption: Valie Export, 2019
     width: 2560
     height: 1707
-    caption: Valie Export, 2019
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-73cfb7b77b71.original.jpg
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/valie3.xlarge.jpg
+    caption: Valie Export, 2019
     width: 2560
     height: 1707
-    caption: Valie Export, 2019
-    layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/valie4.xlarge.jpg
-    width: 2560
-    height: 1707
-    caption: Valie Export, 2019
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-12665a361e08.original.jpg
+    cover: false
     layout: half
+    caption: Valie Export, 2019
+    width: 2560
+    height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-30462040e982.original.jpg
+    cover: false
+    layout: half
+    caption: Valie Export, 2019
+    width: 2560
+    height: 1707
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/man_home.xlarge.jpg
+    cover: false
+    layout: full
+    caption: I'm a Man, 2018, par William Ferris
     width: 2560
     height: 1707
-    caption: I'm a Man, 2018, par William Ferris
-    layout: half
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/man2.xlarge.jpg
+    cover: false
+    layout: full
+    caption: I'm a Man, 2018, par William Ferris
     width: 2560
     height: 1707
-    caption: I'm a Man, 2018, par William Ferris
-    layout: full
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/man3.xlarge.jpg
+    cover: false
+    layout: half
+    caption: I'm a Man, 2018, par William Ferris
     width: 2560
     height: 1707
-    caption: I'm a Man, 2018, par William Ferris
-    layout: half
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/man5.xlarge.jpg
-    width: 2560
-    height: 1707
+    cover: false
+    layout: half
     caption: I'm a Man, 2018, par William Ferris
-    layout: half
+    width: 2560
+    height: 1707
   - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/kodak1.xlarge.jpg
-    width: 2560
-    height: 1707
-    caption: La vie en Kodak, 2015, par François Cheval et Gilles Mora
+    cover: false
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/kodak2.xlarge.jpg
+    caption: La vie en Kodak, 2015, par François Cheval et Gilles Mora
     width: 2560
     height: 1707
-    caption: La vie en Kodak, 2015, par François Cheval et Gilles Mora
+  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/kodak2.xlarge.jpg
+    cover: false
     layout: half
+    caption: La vie en Kodak, 2015, par François Cheval et Gilles Mora
+    width: 2560
+    height: 1707
+order: 0
+draft: false
 ---
 
 Catalogues pour le Pavillon Populaire à Montpellier
