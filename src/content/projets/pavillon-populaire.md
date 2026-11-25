@@ -7,31 +7,31 @@ year: '2024'
 designers:
   - nh
 media:
-  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-7d309e402022.original.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-70288ac466c8.original.jpg
     cover: true
     layout: full
     caption: Gabriele Münter & Eudora Welty, 2024
     width: 2560
     height: 1707
-  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-c29badedfd47.original.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-a12d20f06972.original.jpg
     cover: false
     layout: half
     caption: Gabriele Münter & Eudora Welty, 2024
     width: 2560
     height: 1707
-  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-b7e2085bb21b.original.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-36d6cfdd46bf.original.jpg
     cover: false
     layout: half
     caption: Gabriele Münter & Eudora Welty, 2024
     width: 2560
     height: 1707
-  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-35a1d399fa11.original.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-4d6697f14e7b.original.jpg
     cover: false
     layout: half
     caption: Gabriele Münter & Eudora Welty, 2024
     width: 2560
     height: 1707
-  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-f12ecfc429bf.original.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-670da80b20ec.original.jpg
     cover: false
     layout: half
     caption: Gabriele Münter & Eudora Welty, 2024
