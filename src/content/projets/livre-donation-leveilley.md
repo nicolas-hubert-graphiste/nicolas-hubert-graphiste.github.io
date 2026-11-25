@@ -3,33 +3,39 @@ title: Livre donation Léveilley
 client: musees-d-angers
 categories:
   - edition
-year: 2024
+year: '2024'
 designers:
   - nh
   - ab
+credits: 'Format : 20 x 24 cm, broché avec rabats, 164 pages'
 media:
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leveilley_gris1.xlarge.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-2ec7239822e4.original.jpg
     cover: true
-    width: 2560
-    height: 1707
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leveilley_gris2.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-97c57f77f97a.original.jpg
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leveilley_gris3.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-ecd380090fdb.original.jpg
+    cover: false
     layout: half
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leveilley_gris4.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-d69ae5b23b99.original.jpg
+    cover: false
     layout: full
-  - src: https://nicolashubert-graphiste-production.s3.amazonaws.com/projet_assets/leveilley_gris5.xlarge.jpg
     width: 2560
     height: 1707
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-72361c82e10d.original.jpg
+    cover: false
     layout: half
-credits: "Format : 20 x 24 cm, broché avec rabats, 164 pages"
+    width: 2560
+    height: 1707
+order: 0
+draft: false
 ---
 
 Catalogue de la donation Léveilley aux musées d'Angers, réalisé en collaboration avec Aïcha Sangaré
