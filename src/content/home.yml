@@ -39,7 +39,7 @@ slides:
     navColor: white
     width: 2560
     height: 1707
-  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/ravel9.original.jpg
+  - image: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-9e2ac4f5fc64.original.jpg
     projet: ravel-bolero
     navColor: white
     width: 2560
