@@ -9,7 +9,7 @@ slides:
     navColor: white
     width: 2560
     height: 1707
-  - image: https://nicolashubert-graphiste-production.s3.amazonaws.com/home_images/cat_peinture_MCBAL_home.original.jpg
+  - image: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-828f7bde8ed2.original.jpg
     projet: peintures-et-pastels-francais-du-mcbal
     navColor: white
     width: 2560
