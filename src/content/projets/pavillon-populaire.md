@@ -31,7 +31,7 @@ media:
     caption: Gabriele Münter & Eudora Welty, 2024
     width: 2560
     height: 1707
-  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-670da80b20ec.original.jpg
+  - src: https://nicolashubert-graphiste-production.s3.us-east-1.amazonaws.com/cms/2026-b9db643dce19.original.jpg
     cover: false
     layout: half
     caption: Gabriele Münter & Eudora Welty, 2024
